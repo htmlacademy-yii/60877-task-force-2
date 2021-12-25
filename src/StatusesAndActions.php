@@ -1,5 +1,5 @@
 <?php
-
+namespace HtmlAcademy;
 class StatusesAndActions
 {
     const STATUS_NEW = "Новое";
@@ -33,7 +33,7 @@ class StatusesAndActions
     public function returnMapActions()
     {
 
-        return   [
+        return [
             ACTION_EXECUTE => 'execute',
             ACTION_DONE => 'done',
             ACTION_CANCEL => 'cancel',
@@ -43,29 +43,29 @@ class StatusesAndActions
 
     public function getStatuses($status)
     {
-        if (STATUS_NEW===$status) {
-return ACTION_EXECUTE;
-        } else if (STATUS_CANCELLED===$status) {
-return ACTION_CANCEL;
-        } else if (STATUS_INWORK===$status) {
-       return  ACTION_EXECUTE;
-        } else if (STATUS_DONE===$status) {
-      return ACTION_DONE;
-        } else if (STATUS_FAILED===$status) {
-return [ACTION_CANCEL, ACTION_DENY];
+        if (STATUS_NEW === $status) {
+            return ACTION_EXECUTE;
+        } else if (STATUS_CANCELLED === $status) {
+            return ACTION_CANCEL;
+        } else if (STATUS_INWORK === $status) {
+            return ACTION_EXECUTE;
+        } else if (STATUS_DONE === $status) {
+            return ACTION_DONE;
+        } else if (STATUS_FAILED === $status) {
+            return [ACTION_CANCEL, ACTION_DENY];
         }
     }
 
     public function getActions($action)
     {
 
-        if (ACTION_EXECUTE ===$action) {
+        if (ACTION_EXECUTE === $action) {
             return STATUS_INWORK;
-        } else if (ACTION_DONE===$action) {
+        } else if (ACTION_DONE === $action) {
             return STATUS_DONE;
-        } else if (ACTION_CANCEL===$action) {
+        } else if (ACTION_CANCEL === $action) {
             return STATUS_CANCELLED;
-        } else if (ACTION_DENY===$action) {
+        } else if (ACTION_DENY === $action) {
             return STATUS_FAILED;
         }
     }
