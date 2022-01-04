@@ -1,5 +1,15 @@
 <?php
 namespace HtmlAcademy;
+
+  abstract class AbstractClass
+{
+    // Данные методы должны быть определены в дочернем классе
+    abstract protected function returnMapStatuses();
+    abstract protected function returnMapActions();
+    abstract protected function getStatuses($status);
+    abstract protected function getActions($action);
+
+}
 class StatusesAndActions
 {
     const STATUS_NEW = "Новое";
@@ -12,7 +22,8 @@ class StatusesAndActions
     const ACTION_CANCEL = 'cancel';
     const ACTION_DENY = 'deny';
 
-    public function __construct($taskAuthor, $idMaker)
+
+   public function __construct($taskAuthor, $idMaker)
     {
         $this->taskAuthor = $taskAuthor;
         $this->idMaker = $idMaker;
