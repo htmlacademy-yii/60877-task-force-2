@@ -1,5 +1,6 @@
 <?php
+namespace Htmlacademy\Models;
 require_once "vendor/autoload.php";
 
-$firstClass = new HtmlAcademy\StatusesAndActions("name", 2);
+$firstClass = new Task("name", 2);
 
