@@ -9,5 +9,6 @@ use Htmlacademy\Models\CsvToSqlConverter;
 
 //$firstClass = new Task(2, 2);
 
+
 $csvConverterFirst = new CsvToSqlConverter('data/categories.xlsx');
 $csvConverterSecond = new CsvToSqlConverter('data/cities.xlsx');
