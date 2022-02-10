@@ -32,21 +32,24 @@ class Task
 
 
     private $statusArray = [
-		self::STATUS_NEW => 'Новое',
-		self::STATUS_INWORK => 'В работе',
-		self::STATUS_DONE => 'Выполнено',
-		self::STATUS_FAILED => 'Провалено',
-		self::STATUS_CANCELLED => 'Отменено'
-	];
-    function showConstant() {
-        echo  self::STATUS_INWORK . "\n";
+        self::STATUS_NEW => 'Новое',
+        self::STATUS_INWORK => 'В работе',
+        self::STATUS_DONE => 'Выполнено',
+        self::STATUS_FAILED => 'Провалено',
+        self::STATUS_CANCELLED => 'Отменено'
+    ];
+
+    function showConstant()
+    {
+        echo self::STATUS_INWORK . "\n";
     }
+
     private $statusMap = [
-		self::ACTION_EXECUTE => self::STATUS_INWORK,
-		self::ACTION_DONE => self::STATUS_DONE,
-		self::ACTION_CANCEL => self::STATUS_CANCELLED,
-		self::ACTION_DENY => self::STATUS_FAILED
-	];
+        self::ACTION_EXECUTE => self::STATUS_INWORK,
+        self::ACTION_DONE => self::STATUS_DONE,
+        self::ACTION_CANCEL => self::STATUS_CANCELLED,
+        self::ACTION_DENY => self::STATUS_FAILED
+    ];
 
     public function __construct(int $customerId, int $executerId)
     {
@@ -54,20 +57,22 @@ class Task
         $this->executerId = $executerId;
     }
 
-    public function actionArray() {
+    public function actionArray()
+    {
         $array = [
             self::STATUS_NEW => [new ActionExecute(), new ActionCancel()],
             self::STATUS_INWORK => [new ActionDone(), new ActionDeny()],
         ];
         return $array;
     }
-     function getActions(string $status, int $idExecutor, int $idTaskmaker, int $idUser)
+
+    function getActions(string $status, int $idExecutor, int $idTaskmaker, int $idUser)
     {
 
 
-      $statuses  = $this->actionArray();
-        if (!array_key_exists($status, $statuses)){
-            throw CustomExeption ("No status in the action");
+        $statuses = $this->actionArray();
+        if (!array_key_exists($status, $statuses)) {
+            throw CustomExeption("No status in the action");
         }
         $actions = $statuses[$status];
 
@@ -81,26 +86,26 @@ class Task
         return false;
     }
 
-    public function nextStatus(string $action):string
+    public function nextStatus(string $action): string
     {
-        if(!in_array($action, array_keys( $this->statusMap ))){
-			throw new CustomException("Given action does not exist.");
-		}
+        if (!in_array($action, array_keys($this->statusMap))) {
+            throw new CustomException("Given action does not exist.");
+        }
         $stmap = $this->statusMap[$action];
         return $this->statusArray[$stmap];
     }
 
-    public function getStatus():string
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    public function getCustomer():int
+    public function getCustomer(): int
     {
         return $this->customerId;
     }
 
-    public function getExecuter():int
+    public function getExecuter(): int
     {
         return $this->executerId;
     }
