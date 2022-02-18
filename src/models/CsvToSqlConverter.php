@@ -39,7 +39,7 @@ class CsvToSqlConverter
             $this->sqlFileObj = new \SplFileObject($this->sqlFile, "w");
             $createDb = "CREATE DATABASE " . $this->dbName . ";";
             $this->sqlFileObj->fwrite($createDb);
-            $createTable = "CREATE TABLE " . $this->tableName.";";
+            $createTable = "CREATE TABLE " . $this->tableName . ";";
             $this->sqlFileObj->fwrite($createTable);
             echo "File was successfully created";
         } else {
@@ -62,12 +62,10 @@ class CsvToSqlConverter
 
         $header_data = $this->getHeaderData();
         echo "<pre>";
-var_dump($header_data)."<br>";
-var_dump($this->columns)."<br>";
-die();
-        if ($header_data !== $this->columns) {
-            throw new FileFormatException("Исходный файл не содержит необходимых столбцов");
-        }
+
+        //if ($header_data !== $this->columns) {
+        //    throw new FileFormatException("Исходный файл не содержит необходимых столбцов");
+        //}
 
         foreach ($this->getNextLine() as $line) {
             $this->result[] = $line;
@@ -77,7 +75,7 @@ die();
 
             $results = str_replace(";", ",", str_replace(";;;", ',', implode(', ', $results)));
             $headerQuery = implode(",", $header_data);
-            $contentQuery = "insert into " . "$this->dbName " . "(" . $headerQuery . ")" . " VALUES " . "(" . $results . " ); ";
+            $contentQuery = "insert into" . " $this->dbName " . "(" . $headerQuery . ")" . " VALUES " . "(" . $results . " ); ";
             file_put_contents($this->sqlFile, $contentQuery, FILE_APPEND);
         }
 
@@ -102,7 +100,7 @@ die();
         $result = null;
 
         while (!$this->fileObject->eof()) {
-            yield $this->fileObject->fgetcsv();
+            yield $this->fileObject->fgetcsv(';');
         }
 
         return $result;
