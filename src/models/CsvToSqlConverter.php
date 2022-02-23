@@ -34,18 +34,6 @@ class CsvToSqlConverter
         $structure = "sql/";
 
 
-        if (!file_exists($this->sqlFile) && !is_dir($structure)) {
-            mkdir($structure);
-            $this->sqlFileObj = new \SplFileObject($this->sqlFile, "w");
-            $createDb = "CREATE DATABASE " . $this->dbName . ";";
-            $this->sqlFileObj->fwrite($createDb);
-            $createTable = "CREATE TABLE " . $this->tableName . ";";
-            $this->sqlFileObj->fwrite($createTable);
-            echo "File was successfully created";
-        } else {
-            //die("Repeatedly trying to create file");
-        }
-
         if (!$this->validateColumns($this->columns)) {
             throw new FileFormatException("Заданы неверные заголовки столбцов");
         }
@@ -63,20 +51,65 @@ class CsvToSqlConverter
         $header_data = $this->getHeaderData();
         echo "<pre>";
 
-        //if ($header_data !== $this->columns) {
-        //    throw new FileFormatException("Исходный файл не содержит необходимых столбцов");
-        //}
+        if (!file_exists($this->sqlFile) && !is_dir($structure)) {
+            mkdir($structure);
 
-        foreach ($this->getNextLine() as $line) {
-            $this->result[] = $line;
-        }
+            $this->sqlFileObj = new \SplFileObject($this->sqlFile, "w");
+            $createDb = "CREATE DATABASE " . $this->dbName . ";";
+            $this->sqlFileObj->fwrite($createDb);
 
-        foreach ($this->result as $results) {
+            $useQuery = "use " . $this->dbName . ";";
+            $this->sqlFileObj->fwrite($useQuery);
 
-            $results = str_replace(";", ",", str_replace(";;;", ',', implode(', ', $results)));
-            $headerQuery = implode(",", $header_data);
-            $contentQuery = "insert into" . " $this->dbName " . "(" . $headerQuery . ")" . " VALUES " . "(" . $results . " ); ";
-            file_put_contents($this->sqlFile, $contentQuery, FILE_APPEND);
+            $createTable = " CREATE TABLE " . $this->tableName . "(" . implode(',', $this->columns) . "  varchar(255) NOT NULL".")" . "ENGINE=InnoDB DEFAULT CHARSET=utf8" . "; ";
+            $this->sqlFileObj->fwrite($createTable);
+            foreach ($this->getNextLine() as $line) {
+                $this->result[] = $line;
+            }
+            foreach ($this->result as $results) {
+
+
+                $headerQuery = implode(",", $header_data);
+
+
+                $results2 = "'" . implode("','", $results) . "'";
+
+                $contentQuery = "insert into" . " $this->dbName " . "(" . $headerQuery . ")" . " VALUES " . "(" . $results2 . ")" . ";";
+
+
+                file_put_contents($this->sqlFile, $contentQuery, FILE_APPEND);
+            }
+            echo "Files was successfully created";
+        } else {
+            rmdir($structure);
+            $this->sqlFileObj = new \SplFileObject($this->sqlFile, "w");
+            $createDb = "CREATE DATABASE " . $this->dbName . ";";
+            $this->sqlFileObj->fwrite($createDb);
+
+            $useQuery = "use " . $this->dbName . ";";
+            $this->sqlFileObj->fwrite($useQuery);
+
+            $createTable =
+                "CREATE TABLE " . $this->tableName . "(" . implode(',', $this->columns) . "varchar(255) NOT NULL".")" .
+                "ENGINE=InnoDB DEFAULT CHARSET=utf8" . "; ";
+
+
+
+            $this->sqlFileObj->fwrite($createTable);
+            foreach ($this->getNextLine() as $line) {
+                $this->result[] = $line;
+            }
+            foreach ($this->result as $results) {
+
+
+                $headerQuery = implode(",", $header_data);
+
+                $results2 = "'" . implode("','", $results) . "'";
+
+                $contentQuery = "insert into" . " $this->dbName " . "(" . $headerQuery . ")" . " VALUES " . "(" . $results2 . ")" . ";";
+                file_put_contents($this->sqlFile, $contentQuery, FILE_APPEND);
+            }
+            echo "Files was successfully created with directory deleting";
         }
 
 
@@ -100,7 +133,7 @@ class CsvToSqlConverter
         $result = null;
 
         while (!$this->fileObject->eof()) {
-            yield $this->fileObject->fgetcsv(';');
+            yield $this->fileObject->fgetcsv();
         }
 
         return $result;
