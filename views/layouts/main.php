@@ -25,8 +25,8 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-    <header class="page-header">
-    <nav class="main-nav">
+<header class="page-header">
+     <nav class="main-nav">
         <a href='#' class="header-logo">
             <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
         </a>
@@ -71,7 +71,10 @@ AppAsset::register($this);
 </header>
 
 <main role="main" class="flex-shrink-0">
- <? echo $content; ?>
+    <div class="container">
+
+        <?= $content ?>
+    </div>
 </main>
 
 <footer class="footer mt-auto py-3 text-muted">
