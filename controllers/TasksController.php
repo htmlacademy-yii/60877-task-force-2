@@ -11,17 +11,13 @@ class TasksController extends Controller
 {
     public function actionIndex()
     {
-        $tasks = Tasks::find()->all();
-
-$categories = Categories::findOne(['id'=>[1,2]]);
-        //$categories = Categories::find()->where(['category_id=>id'])->all();
+        $tasks = Tasks::find()->where(['status'=>1])->orderBy('dt_add DESC')->all();
 
         if (is_null($tasks)) {
             throw new NotFoundHttpException("нет тасков!");
         }
         return $this->render('index', [
             'tasks' => $tasks,
-            "categories"=>$categories
         ]);
     }
 }

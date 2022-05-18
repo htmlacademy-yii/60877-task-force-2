@@ -41,6 +41,7 @@ class Categories extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'icon' => 'Icon',
+
         ];
     }
 

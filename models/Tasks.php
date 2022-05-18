@@ -68,12 +68,7 @@ class Tasks extends \yii\db\ActiveRecord
 
     public function getWebsiteCategories()
     {
-        return $this->hasOne(Categories::class, ['id'=>'category_id']);
-    }
-
-        public static function find()
-    {
-        return new TasksQuery(get_called_class());
+        return $this->hasOne(Categories::class, ['id' => 'category_id']);
     }
 
 }
