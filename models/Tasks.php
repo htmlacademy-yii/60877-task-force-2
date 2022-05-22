@@ -17,6 +17,8 @@ use Yii;
  * @property string $budget
  * @property string $latitude
  * @property string $longitude
+ *
+ * @property Categories $websiteCategories
  */
 class Tasks extends \yii\db\ActiveRecord
 {
@@ -57,4 +59,16 @@ class Tasks extends \yii\db\ActiveRecord
             'longitude' => 'Longitude',
         ];
     }
+
+    public function getWasOnSite()
+    {
+        $timePeriod = strtotime('now') - strtotime($this->dt_add);
+        return \Yii::$app->formatter->asDuration($timePeriod);
+    }
+
+    public function getWebsiteCategories()
+    {
+        return $this->hasOne(Categories::class, ['id' => 'category_id']);
+    }
+
 }

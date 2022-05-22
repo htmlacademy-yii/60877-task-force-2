@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 04 2022 г., 23:22
+-- Время создания: Май 18 2022 г., 22:43
 -- Версия сервера: 5.7.25
 -- Версия PHP: 7.3.9
 
@@ -220,7 +220,7 @@ INSERT INTO `replies` (`id`, `dt_add`, `rate`, `description`) VALUES
 
 CREATE TABLE `tasks` (
   `id` int(10) UNSIGNED NOT NULL,
-  `dt_add` varchar(255) NOT NULL,
+  `dt_add` bigint(255) NOT NULL,
   `category_id` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `expire` varchar(255) NOT NULL,
@@ -228,24 +228,25 @@ CREATE TABLE `tasks` (
   `address` varchar(255) NOT NULL,
   `budget` varchar(255) NOT NULL,
   `latitude` varchar(255) NOT NULL,
-  `longitude` varchar(255) NOT NULL
+  `longitude` varchar(255) NOT NULL,
+  `status` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `dt_add`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`) VALUES
-(1, '2019-03-09', '2', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15', 'enable impactful technologies', '1 Eagan Crossing', '6587', '6.9641667', '158.2083333'),
-(2, '2019-07-03', '3', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2019-12-07', 'exploit revolutionary portals', '24043 Paget Alley', '2904', '5.623505', '10.2544044'),
-(3, '2019-06-27', '2', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23', 'matrix next-generation e-commerce', '2867 Dryden Pass', '1170', '63.593219', '53.9068532'),
-(4, '2019-01-01', '1', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', '838', '20.5800358', '-75.2435307'),
-(5, '2019-09-07', '3', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15', 'integrate cross-platform e-business', '1 Stone Corner Junction', '7484', '14.9326574', '-91.6941845'),
-(6, '2018-11-01', '7', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24', 'enable dot-com niches', '12 Stephen Terrace', '5725', '40.163127', '116.638868'),
-(7, '2019-09-13', '5', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19', 'transform web-enabled relationships', '6213 Lake View Drive', '4414', '44.3794871', '20.2638941'),
-(8, '2019-04-01', '8', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14', 'strategize frictionless solutions', '994 Corry Park', '3454', '-7.3251485', '108.3607464'),
-(9, '2019-03-28', '4', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12', 'innovate seamless metrics', '2 Bluestem Park', '3101', '43', '-87.97'),
-(10, '2019-05-01', '4', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19', 'integrate wireless infomediaries', '1 Dexter Hill', '6562', '41.3410168', '-8.3169303');
+INSERT INTO `tasks` (`id`, `dt_add`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`) VALUES
+(1, 1552082400, '2', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15', 'Ukraine', '1 Eagan Crossing', '6587', '6.9641667', '158.2083333', 0),
+(2, 1652215204, '3', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2019-12-07', 'exploit revolutionary portals', '24043 Paget Alley', '2904', '5.623505', '10.2544044', 1),
+(3, 1502082400, '2', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23', 'matrix next-generation e-commerce', '2867 Dryden Pass', '1170', '63.593219', '53.9068532', 1),
+(4, 1502072400, '1', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', '838', '20.5800358', '-75.2435307', 0),
+(5, 1502092990, '3', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15', 'integrate cross-platform e-business', '1 Stone Corner Junction', '7484', '14.9326574', '-91.6941845', 0),
+(6, 1502092600, '7', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24', 'enable dot-com niches', '12 Stephen Terrace', '5725', '40.163127', '116.638868', 0),
+(7, 1502192600, '5', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19', 'transform web-enabled relationships', '6213 Lake View Drive', '4414', '44.3794871', '20.2638941', 0),
+(8, 1592199600, '8', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14', 'strategize frictionless solutions', '994 Corry Park', '3454', '-7.3251485', '108.3607464', 0),
+(9, 1592100909, '4', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12', 'innovate seamless metrics', '2 Bluestem Park', '3101', '43', '-87.97', 0),
+(10, 1792100909, '4', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19', 'integrate wireless infomediaries', '1 Dexter Hill', '6562', '41.3410168', '-8.3169303', 0);
 
 -- --------------------------------------------------------
 
