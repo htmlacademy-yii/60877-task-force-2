@@ -13,7 +13,8 @@ class FIlterTasks extends Model
     public $courier_services;
     public $cargo_moving;
     public $without_author;
-
+    public $one_hour;
+    public twelve_hours;
     /**
      * @return array customized attribute labels
      */

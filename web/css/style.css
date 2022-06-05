@@ -1448,7 +1448,6 @@ select {
 .search-form select {
     margin-top: 20px;
     width: 100%;
-    padding: 13px 16px;
     margin-bottom: 25px;
     font-size: 15px;
     color: #8f9bb3;
@@ -1744,13 +1743,13 @@ form .has-error textarea:hover {
     border-color: #fa6400;
 }
 
-.help-block {
+/*.help-block {
     font-family: Arial, sans-serif;
     font-size: 11px;
     color: #fa6400;
     visibility: hidden;
     min-height: 25px;
-}
+}*/
 
 .location-icon {
     background-image: url("../img/location-icon.svg");
