@@ -26,9 +26,7 @@ class SearchTasks extends Tasks
             [['taskPeriod'], 'integer'],
             [['without_author'], 'string'],
             ['categories', function ($attribute, $params) {
-                $this->categories = array_flip($this->categories);
-                unset($this->categories[0]);
-                $this->categories = array_flip($this->categories);
+                $this->categories = array_filter($this->categories);
             }],
         ];
     }

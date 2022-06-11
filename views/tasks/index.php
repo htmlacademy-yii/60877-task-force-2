@@ -24,6 +24,20 @@ $this->title = 'My Yii Application';
 
         <h3 class="head-main head-task">Новые задания</h3>
 
+<?php
+
+$arr = [1=>"Maxym", 2=>"Berezynets"];
+$newArr = [];
+
+foreach ($arr as $key => $value) {
+    $newArr = [$value=>$key,];
+}
+
+var_dump($newArr['Berezynets']);
+
+?>
+
+
 
         <?php foreach ($dataProvider->models as $task): ?>
 
