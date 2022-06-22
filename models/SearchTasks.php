@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use SebastianBergmann\Type\NullType;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Tasks;
@@ -22,12 +23,12 @@ class SearchTasks extends Tasks
     public function rules()
     {
         return [
-            [['categories'], 'safe'],
+
             [['taskPeriod'], 'integer'],
             [['without_author'], 'string'],
-            ['categories', function ($attribute, $params) {
-                $this->categories = array_filter($this->categories);
-            }],
+
+            [['categories'], 'filter', 'filter' => 'array_filter']
+
         ];
     }
 
@@ -63,17 +64,15 @@ class SearchTasks extends Tasks
             return $dataProvider;
         }
 
-        /*$this->categories = $this->categories->validate();*/
-        /*$this->categories = array_flip($this->categories);
-        unset($this->categories[0]);
-        $this->categories = array_flip($this->categories);*/
-
         $query->where(['status' => 1])->orderBy('dt_add DESC');
 
+        $query->andFilterWhere(['category_id' => $this->categories]);
+
         if ($this->without_author === '1') {
-            $query->andFilterWhere(['user_id' => 0]);
+
+            $query->where(['user_id' => null]);
         }
-        $query->andFilterWhere(['category_id' => $this->categories])->andFilterWhere(['user_id' => 1]);
+
 
         if ($this->taskPeriod !== 0) {
             $query->andFilterWhere(['<', 'dt_add', time() - $this->taskPeriod]);

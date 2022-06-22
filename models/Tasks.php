@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\Query;
+use DateTime;
 
 /**
  * This is the model class for table "tasks".
@@ -47,10 +48,10 @@ class Tasks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categories'], 'safe'],
-            [['dt_add', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'required'],
-            [['dt_add', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
+            [['categories'], 'filter', 'filter' => 'array_filter']
         ];
+
+
     }
 
     /**
@@ -99,7 +100,7 @@ class Tasks extends \yii\db\ActiveRecord
 
     public function getWasOnSite()
     {
-        $timePeriod = strtotime('now') - strtotime($this->dt_add);
+        $timePeriod = strtotime('now') - $this->dt_add;
         return \Yii::$app->formatter->asDuration($timePeriod);
     }
 
@@ -107,5 +108,11 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Categories::class, ['id' => 'category_id']);
     }
+
+    public function getReplies()
+    {
+        return $this->hasMany(Replies::class, ['task_id' => 'id']);
+    }
+
 
 }

@@ -24,27 +24,12 @@ $this->title = 'My Yii Application';
 
         <h3 class="head-main head-task">Новые задания</h3>
 
-<?php
-
-$arr = [1=>"Maxym", 2=>"Berezynets"];
-$newArr = [];
-
-foreach ($arr as $key => $value) {
-    $newArr = [$value=>$key,];
-}
-
-var_dump($newArr['Berezynets']);
-
-?>
-
-
-
         <?php foreach ($dataProvider->models as $task): ?>
 
 
             <div class="task-card">
                 <div class="header-task">
-                    <a href="<?php echo "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "/" . $task->id; ?>" class="link link--block link--big"><?php echo $task->name; ?></a>
+                    <a href="<?php echo "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "/" . "view/".$task->id; ?>" class="link link--block link--big"><?php echo $task->name; ?></a>
                     <p class="price price--task"><?php echo $task->budget; ?> ₽</p>
                 </div>
                 <p class="info-text"><span class="current-time"><?php echo $task->getWasOnSite(); ?> </span>назад
@@ -54,7 +39,7 @@ var_dump($newArr['Berezynets']);
                 <div class="footer-task">
                     <p class="info-text town-text"><?php echo $task->address; ?></p>
                     <p class="info-text category-text"><?php echo $task->websiteCategories->name; ?></p>
-                    <a href="<?php echo "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "/" . $task->id; ?>"
+                    <a href="<?php echo "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "/" . "view/".$task->id; ?>"
                        class="button button--black">Смотреть Задание</a>
                 </div>
             </div>

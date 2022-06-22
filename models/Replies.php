@@ -45,4 +45,9 @@ class Replies extends \yii\db\ActiveRecord
             'description' => 'Description',
         ];
     }
+
+    public function getRepliesDateAdd()
+    {
+        return $this->hasMany(Replies::class, ['task_id' => 'id']);
+    }
 }
