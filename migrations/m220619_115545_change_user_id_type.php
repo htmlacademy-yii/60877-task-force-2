@@ -20,9 +20,7 @@ class m220619_115545_change_user_id_type extends Migration
      */
     public function safeDown()
     {
-        echo "m220619_115545_change_user_id_type cannot be reverted.\n";
-
-        return false;
+      $this->alterColumn('tasks', 'user_id', $this->integer());
     }
 
     /*

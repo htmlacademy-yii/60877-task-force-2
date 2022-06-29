@@ -14,7 +14,7 @@ use app\models\FIlterTasks;
 use yii\grid\GridView;
 use yii\grid\ActionColumn;
 use app\models\Tasks;
-
+use yii\helpers\Url;
 $this->title = 'My Yii Application';
 
 ?>
@@ -29,7 +29,7 @@ $this->title = 'My Yii Application';
 
             <div class="task-card">
                 <div class="header-task">
-                    <a href="<?php echo "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "/" . "view/".$task->id; ?>" class="link link--block link--big"><?php echo $task->name; ?></a>
+                    <a href="<?php echo Url::to(['site/index', 'view' => $task->id]);?>" class="link link--block link--big"><?php echo $task->name; ?></a>
                     <p class="price price--task"><?php echo $task->budget; ?> ₽</p>
                 </div>
                 <p class="info-text"><span class="current-time"><?php echo $task->getWasOnSite(); ?> </span>назад
