@@ -12,7 +12,6 @@ use yii\bootstrap4\NavBar;
 use app\assets\MainAsset;
 
 AppAsset::register($this);
-MainAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
