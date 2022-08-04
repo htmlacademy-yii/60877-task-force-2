@@ -64,7 +64,7 @@ class SearchTasks extends Tasks
             return $dataProvider;
         }
 
-        $query->where(['status' => 1])->orderBy('dt_add DESC');
+        $query->where(['status' => 1])->orderBy('create_at DESC');
 
         $query->andFilterWhere(['category_id' => $this->categories]);
 
@@ -75,7 +75,7 @@ class SearchTasks extends Tasks
 
 
         if ($this->taskPeriod !== 0) {
-            $query->andFilterWhere(['<', 'dt_add', time() - $this->taskPeriod]);
+            $query->andFilterWhere(['<', 'create_at', time() - $this->taskPeriod]);
         }
 
 

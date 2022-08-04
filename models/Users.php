@@ -12,6 +12,10 @@ use Yii;
  * @property string $name
  * @property string $password
  * @property string $dt_add
+ * @property  TasksReplies[] $replies
+ * @property  UserReplies[] $executorReplies
+ * @property Tasks[] $doneTasks
+ * @property Tasks[] $failedTasks
  */
 class Users extends \yii\db\ActiveRecord
 {
@@ -47,4 +51,80 @@ class Users extends \yii\db\ActiveRecord
             'dt_add' => 'Dt Add',
         ];
     }
+
+    public function getAvgRating()
+    {
+        static $rating = null;
+
+        if (is_null($rating) && count($this->replies) > 0) {
+            $ratings = [];
+            foreach ($this->replies as $reply) {
+                $ratings[] = $reply->rate;
+            }
+
+            $rating = array_sum($ratings) / count($ratings);
+        }
+        return $rating;
+    }
+
+    public function getUserAvgRating()
+    {
+        static $rating = null;
+
+        if (is_null($rating)) {
+            $ratings = [];
+            foreach ($this->userRating as $reply) {
+                $ratings[] = $reply->rating;
+            }
+
+            $rating = array_sum($ratings) / count($ratings);
+
+
+        }
+        return $rating;
+    }
+
+    public function getReplies()
+    {
+        return $this->hasMany(UserReplies::class, ['user_id' => 'id']);
+    }
+
+    public function getDoneTasks()
+    {
+        return $this->hasMany(Tasks::class, ['user_id' => 'id'])->andWhere(['status' => 1]);
+    }
+
+    public function getFailedTasks()
+    {
+        return $this->hasMany(Tasks::class, ['user_id' => 'id'])->andWhere(['status' => 0]);
+    }
+
+    public function getExecutorReplies()
+    {
+        return $this->hasMany(UserReplies::class, ['executor_id' => 'id']);
+    }
+
+    public function getUserRating()
+    {
+        // отношение к новой таблице отзывов пользователя
+        return $this->hasMany(UserRating::class, ['user_id' => 'id']);
+    }
+
+    public function getTags()
+    {
+        return $this->hasMany(TagsAttributes::class, ['id' => 'id'])->viaTable('tags_attribution', ['user_id' => 'id']);
+    }
+
+
+    public function getAllRepliesForUsers()
+    {
+        return $this->hasMany(TasksReplies::class, ['user_id' => 'id'])->viaTable('replies_links', ['replies_id' => 'id'])->where(['entity' => 'user']);
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(UserReplies::class, ['executor_id' => 'id']);
+    }
+
+
 }

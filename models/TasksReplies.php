@@ -11,15 +11,20 @@ use Yii;
  * @property string $dt_add
  * @property string $rate
  * @property string $description
+ *
+ * @property Users $user
+ *
  */
-class Replies extends \yii\db\ActiveRecord
+class TasksReplies extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
+    public $name;
+
     public static function tableName()
     {
-        return 'replies';
+        return 'tasks_replies';
     }
 
     /**
@@ -49,5 +54,18 @@ class Replies extends \yii\db\ActiveRecord
     public function getRepliesDateAdd()
     {
         return $this->hasMany(Replies::class, ['task_id' => 'id']);
+    }
+
+        public function getWasOnSite()
+    {
+        $timePeriod = strtotime('now') - $this->dt_add;
+        $days = number_format($timePeriod / 60 / 60 / 24);
+        return \Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language);
+
+    }
+
+    public function getUser()
+    {
+        return $this->hasOne(Users::class, ['id'=>'user_id']);
     }
 }
