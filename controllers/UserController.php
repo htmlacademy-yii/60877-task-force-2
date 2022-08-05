@@ -20,23 +20,23 @@ class UserController extends Controller
             throw new NotFoundHttpException("Нету такого юзера!");
         }
 
-/*        $rating =
-            (new \yii\db\Query())->select(['id', 'rate', '@curRank :=@curRank + 1 AS rank'])
-            ->from(['user_replies', 'q' => 'SELECT @curRank:=0'])
-            ->where(['user_id' => $id])->orderBy(['rate' => SORT_DESC]);*/
+        if ($singleUser->user_status !== 'executor') {
+            throw new NotFoundHttpException("Юзер не является исполнителем!");
+        }
 
-        $rating = Yii::$app->db->createCommand("SELECT * FROM (SELECT *, (@position:=@position+1) as rate FROM (SELECT user_id,
-       SUM(rate) / COUNT(rate) as pts
-FROM user_replies, (SELECT @position:=0) as a
-GROUP BY user_id
-ORDER BY pts DESC) AS subselect) as general WHERE  user_id = $id")
-           ->queryOne();
+        $numberReplies = UserReplies::find()->where(['executor_id' => $id])->count();
+        $rating = Yii::$app->db->createCommand("SELECT * FROM (SELECT *, (@position:=@position+1) as rate FROM (SELECT executor_id,
+        SUM(rate) / COUNT(rate) as pts
+        FROM user_replies, (SELECT @position:=0) as a
+        GROUP BY executor_id
+        ORDER BY pts DESC) AS subselect) as general WHERE  executor_id = $id")->queryOne();
 
 
         return $this->render('index',
             [
                 'singleUser' => $singleUser,
-                'rating' => $rating
+                'rating' => $rating,
+                'numberReplies' => $numberReplies
             ]
         );
 

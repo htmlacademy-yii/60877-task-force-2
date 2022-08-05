@@ -49,10 +49,20 @@ class Users extends \yii\db\ActiveRecord
             'name' => 'Name',
             'password' => 'Password',
             'dt_add' => 'Dt Add',
+            'user_img' => 'User Img',
+            'quote' => 'Quote',
+            'country' => 'Country',
+            'city' => 'City',
+            'age' => 'Age',
+            'phone' => 'Phone',
+            'telegram' => 'Telegram',
+            'status' => 'Status',
+            'avg_rating' => 'Avg Rating',
+            'user_status' => 'User Status',
         ];
     }
 
-    public function getAvgRating()
+   public function getAvgRating()
     {
         static $rating = null;
 
@@ -67,14 +77,14 @@ class Users extends \yii\db\ActiveRecord
         return $rating;
     }
 
-    public function getUserAvgRating()
+ public function getUserAvgRating()
     {
         static $rating = null;
 
         if (is_null($rating)) {
             $ratings = [];
-            foreach ($this->userRating as $reply) {
-                $ratings[] = $reply->rating;
+            foreach ($this->executorReplies as $reply) {
+                $ratings[] = $reply->rate;
             }
 
             $rating = array_sum($ratings) / count($ratings);
