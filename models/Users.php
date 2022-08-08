@@ -62,7 +62,7 @@ class Users extends \yii\db\ActiveRecord
         ];
     }
 
-   public function getAvgRating()
+    public function getAvgRating()
     {
         static $rating = null;
 
@@ -77,7 +77,7 @@ class Users extends \yii\db\ActiveRecord
         return $rating;
     }
 
- public function getUserAvgRating()
+    public function getUserAvgRating()
     {
         static $rating = null;
 
@@ -134,6 +134,17 @@ class Users extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(UserReplies::class, ['executor_id' => 'id']);
+    }
+
+    public function getRating()
+    {
+        $id = \Yii::$app->request->get('id');
+        $rating = Yii::$app->db->createCommand("SELECT * FROM (SELECT *, (@position:=@position+1) as rate FROM (SELECT executor_id,
+        SUM(rate) / COUNT(rate) as pts
+        FROM user_replies, (SELECT @position:=0) as a
+        GROUP BY executor_id
+        ORDER BY pts DESC) AS subselect) as general WHERE  executor_id = $id")->queryOne();
+        return $rating;
     }
 
 

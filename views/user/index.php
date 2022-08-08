@@ -88,46 +88,52 @@ use app\models\TagsAttributes;
 
     </div>
 
-        <div class="right-column">
-            <div class="right-card black">
-                <h4 class="head-card">Статистика исполнителя</h4>
-                <dl class="black-list">
-                    <dt>Всего заказов</dt>
-                    <dd><?php echo count($singleUser->doneTasks); ?>
-                        выполнено, <?php echo count($singleUser->failedTasks); ?> провалено
+    <div class="right-column">
+        <div class="right-card black">
+            <h4 class="head-card">Статистика исполнителя</h4>
+            <dl class="black-list">
+                <dt>Всего заказов</dt>
+                <dd><?php echo count($singleUser->doneTasks); ?>
+                    выполнено, <?php echo count($singleUser->failedTasks); ?> провалено
+                </dd>
+                <?php
+
+                if (!is_null($singleUser->getRating())):
+                    ?>
+                    <dt>Место в рейтинге</dt>
+
+                    <dd>
+                        <?php
+
+                        echo $singleUser->getRating()['rate'];
+                        ?>
+
                     </dd>
-                    <?php if (!is_null($rating['rate'])): ?>
-                        <dt>Место в рейтинге</dt>
-
-                        <dd>
-                            <?php echo $rating['rate'] . " " . "место"; ?>
-
-                        </dd>
-                    <?php endif; ?>
-                    <dt>Дата регистрации</dt>
-                    <dd><?php echo date('Y-m-d H:m:s', $singleUser->dt_add); ?></dd>
-                    <dt>Статус</dt>
-                    <?php if ($singleUser->status === 1): ?>
-                        <dd>Открыт для новых заказов</dd>
-                    <?php else: ?>
-                        <dd>Закрыт для новых заказов</dd>
-                    <?php endif; ?>
-                </dl>
-            </div>
-            <div class="right-card white">
-                <h4 class="head-card">Контакты</h4>
-                <ul class="enumeration-list">
-                    <li class="enumeration-item">
-                        <a href="#" class="link link--block link--phone"><?php echo $singleUser->phone; ?></a>
-                    </li>
-                    <li class="enumeration-item">
-                        <a href="#" class="link link--block link--email"><?php echo $singleUser->email; ?></a>
-                    </li>
-                    <li class="enumeration-item">
-                        <a href="#" class="link link--block link--tg">@<?php echo $singleUser->telegram; ?></a>
-                    </li>
-                </ul>
-            </div>
+                <?php endif; ?>
+                <dt>Дата регистрации</dt>
+                <dd><?php echo date('Y-m-d H:m:s', $singleUser->dt_add); ?></dd>
+                <dt>Статус</dt>
+                <?php if ($singleUser->status === 1): ?>
+                    <dd>Открыт для новых заказов</dd>
+                <?php else: ?>
+                    <dd>Закрыт для новых заказов</dd>
+                <?php endif; ?>
+            </dl>
         </div>
+        <div class="right-card white">
+            <h4 class="head-card">Контакты</h4>
+            <ul class="enumeration-list">
+                <li class="enumeration-item">
+                    <a href="#" class="link link--block link--phone"><?php echo $singleUser->phone; ?></a>
+                </li>
+                <li class="enumeration-item">
+                    <a href="#" class="link link--block link--email"><?php echo $singleUser->email; ?></a>
+                </li>
+                <li class="enumeration-item">
+                    <a href="#" class="link link--block link--tg">@<?php echo $singleUser->telegram; ?></a>
+                </li>
+            </ul>
+        </div>
+    </div>
     s
 </main>
