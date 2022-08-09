@@ -139,12 +139,37 @@ class Users extends \yii\db\ActiveRecord
     public function getRating()
     {
         $id = \Yii::$app->request->get('id');
-        $rating = Yii::$app->db->createCommand("SELECT * FROM (SELECT *, (@position:=@position+1) as rate FROM (SELECT executor_id,
+
+        /*  $rating = Yii::$app->db->createCommand("
+          SELECT * FROM (SELECT *, (@position:=@position+1) as rate
+          FROM (SELECT executor_id,
+          SUM(rate) / COUNT(rate) as pts
+          FROM user_replies, (SELECT @position:=0) as a
+          GROUP BY executor_id
+          ORDER BY pts DESC) AS subselect)
+          as general WHERE  executor_id = $id")->queryOne();
+  */
+        $rating = '';
+        $cache = Yii::$app->cache;
+// Формируем ключ
+        $key = 'rating';
+// Пробуем извлечь категории из кэша.
+        $rating = $cache->get($rating);
+        if ($rating === false) {
+            //Если $categories нет в кэше, вычисляем заново
+            $rating = Yii::$app->db->createCommand("
+        SELECT * FROM (SELECT *, (@position:=@position+1) as rate 
+        FROM (SELECT executor_id,
         SUM(rate) / COUNT(rate) as pts
         FROM user_replies, (SELECT @position:=0) as a
         GROUP BY executor_id
-        ORDER BY pts DESC) AS subselect) as general WHERE  executor_id = $id")->queryOne();
+        ORDER BY pts DESC) AS subselect) 
+        as general WHERE  executor_id = $id")->queryOne();
+            // Сохраняем значение $categories в кэше по ключу. Данные можно получить в следующий раз.
+            $cache->set($key, $rating);
+        }
         return $rating;
+
     }
 
 

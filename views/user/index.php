@@ -97,15 +97,15 @@ use app\models\TagsAttributes;
                     выполнено, <?php echo count($singleUser->failedTasks); ?> провалено
                 </dd>
                 <?php
-
-                if (!is_null($singleUser->getRating())):
+                $rating = $singleUser->getRating();
+                if (!is_null($rating)):
                     ?>
                     <dt>Место в рейтинге</dt>
 
                     <dd>
                         <?php
 
-                        echo $singleUser->getRating()['rate'];
+                        echo $rating['rate'];
                         ?>
 
                     </dd>
