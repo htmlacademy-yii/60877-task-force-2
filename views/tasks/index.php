@@ -10,13 +10,9 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use app\models\FIlterTasks;
-use yii\grid\GridView;
-use yii\grid\ActionColumn;
-use app\models\Tasks;
 use yii\helpers\Url;
-$this->title = 'My Yii Application';
 
+$this->title = 'My Yii Application';
 ?>
 
 <main class="main-content container">
@@ -29,7 +25,9 @@ $this->title = 'My Yii Application';
 
             <div class="task-card">
                 <div class="header-task">
-                    <a href="<?php echo Url::to(['site/index', 'view' => $task->id]);?>" class="link link--block link--big"><?php echo $task->name; ?></a>
+                    <a href=" <?php echo Url::to(['tasks/view', 'id' => $task->id]);?>
+"
+                       class="link link--block link--big"><?php echo $task->name; ?></a>
                     <p class="price price--task"><?php echo $task->budget; ?> ₽</p>
                 </div>
                 <p class="info-text"><span class="current-time"><?php echo $task->getWasOnSite(); ?> </span>назад
@@ -39,7 +37,7 @@ $this->title = 'My Yii Application';
                 <div class="footer-task">
                     <p class="info-text town-text"><?php echo $task->address; ?></p>
                     <p class="info-text category-text"><?php echo $task->websiteCategories->name; ?></p>
-                    <a href="<?php echo "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . "/" . "view/".$task->id; ?>"
+                    <a href="<?php echo Url::to(['tasks/view', 'id' => $task->id]);?>"
                        class="button button--black">Смотреть Задание</a>
                 </div>
             </div>
@@ -77,13 +75,9 @@ $this->title = 'My Yii Application';
 
                 <h4 class="head-card">Категории</h4>
                 <div class="form-group">
-
                     <?php foreach ($categories as $attr => $category): ?>
                         <?php
-
                         $checked = in_array($category->id, $modelSearch->categories);
-
-
                         echo $form
                             ->field($modelSearch, "categories[$attr]")
                             ->checkbox(['id' => $attr, 'value' => $category->id, 'label' => $category->name, 'checked' => $checked])
@@ -92,14 +86,11 @@ $this->title = 'My Yii Application';
                 </div>
                 <h4 class="head-card">Дополнительно</h4>
                 <div class="form-group">
-
                     <?php echo $form->field($modelSearch, 'without_author')->checkbox(['id' => 'without-performer'])->label(''); ?>
-
                 </div>
                 <h4 class="head-card">Период</h4>
                 <div class="form-group">
                     <label for="period-value"></label>
-
                     <?php echo $form->field($modelSearch, 'taskPeriod')->dropdownList([
                         60 * 60 => '1 час',
                         60 * 60 * 12 => '12 часов',
@@ -115,4 +106,3 @@ $this->title = 'My Yii Application';
         </div>
     </div>
 </main>
-

@@ -18,24 +18,24 @@ class TasksController extends Controller
 
         $modelSearch = new SearchTasks();
         $dataProvider = $modelSearch->search($this->request->post());
-        $categories = Categories::find()->all();
+        $categories = Categories::find()->where([])->all();
 
         return $this->render('index', [
             'modelSearch' => $modelSearch,
             'dataProvider' => $dataProvider,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
 
     }
 
     public function actionView($id)
     {
-        $replies = Replies::find()->where(['task_id' => $id])->all();
-        $singleTask = Tasks::find()->where(['id' => $id])->one();
 
-        $cat_id = $singleTask->category_id;
-        $categoryTask = Categories::find()->where(['id' => $cat_id])->one();
-        return $this->render('single-task', ['singleTask' => $singleTask, 'categoryTask' => $categoryTask, 'replies' => $replies]);
+        $task = Tasks::find()->where(['id' => $id])->one();
+        if ($task === null) {
+            throw new NotFoundHttpException("Нету такого таска!");
+        }
+        return $this->render('single-task', ['task' => $task]);
 
     }
 }

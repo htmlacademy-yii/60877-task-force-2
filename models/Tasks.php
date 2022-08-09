@@ -9,7 +9,7 @@ use Yii;
  * This is the model class for table "tasks".
  *
  * @property int $id
- * @property string $dt_add
+ * @property string $create_at
  * @property string $category_id
  * @property string $description
  * @property string $expire
@@ -19,7 +19,8 @@ use Yii;
  * @property string $latitude
  * @property string $longitude
  *
- * @property Categories $websiteCategories
+ * @property Categories $category
+ * @property Replies[] $replies
  */
 class Tasks extends \yii\db\ActiveRecord
 {
@@ -37,8 +38,8 @@ class Tasks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dt_add', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'required'],
-            [['dt_add', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
+            [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'required'],
+            [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
         ];
 
     }
@@ -50,7 +51,7 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'dt_add' => 'Dt Add',
+            'create_at' => 'Dt Add',
             'category_id' => 'Category ID',
             'description' => 'Description',
             'expire' => 'Expire',
@@ -65,8 +66,16 @@ class Tasks extends \yii\db\ActiveRecord
 
     public function getWasOnSite()
     {
-        $timePeriod = strtotime('now') - $this->dt_add;
-        return \Yii::$app->formatter->asDuration($timePeriod);
+        $timePeriod = strtotime('now') - $this->create_at;
+        $days = $timePeriod / 60 / 60 / 24;
+        return \Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language);
+    }
+
+//    $task->category;
+
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::class, ['id' => 'category_id']);
     }
 
     public function getWebsiteCategories()
@@ -76,7 +85,7 @@ class Tasks extends \yii\db\ActiveRecord
 
     public function getReplies()
     {
-        return $this->hasMany(Replies::class, ['task_id' => 'id']);
+        return $this->hasMany(TasksReplies::class, ['task_id' => 'id']);
     }
 
 
