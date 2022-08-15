@@ -1554,9 +1554,9 @@ input[type=date] {
     width: 295px;
 }
 
-.registration-form input {
+/*.registration-form input {
     width: 642px;
-}
+}*/
 
 .registration-form input[type=checkbox] {
     -webkit-transform: scale(1.4);
