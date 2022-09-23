@@ -1,42 +1,42 @@
 <?php
-
-
 namespace app\models;
-
-
 use yii\db\ActiveRecord;
-
-class Register extends ActiveRecord
+use yii\base\Model;
+class Register extends Model
 {
-
-    public $retype_pass;
-
+    public $password;
+    public $name;
+    public $email;
+    public $city;
+    public $answer_orders;
+    public $repeat_password;
+    public $password_hash;
     public function attributeLabels()
     {
         return [
             'name' => 'Ваше Имя',
             'email' => 'Email',
             'city' => "Город",
-            'password' => 'Пароль',
-            'retype_pass' => 'Повтор пароля',
+            'password' => 'Пароль', // попадает в атрибуты тега который будет сгенерирован
+            'repeat_password' => 'Повтор пароля',
             'answer_orders' => 'Test',
-            'dt_add'=>"Дата"
+            'dt_add' => "Дата"
         ];
     }
-
     public static function tableName()
     {
         return 'users';
     }
-
     public function rules()
     {
         return [
-            [['name', 'email', 'city', 'password', 'retype_pass', 'answer_orders'], 'safe'],
-            [['name', 'email', 'city', 'password', 'retype_pass'], 'required'],
-            // атрибут email указывает, что в переменной email должен быть корректный адрес электронной почты
+            [
+                ['name', 'email', 'city', 'password', 'repeat_password'], 'required'], // password_hash берется с БД
             ['email', 'email'],
-            ['email', 'unique'],
+            ['email', 'unique', 'targetClass' => Users::class, 'targetAttribute' => 'email'],
+            ['password', 'string'],
+            ['repeat_password', 'string'],
+            ['password', 'compare', 'compareAttribute' => 'repeat_password'],
         ];
     }
 }

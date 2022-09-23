@@ -50,7 +50,9 @@ $config = [
             //'baseUrl'=>'web',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+
             'rules' => [
+                'defaultRoute' => 'tasks/index',
                 'tasks/view/<id:\d+>' => 'tasks/view',
                 'user/view/<id:\d+>' => 'user/view',
             ],
