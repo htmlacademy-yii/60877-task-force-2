@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $email
  * @property string $name
- * @property string $password
+ * @property string $password_hash
  * @property string $dt_add
  * @property string $user_img
  * @property string $quote
@@ -35,7 +35,7 @@ class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public $id;
     public $authKey;
     public $accessToken;
-
+public $password;
     public static function tableName()
     {
         return 'users';
