@@ -12,6 +12,16 @@ use Yii;
  * @property string $name
  * @property string $password
  * @property string $dt_add
+ * @property string $user_img
+ * @property string $quote
+ * @property string $country
+ * @property string $city
+ * @property string $age
+ * @property string $phone
+ * @property string $telegram
+ * @property string $status
+ * @property string $user_status
+ * @property string $answer_orders
  * @property  TasksReplies[] $replies
  * @property  UserReplies[] $executorReplies
  * @property Tasks[] $doneTasks

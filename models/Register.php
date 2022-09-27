@@ -10,7 +10,6 @@ class Register extends Model
     public $city;
     public $answer_orders;
     public $repeat_password;
-    public $password_hash;
     public function attributeLabels()
     {
         return [
