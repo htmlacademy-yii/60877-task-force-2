@@ -11,26 +11,65 @@ use Yii;
  * @property string $email
  * @property string $name
  * @property string $password_hash
- * @property int|null $dt_add
- * @property string|null $user_img
- * @property string|null $quote
- * @property string|null $country
+ * @property string $dt_add
+ * @property string $user_img
+ * @property string $quote
+ * @property string $country
  * @property string $city
- * @property string|null $age
- * @property string|null $phone
- * @property string|null $telegram
- * @property int|null $status
- * @property string|null $user_status
- * @property int|null $answer_orders
+ * @property string $age
+ * @property string $phone
+ * @property string $telegram
+ * @property string $status
+ * @property string $user_status
+ * @property string $answer_orders
+ * @property  TasksReplies[] $replies
+ * @property  UserReplies[] $executorReplies
+ * @property Tasks[] $doneTasks
+ * @property Tasks[] $failedTasks
  */
-class Users extends \yii\db\ActiveRecord
+class Users extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * {@inheritdoc}
      */
+    public $id;
+    public $authKey;
+    public $accessToken;
+public $password;
     public static function tableName()
     {
         return 'users';
+    }
+
+    public static function findIdentity($id)
+    {
+        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        foreach (self::$users as $user) {
+            if ($user['accessToken'] === $token) {
+                return new static($user);
+            }
+        }
+
+        return null;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->authKey;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->authKey === $authKey;
     }
 
     /**
@@ -39,10 +78,8 @@ class Users extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'name', 'password_hash', 'city'], 'required'],
-            [['dt_add', 'status', 'answer_orders'], 'integer'],
-            [['email', 'name', 'password_hash', 'user_img', 'country', 'city', 'age', 'phone', 'telegram', 'user_status'], 'string', 'max' => 255],
-            [['quote'], 'string', 'max' => 1000],
+            [['email', 'name', 'password', 'dt_add'], 'required'],
+            [['email', 'name', 'password', 'dt_add'], 'string', 'max' => 255],
         ];
     }
 
@@ -52,28 +89,23 @@ class Users extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'email' => Yii::t('app', 'Email'),
-            'name' => Yii::t('app', 'Name'),
-            'password_hash' => Yii::t('app', 'Password Hash'),
-            'dt_add' => Yii::t('app', 'Dt Add'),
-            'user_img' => Yii::t('app', 'User Img'),
-            'quote' => Yii::t('app', 'Quote'),
-            'country' => Yii::t('app', 'Country'),
-            'city' => Yii::t('app', 'City'),
-            'age' => Yii::t('app', 'Age'),
-            'phone' => Yii::t('app', 'Phone'),
-            'telegram' => Yii::t('app', 'Telegram'),
-            'status' => Yii::t('app', 'Status'),
-            'user_status' => Yii::t('app', 'User Status'),
-            'answer_orders' => Yii::t('app', 'Answer Orders'),
+            'id' => 'ID',
+            'email' => 'Email',
+            'name' => 'Name',
+            'password' => 'Password',
+            'dt_add' => 'Dt Add',
+            'user_img' => 'User Img',
+            'quote' => 'Quote',
+            'country' => 'Country',
+            'city' => 'City',
+            'age' => 'Age',
+            'phone' => 'Phone',
+            'telegram' => 'Telegram',
+            'status' => 'Status',
+            'avg_rating' => 'Avg Rating',
+            'user_status' => 'User Status',
         ];
     }
-
-    /**
-     * {@inheritdoc}
-     * @return Users the active query used by this AR class.
-     */
 
     public function getAvgRating()
     {
@@ -184,4 +216,6 @@ class Users extends \yii\db\ActiveRecord
         return $rating;
 
     }
+
+
 }

@@ -12,6 +12,9 @@ $this->title = 'Register page';
     <div class="center-block">
         <div class="registration-form regular-form">
             <?php
+
+
+            $cities = \app\models\Cities::find()->select('city')->indexBy('city')->column();
             $form = ActiveForm::begin([
                 'method' => 'post',
             ]) ?>
@@ -25,9 +28,7 @@ $this->title = 'Register page';
                 </div>
                 <div class="form-group">
                     <?php echo $form->field($register, 'city')->dropdownList([
-                        'city1' => 'Киев',
-                        'city2' => "Донецк",
-                        'city3' => "Севастополь"
+                        "Города" => $cities
                     ]); ?>
                 </div>
             </div>
@@ -37,14 +38,19 @@ $this->title = 'Register page';
             <div class="form-group">
                 <?php echo $form->field($register, 'repeat_password')
                     ->passwordInput(['id' => 'password-repeat-user'])
-                    ->label('Пароль', ['class' => 'control-label']); ?>
+                    ->label('Повтор Пароля', ['class' => 'control-label']); ?>
             </div>
             <div class="form-group">
                 <?php
 
-                $radioTemplate = '<div class=\"radio\"><label class="control-label" for="response-user"><input id="response-user" type="checkbox" checked>Я собираюсь откликаться на заказы</label>{error}{hint}</div>';
-                echo $form->field($register, 'answer_orders', ['template' => $radioTemplate])
-                    ->checkbox(['id' => 'response-user'])->label("Я собираюсь откликаться на заказы"); ?>
+               $template = '{input}{label}{error}{hint}';
+                echo $form->field($register, 'answer_orders', ['template' => $template])
+                    ->checkbox(['id' => 'response-user', 'checked'=>true, 'class' => 'control-label'])
+                    ->label("Я собираюсь откликаться на заказы", ["class"=>"control-label"]);
+
+                ?>
+
+
             </div>
             <?= Html::submitButton('Создать аккаунт', ['class' => 'button button--blue']) ?>
             <?php ActiveForm::end() ?>
