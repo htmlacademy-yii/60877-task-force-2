@@ -12,14 +12,14 @@ use Yii;
  * @property string $latitude
  * @property string $longitude
  */
-class Cities extends \yii\db\ActiveRecord
+class City extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'cities';
+        return 'city';
     }
 
     /**

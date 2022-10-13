@@ -14,16 +14,16 @@ use Yii;
  * @property int $user_id
  * @property int $executor_id
  * @property int $create_at
- * @property Users $userWriter
+ * @property User $userWriter
  */
-class UserReplies extends \yii\db\ActiveRecord
+class UserReply extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'user_replies';
+        return 'user_reply';
     }
 
     /**
@@ -63,17 +63,17 @@ class UserReplies extends \yii\db\ActiveRecord
 
     public function getLastTask()
     {
-        return $this->hasOne(Tasks::class, ['user_id' => 'executor_id'])->orderBy('create_at DESC')->one();
+        return $this->hasOne(Task::class, ['user_id' => 'executor_id'])->orderBy('create_at DESC')->one();
     }
 
     public function getUserWriter()
     {
-        return $this->hasOne(Users::class, ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     public function getReplies()
     {
-        return $this->hasMany(Users::class, ['id' => 'user_id']);
+        return $this->hasMany(User::class, ['id' => 'user_id']);
     }
 
     public function getWasOnSite()

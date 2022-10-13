@@ -11,14 +11,14 @@ use Yii;
  * @property string $name
  * @property string $icon
  */
-class Categories extends \yii\db\ActiveRecord
+class Category extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'categories';
+        return 'category';
     }
 
     /**

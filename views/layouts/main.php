@@ -26,31 +26,34 @@ AppAsset::register($this);
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
+<?php if (\Yii::$app->controller->id !== "register"): ?>
+    <header class="page-header">
+        <nav class="main-nav">
 
-<header class="page-header">
-    <nav class="main-nav">
-        <a href='#' class="header-logo">
-            <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
-        </a>
-        <div class="nav-wrapper">
-            <ul class="nav-list">
-                <li class="list-item list-item--active">
-                    <a class="link link--nav">Новое</a>
-                </li>
-                <li class="list-item">
-                    <a href="#" class="link link--nav">Мои задания</a>
-                </li>
-                <li class="list-item">
-                    <a href="#" class="link link--nav">Создать задание</a>
-                </li>
-                <li class="list-item">
-                    <a href="#" class="link link--nav">Настройки</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <div class="user-block">
-        <?php if (\Yii::$app->request->getUrl() !== '/register'): ?>
+
+            <a href='#' class="header-logo">
+                <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
+            </a>
+
+            <div class="nav-wrapper">
+                <ul class="nav-list">
+                    <li class="list-item list-item--active">
+                        <a class="link link--nav">Новое</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="link link--nav">Мои задания</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="link link--nav">Создать задание</a>
+                    </li>
+                    <li class="list-item">
+                        <a href="#" class="link link--nav">Настройки</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="user-block">
+
             <a href="#">
                 <img class="user-photo" src="img/man-glasses.png" width="55" height="55" alt="Аватар">
             </a>
@@ -71,11 +74,12 @@ AppAsset::register($this);
                     </ul>
                 </div>
             </div>
-        <?php endif; ?>
-    </div>
 
-</header>
 
+        </div>
+
+    </header>
+<?php endif; ?>
 <main role="main" class="flex-shrink-0">
     <div class="container">
 
@@ -86,7 +90,7 @@ AppAsset::register($this);
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
         <p class="float-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered() ?></p>
+        <p class="float-right"><?= Yii::powered(); ?></p>
     </div>
 </footer>
 

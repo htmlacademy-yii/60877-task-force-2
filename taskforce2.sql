@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 27 2022 г., 15:46
+-- Время создания: Окт 13 2022 г., 17:19
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -24,20 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `categories`
+-- Структура таблицы `category`
 --
 
-CREATE TABLE `categories` (
+CREATE TABLE `category` (
   `id` int UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `icon` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `categories`
+-- Дамп данных таблицы `category`
 --
 
-INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
+INSERT INTO `category` (`id`, `name`, `icon`) VALUES
 (1, 'Переводы', 'translation'),
 (2, 'Уборка', 'clean'),
 (3, 'Переезды', 'cargo'),
@@ -50,64 +50,64 @@ INSERT INTO `categories` (`id`, `name`, `icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `cities`
+-- Структура таблицы `city`
 --
 
-CREATE TABLE `cities` (
+CREATE TABLE `city` (
   `id` int NOT NULL,
-  `city` varchar(255) NOT NULL,
-  `latitude` varchar(255) NOT NULL,
-  `longitude` varchar(255) NOT NULL
+  `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `latitude` decimal(65,0) NOT NULL,
+  `longitude` decimal(65,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `cities`
+-- Дамп данных таблицы `city`
 --
 
-INSERT INTO `cities` (`id`, `city`, `latitude`, `longitude`) VALUES
-(1, 'Абаза', '52.6517296', '90.0885929'),
-(2, 'Абакан', '53.7223661', '91.4437792'),
-(3, 'Абдулино', '53.6778096', '53.6473115'),
-(4, 'Абинск', '44.8679931', '38.1618437'),
-(5, 'Агидель', '55.89976', '53.9221149'),
-(6, 'Агрыз', '56.5232645', '52.994257'),
-(7, 'Адыгейск', '44.8783715', '39.190172'),
-(8, 'Азнакаево', '54.8599054', '53.0745505'),
-(9, 'Азов', '47.1120631', '39.4232597'),
-(10, 'Ак-Довурак', '51.1785658', '90.5984511'),
-(11, 'Аксай', '47.2676075', '39.8755485'),
-(12, 'Алагир', '43.0416151', '44.2198622'),
-(13, 'Алапаевск', '57.8475542', '61.6693934'),
-(14, 'Алатырь', '54.8398179', '46.5721423'),
-(15, 'Алдан', '58.6094885', '125.3816689'),
-(16, 'Алейск', '52.4920914', '82.7794145'),
-(17, 'Александров', '56.3919652', '38.711035'),
-(18, 'Александровск', '59.1613773', '57.5764851'),
-(19, 'Александровск-Сахалинский', '50.8973664', '142.1579322'),
-(20, 'Алексеевка', '50.6299932', '38.6881776'),
-(21, 'Алексин', '54.5083788', '37.047891'),
-(22, 'Алзамай', '55.5550493', '98.6644106'),
-(23, 'Алушта', '44.6764419', '34.4100387'),
-(24, 'Альметьевск', '54.9013662', '52.2970654'),
-(25, 'Амурск', '50.2345017', '136.8791135'),
-(26, 'Анадырь', '64.7314347', '177.5015752'),
-(27, 'Анапа', '44.8950777', '37.3163142'),
-(28, 'Ангарск', '52.5448102', '103.8885385'),
-(29, 'Андреаполь', '56.6507072', '32.2621196'),
-(30, 'Анжеро-Судженск', '56.0787179', '86.0202207'),
-(31, 'Анива', '46.7132526', '142.5265052'),
-(32, 'Апатиты', '67.5678295', '33.4067218'),
-(33, 'Апрелевка', '55.5276336', '37.0651105'),
-(34, 'Апшеронск', '44.4585239', '39.7300092'),
-(35, 'Арамиль', '56.6945341', '60.8343825');
+INSERT INTO `city` (`id`, `name`, `latitude`, `longitude`) VALUES
+(1, 'Абаза', '53', '90'),
+(2, 'Абакан', '54', '91'),
+(3, 'Абдулино', '54', '54'),
+(4, 'Абинск', '45', '38'),
+(5, 'Агидель', '56', '54'),
+(6, 'Агрыз', '57', '53'),
+(7, 'Адыгейск', '45', '39'),
+(8, 'Азнакаево', '55', '53'),
+(9, 'Азов', '47', '39'),
+(10, 'Ак-Довурак', '51', '91'),
+(11, 'Аксай', '47', '40'),
+(12, 'Алагир', '43', '44'),
+(13, 'Алапаевск', '58', '62'),
+(14, 'Алатырь', '55', '47'),
+(15, 'Алдан', '59', '125'),
+(16, 'Алейск', '52', '83'),
+(17, 'Александров', '56', '39'),
+(18, 'Александровск', '59', '58'),
+(19, 'Александровск-Сахалинский', '51', '142'),
+(20, 'Алексеевка', '51', '39'),
+(21, 'Алексин', '55', '37'),
+(22, 'Алзамай', '56', '99'),
+(23, 'Алушта', '45', '34'),
+(24, 'Альметьевск', '55', '52'),
+(25, 'Амурск', '50', '137'),
+(26, 'Анадырь', '65', '178'),
+(27, 'Анапа', '45', '37'),
+(28, 'Ангарск', '53', '104'),
+(29, 'Андреаполь', '57', '32'),
+(30, 'Анжеро-Судженск', '56', '86'),
+(31, 'Анива', '47', '143'),
+(32, 'Апатиты', '68', '33'),
+(33, 'Апрелевка', '56', '37'),
+(34, 'Апшеронск', '44', '40'),
+(35, 'Арамиль', '57', '61');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `opinions`
+-- Структура таблицы `opinion`
 --
 
-CREATE TABLE `opinions` (
+CREATE TABLE `opinion` (
   `id` int NOT NULL,
   `dt_add` varchar(255) NOT NULL,
   `rate` varchar(255) NOT NULL,
@@ -115,10 +115,10 @@ CREATE TABLE `opinions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `opinions`
+-- Дамп данных таблицы `opinion`
 --
 
-INSERT INTO `opinions` (`id`, `dt_add`, `rate`, `description`) VALUES
+INSERT INTO `opinion` (`id`, `dt_add`, `rate`, `description`) VALUES
 (1, '2019-08-19', '3', 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in f'),
 (2, '2019-02-22', '2', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam '),
 (3, '2019-07-11', '2', 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.'),
@@ -133,10 +133,10 @@ INSERT INTO `opinions` (`id`, `dt_add`, `rate`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `profiles`
+-- Структура таблицы `profile`
 --
 
-CREATE TABLE `profiles` (
+CREATE TABLE `profile` (
   `id` int NOT NULL,
   `address` varchar(255) NOT NULL,
   `bd` varchar(255) NOT NULL,
@@ -147,10 +147,10 @@ CREATE TABLE `profiles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `profiles`
+-- Дамп данных таблицы `profile`
 --
 
-INSERT INTO `profiles` (`id`, `address`, `bd`, `about`, `phone`, `skype`, `city_id`) VALUES
+INSERT INTO `profile` (`id`, `address`, `bd`, `about`, `phone`, `skype`, `city_id`) VALUES
 (1, '38737 Moose Avenue', '1989-11-11', 'In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.', ' 64574473047', 'high-level', ' 10'),
 (2, '738 Hagan Lane', '1989-03-05', 'Pellentesque ultrices mattis odio.', '75531015353', 'mobile', ' 14'),
 (3, '758 Old Shore Parkway', '1989-12-30', 'Morbi a ipsum. Integer a nibh. In quis sjusto.', '16371407508', 'Re-engineered', ' 16'),
@@ -175,10 +175,10 @@ INSERT INTO `profiles` (`id`, `address`, `bd`, `about`, `phone`, `skype`, `city_
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `replies_links`
+-- Структура таблицы `replies_link`
 --
 
-CREATE TABLE `replies_links` (
+CREATE TABLE `replies_link` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
   `replies_id` int NOT NULL,
@@ -186,10 +186,10 @@ CREATE TABLE `replies_links` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `replies_links`
+-- Дамп данных таблицы `replies_link`
 --
 
-INSERT INTO `replies_links` (`id`, `user_id`, `replies_id`, `task_id`) VALUES
+INSERT INTO `replies_link` (`id`, `user_id`, `replies_id`, `task_id`) VALUES
 (1, 1, 3, 1),
 (2, 2, 2, 2),
 (3, 1, 1, 1),
@@ -198,19 +198,19 @@ INSERT INTO `replies_links` (`id`, `user_id`, `replies_id`, `task_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tags_attributes`
+-- Структура таблицы `tags_attribute`
 --
 
-CREATE TABLE `tags_attributes` (
+CREATE TABLE `tags_attribute` (
   `id` int NOT NULL,
   `attributes` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `tags_attributes`
+-- Дамп данных таблицы `tags_attribute`
 --
 
-INSERT INTO `tags_attributes` (`id`, `attributes`) VALUES
+INSERT INTO `tags_attribute` (`id`, `attributes`) VALUES
 (1, 'Ремонт'),
 (2, 'Оператор ПК'),
 (3, 'Программист'),
@@ -243,12 +243,12 @@ INSERT INTO `tags_attribution` (`user_id`, `attributes_id`, `id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tasks`
+-- Структура таблицы `task`
 --
 
-CREATE TABLE `tasks` (
+CREATE TABLE `task` (
   `id` int UNSIGNED NOT NULL,
-  `create_at` bigint NOT NULL,
+  `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `category_id` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `expire` datetime NOT NULL,
@@ -262,28 +262,28 @@ CREATE TABLE `tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `tasks`
+-- Дамп данных таблицы `task`
 --
 
-INSERT INTO `tasks` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`) VALUES
-(1, 1654423473, '2', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15 00:00:00', 'Ukraine', '1 Eagan Crossing', '6587', '6.9641667', '158.2083333', 1, 2),
-(2, 1512166045, '3', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2022-12-07 00:00:00', 'exploit revolutionary portals', '24043 Paget Alley', '2904', '5.623505', '10.2544044', 1, 2),
-(3, 1502082400, '2', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23 00:00:00', 'matrix next-generation e-commerce', '2867 Dryden Pass', '1170', '63.593219', '53.9068532', 1, 3),
-(4, 1502072400, '1', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10 00:00:00', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', '838', '20.5800358', '-75.2435307', 1, 5),
-(5, 1502092990, '3', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15 00:00:00', 'integrate cross-platform e-business', '1 Stone Corner Junction', '7484', '14.9326574', '-91.6941845', 1, 4),
-(6, 1502092600, '7', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24 00:00:00', 'enable dot-com niches', '12 Stephen Terrace', '5725', '40.163127', '116.638868', 1, 5),
-(7, 1502192600, '5', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19 00:00:00', 'transform web-enabled relationships', '6213 Lake View Drive', '4414', '44.3794871', '20.2638941', 1, 6),
-(8, 1592199600, '8', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14 00:00:00', 'strategize frictionless solutions', '994 Corry Park', '3454', '-7.3251485', '108.3607464', 1, 7),
-(9, 1592100909, '4', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12 00:00:00', 'innovate seamless metrics', '2 Bluestem Park', '3101', '43', '-87.97', 0, 8),
-(10, 1592100909, '4', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19 00:00:00', 'integrate wireless infomediaries', '1 Dexter Hill', '6562', '41.3410168', '-8.3169303', 1, 9);
+INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`) VALUES
+(1, '2022-10-12 21:00:00', '2', 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15 00:00:00', 'Ukraine', '1 Eagan Crossing', '6587', '6.9641667', '158.2083333', 1, 2),
+(2, '2018-10-01 21:00:00', '3', 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2022-12-07 00:00:00', 'exploit revolutionary portals', '24043 Paget Alley', '2904', '5.623505', '10.2544044', 1, 2),
+(3, '2018-10-01 21:00:00', '2', 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23 00:00:00', 'matrix next-generation e-commerce', '2867 Dryden Pass', '1170', '63.593219', '53.9068532', 1, 3),
+(4, '2018-10-01 21:00:00', '1', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10 00:00:00', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', '838', '20.5800358', '-75.2435307', 1, 5),
+(5, '2018-10-01 21:00:00', '3', 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15 00:00:00', 'integrate cross-platform e-business', '1 Stone Corner Junction', '7484', '14.9326574', '-91.6941845', 1, 4),
+(6, '2018-10-01 21:00:00', '7', 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24 00:00:00', 'enable dot-com niches', '12 Stephen Terrace', '5725', '40.163127', '116.638868', 1, 5),
+(7, '2018-10-01 21:00:00', '5', 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19 00:00:00', 'transform web-enabled relationships', '6213 Lake View Drive', '4414', '44.3794871', '20.2638941', 1, 6),
+(8, '2018-10-01 21:00:00', '8', 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14 00:00:00', 'strategize frictionless solutions', '994 Corry Park', '3454', '-7.3251485', '108.3607464', 1, 7),
+(9, '2018-10-01 21:00:00', '4', 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12 00:00:00', 'innovate seamless metrics', '2 Bluestem Park', '3101', '43', '-87.97', 0, 8),
+(10, '2018-10-01 21:00:00', '4', 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19 00:00:00', 'integrate wireless infomediaries', '1 Dexter Hill', '6562', '41.3410168', '-8.3169303', 1, 9);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tasks_replies`
+-- Структура таблицы `tasks_reply`
 --
 
-CREATE TABLE `tasks_replies` (
+CREATE TABLE `tasks_reply` (
   `id` int UNSIGNED NOT NULL,
   `dt_add` varchar(255) NOT NULL,
   `rate` varchar(255) NOT NULL,
@@ -295,10 +295,10 @@ CREATE TABLE `tasks_replies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `tasks_replies`
+-- Дамп данных таблицы `tasks_reply`
 --
 
-INSERT INTO `tasks_replies` (`id`, `dt_add`, `rate`, `description`, `photo`, `task_id`, `price`, `user_id`) VALUES
+INSERT INTO `tasks_reply` (`id`, `dt_add`, `rate`, `description`, `photo`, `task_id`, `price`, `user_id`) VALUES
 (1, '1657220000', '1', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 'man-hat.png', 1, 10000, 1),
 (2, '1657260000', '4', 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 45000, 2),
 (3, '1657220000', '5', 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 89523, 3),
@@ -323,19 +323,19 @@ INSERT INTO `tasks_replies` (`id`, `dt_add`, `rate`, `description`, `photo`, `ta
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Структура таблицы `user`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` int UNSIGNED NOT NULL,
+  `dt_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
-  `dt_add` bigint DEFAULT NULL,
   `user_img` varchar(255) DEFAULT NULL,
   `quote` varchar(1000) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL,
-  `city` varchar(255) NOT NULL,
+  `city_id` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `age` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `telegram` varchar(255) DEFAULT NULL,
@@ -345,45 +345,52 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
--- Дамп данных таблицы `users`
+-- Дамп данных таблицы `user`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `password_hash`, `dt_add`, `user_img`, `quote`, `country`, `city`, `age`, `phone`, `telegram`, `status`, `user_status`, `answer_orders`) VALUES
-(1, 'kbuttress0@1und1.de', 'Karrie Buttress', '$2y$13$fwbTk66e8eNNnrCfSsMft.0f4SwmvWvTnWPtLmIvNwS344B5o0m.u\r\n\r\n\r\n\r\n\r\n\r\n', 1657123439, 'man-blond.jpg', 'это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.', 'Украина', 'Москва', '40', '+7 (906) 256-06-08', 'sexmachine', 1, 'executor', 1),
-(2, 'baymer1@hp.com', 'Bob Aymer', '$2y$10$EzpN28ZFy6M/rgkrRhAJ..oXyG94gJCiFMkB3VrisXfHcT7Std8Be', 1657123439, 'man-blond.jpg', 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).', 'Украина', 'Москва', '45', '+7 (906) 256-06-08', 'sexmachine', 1, 'customer', 0),
-(3, 'zboulding2@macromedia.com', 'Zilvia Boulding', '$2y$10$kpNm.VdMl4abTntgcPiQ9OVtGhO42jMvGvdF/MrqwMNJNeLZbo3z2', 1657123439, 'man-sweater.png', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 'Украина', 'Москва', '69', '+7 (906) 256-06-08', '', 1, 'executor', 1),
-(4, 'emollon3@bloglovin.com', 'Emalee Mollon', '$2y$10$65EuyBIpaH3ESFchlzRhdu8XunIJ3tF1fHNaYC6sQnICKWI.LFtzq', 1657123439, 'man-blond.jpg', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', 'Украина', 'Краснодар', '89', '380990841805', 'sexmachine', 1, 'executor', 1),
-(5, 'mmulberry4@cmu.edu', 'Maria Mulberry', 'oWspnl', 1657123439, 'man-blond.jpg', 'Классический текст Lorem Ipsum, используемый с XVI века, приведён ниже. Также даны разделы 1.10.32 и 1.10.33 \"de Finibus Bonorum et Malorum\" Цицерона и их английский перевод, сделанный H. Rackham, 1914 год.', 'Украина', 'Сочи', '12', '380990841805', '', 0, 'executor', 1),
-(6, 'lby5@mozilla.com', 'Levey By', 'GdtcUU', 1657123439, 'man-blond.jpg', 'Пожертвования: Если вы регулярно пользуетесь этим сайтом и хотите быть уверенным в его дальнейшем постоянном функционировании, подумайте о небольшом пожертвовании, которое помогло бы оплатить его хостинг и трафик. Нет никаких минимальных сумм - любое пожертвование принимается с благодарностью. Вы можете щёлкнуть здесь чтобы перевести деньги через PayPal. Спасибо за вашу поддержку.', 'Украина', 'Тула', '58', '380990841805', '', 0, 'executor', 1),
-(7, 'beates6@last.fm', 'Baron Eates', 'UQw6VeA', 1657123439, 'man-blond.jpg', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"', 'Украина', 'Нижний Новгород', '0', '380990841805', 'sexmachine', 0, 'customer', 0),
-(8, 'tvink7@fotki.com', 'Trip Vink', '49znXd7haFGz', 1657123439, 'man-blond.jpg', '\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"', '', '0', '0', '380990841805', '', 0, 'customer', 0),
-(9, 'bterbeck8@about.me', 'Boonie Terbeck', 'unCjJTF7sjs', 1657123439, 'man-blond.jpg', '\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"', '', '0', '0', '380990841805', '', 0, 'customer', 0),
-(10, 'atraviss9@auda.org.au', 'Alonzo Traviss', 'dLuVMAg', 1657123439, 'man-blond.jpg', '\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"', '', '0', '0', '0', '', 0, 'customer', 0),
-(11, 'nwitteringa@google.com.br', 'Natassia Wittering', 'tQlUG4n', 1657123439, 'man-blond.jpg', '\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"', '', '0', '0', '0', '', 1, 'customer', 0),
-(12, 'fbrookeb@nba.com', 'Felice Brooke', 's9y9Mcfgy1g', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(13, 'cviccaryc@amazon.co.uk', 'Carlen Viccary', '9qd747vh', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', 'sexmachine', 0, 'customer', 0),
-(14, 'hgethingsd@sogou.com', 'Hendrik Gethings', 'zzN5c4', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(15, 'dgirodiase@stanford.edu', 'Dunc Girodias', 'j9QW6GQI', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(16, 'btanmanf@smh.com.au', 'Bibbie Tanman', '1aukKNEIneq', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(17, 'bbartolettig@simplemachines.org', 'Barnabas Bartoletti', '3chTNtqhoo', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(18, 'nculliph@fc2.com', 'Nixie Cullip', '2UdKIR2f', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(19, 'mpimblotti@xing.com', 'Matilde Pimblott', 'nGZ8disdg', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(20, 'askurrayj@un.org', 'Al Skurray', 'bL9tAf', 1657123439, 'man-blond.jpg', '', '', '0', '0', '0', '', 0, 'customer', 0),
-(21, 'name@ukr.net', 'name', '159357', 1660564665, NULL, NULL, NULL, 'city2', NULL, NULL, NULL, NULL, NULL, NULL),
-(22, 'names@ukr.net', 'name', '159357', 1660564942, NULL, NULL, NULL, 'city2', NULL, NULL, NULL, NULL, NULL, NULL),
-(23, 'namess@ukr.net', 'name', '159357', 1660564967, NULL, NULL, NULL, 'city2', NULL, NULL, NULL, NULL, NULL, NULL),
-(24, 'kontekstexeo@gmail.com', 'name', '3434', 1661977681, NULL, NULL, NULL, 'city1', NULL, NULL, NULL, NULL, NULL, NULL),
-(25, 'admin@ukr.net', 'admin', '$2y$13$zMXFrsHMwwr5rKmaECt30.uK1EPPlHiVKQsKVv8tQRQRpLE1/eoz2', 1662382335, NULL, NULL, NULL, 'city2', NULL, NULL, NULL, NULL, NULL, NULL),
-(26, 'max@ukr.net', 'Максим', '$2y$13$jC40rsl7hR6zm7jqQsR0E.Oh0Q05dT9OO69UAYb89iew7gmPpJQ7q', NULL, NULL, NULL, NULL, 'city2', NULL, NULL, NULL, NULL, NULL, NULL),
-(27, 'hal@ukr.net', 'Максим', '$2y$13$5gntWb6LLbmUJxUNV7yK8OG2ubb4HMkKbK.yFwfJgMdrWxlE9A7h.', NULL, NULL, NULL, NULL, 'city3', NULL, NULL, NULL, NULL, NULL, NULL),
-(28, 'hal2@ukr.net', 'Максим', '$2y$13$twyC5Ncrq/lVDuJEJ33uIuJ0gD6SUgwLVgDu8wRKIcjtWCXTgICoa', NULL, NULL, NULL, NULL, 'city3', NULL, NULL, NULL, NULL, NULL, NULL),
-(29, 'konte3kstexeo@gmail.com', 'admin', '$2y$13$wJ9eMxpE.nWMB9RX1/6GQOtZrL1Md9r/rAJaV1xnOH0gZrAWHy3uy', NULL, NULL, NULL, NULL, 'city2', NULL, NULL, NULL, NULL, NULL, NULL),
-(30, 'admin3@ukr.net', 'admin', '$2y$13$DLMVPpwnXFKkb78ZFAPlV.oeCc625As.BlNEsrs0c76GJZJ9VtKL2', NULL, NULL, NULL, NULL, 'city2', NULL, NULL, NULL, NULL, NULL, NULL),
-(31, 'admin123@ukr.net', 'admin123', '$2y$13$xaZo5eLS6fTwSGNnT4Xouu2yxgTrDDw0Tu9sLu8AXGHEDIMKpqq/a', NULL, NULL, NULL, NULL, 'city1', NULL, NULL, NULL, NULL, NULL, NULL),
-(32, 'admin1223@ukr.net', 'admin123', '$2y$13$t0olhGKt.DAM.TMhqNr.7OzK5IT2FYlHUZyVVj4Wm9IQK18pNOGhy', NULL, NULL, NULL, NULL, 'city1', NULL, NULL, NULL, NULL, NULL, NULL),
-(33, 'admin122223@ukr.net', 'admin123', '$2y$13$RFrX2Rb1QdokxKeHAkG7nu0RYtzUIdw49KXdYmoAhn/U8mQWE.gFi', NULL, NULL, NULL, NULL, 'city1', NULL, NULL, NULL, NULL, NULL, NULL),
-(34, 'adm44in1223@ukr.net', 'admin123', '$2y$13$OM88nzGTEbj7OnHbr7mnfOFmho4zTubqv8XD/kOEuUdfIVA9v7Z0y', NULL, NULL, NULL, NULL, 'city1', NULL, NULL, NULL, NULL, NULL, NULL),
-(35, 'ad3m44in1223@ukr.net', 'admin123', '$2y$13$HDHq1sxtVBKVvFFHlVLozOJfRDm5pLXP4bjOB8QhwY08M85vbvJgS', NULL, NULL, NULL, NULL, 'city1', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `dt_add`, `email`, `name`, `password_hash`, `user_img`, `quote`, `country`, `city_id`, `age`, `phone`, `telegram`, `status`, `user_status`, `answer_orders`) VALUES
+(1, '2022-10-01 12:26:31', 'kbuttress0@1und1.de', 'Karrie Buttress', '$2y$13$fwbTk66e8eNNnrCfSsMft.0f4SwmvWvTnWPtLmIvNwS344B5o0m.u\r\n\r\n\r\n\r\n\r\n\r\n', 'man-blond.jpg', 'это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.', 'Украина', '1', '40', '+7 (906) 256-06-08', 'sexmachine', 1, 'executor', 1),
+(2, '2022-10-01 12:26:31', 'baymer1@hp.com', 'Bob Aymer', '$2y$10$EzpN28ZFy6M/rgkrRhAJ..oXyG94gJCiFMkB3VrisXfHcT7Std8Be', 'man-blond.jpg', 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).', 'Украина', '1', '45', '+7 (906) 256-06-08', 'sexmachine', 1, 'customer', 0),
+(3, '2022-10-01 12:26:31', 'zboulding2@macromedia.com', 'Zilvia Boulding', '$2y$10$kpNm.VdMl4abTntgcPiQ9OVtGhO42jMvGvdF/MrqwMNJNeLZbo3z2', 'man-sweater.png', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 'Украина', '1', '69', '+7 (906) 256-06-08', '', 1, 'executor', 1),
+(4, '2022-10-01 12:26:31', 'emollon3@bloglovin.com', 'Emalee Mollon', '$2y$10$65EuyBIpaH3ESFchlzRhdu8XunIJ3tF1fHNaYC6sQnICKWI.LFtzq', 'man-blond.jpg', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', 'Украина', '2', '89', '380990841805', 'sexmachine', 1, 'executor', 1),
+(5, '2022-10-01 12:26:31', 'mmulberry4@cmu.edu', 'Maria Mulberry', 'oWspnl', 'man-blond.jpg', 'Классический текст Lorem Ipsum, используемый с XVI века, приведён ниже. Также даны разделы 1.10.32 и 1.10.33 \"de Finibus Bonorum et Malorum\" Цицерона и их английский перевод, сделанный H. Rackham, 1914 год.', 'Украина', '3', '12', '380990841805', '', 0, 'executor', 1),
+(6, '2022-10-01 12:26:31', 'lby5@mozilla.com', 'Levey By', 'GdtcUU', 'man-blond.jpg', 'Пожертвования: Если вы регулярно пользуетесь этим сайтом и хотите быть уверенным в его дальнейшем постоянном функционировании, подумайте о небольшом пожертвовании, которое помогло бы оплатить его хостинг и трафик. Нет никаких минимальных сумм - любое пожертвование принимается с благодарностью. Вы можете щёлкнуть здесь чтобы перевести деньги через PayPal. Спасибо за вашу поддержку.', 'Украина', '5', '58', '380990841805', '', 0, 'executor', 1),
+(7, '2022-10-01 12:26:31', 'beates6@last.fm', 'Baron Eates', 'UQw6VeA', 'man-blond.jpg', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"', 'Украина', '5', '0', '380990841805', 'sexmachine', 0, 'customer', 0),
+(8, '2022-10-01 12:26:31', 'tvink7@fotki.com', 'Trip Vink', '49znXd7haFGz', 'man-blond.jpg', '\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"', '', '1', '0', '380990841805', '', 0, 'customer', 0),
+(9, '2022-10-01 12:26:31', 'bterbeck8@about.me', 'Boonie Terbeck', 'unCjJTF7sjs', 'man-blond.jpg', '\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"', '', '1', '0', '380990841805', '', 0, 'customer', 0),
+(10, '2022-10-01 12:26:31', 'atraviss9@auda.org.au', 'Alonzo Traviss', 'dLuVMAg', 'man-blond.jpg', '\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"', '', '1', '0', '0', '', 0, 'customer', 0),
+(11, '2022-10-01 12:26:31', 'nwitteringa@google.com.br', 'Natassia Wittering', 'tQlUG4n', 'man-blond.jpg', '\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"', '', '1', '0', '0', '', 1, 'customer', 0),
+(12, '2022-10-01 12:26:31', 'fbrookeb@nba.com', 'Felice Brooke', 's9y9Mcfgy1g', 'man-blond.jpg', '', '', '1', '0', '0', '', 0, 'customer', 0),
+(13, '2022-10-01 12:26:31', 'cviccaryc@amazon.co.uk', 'Carlen Viccary', '9qd747vh', 'man-blond.jpg', '', '', '1', '0', '0', 'sexmachine', 0, 'customer', 0),
+(14, '2022-10-01 12:26:31', 'hgethingsd@sogou.com', 'Hendrik Gethings', 'zzN5c4', 'man-blond.jpg', '', '', '1', '0', '0', '', 0, 'customer', 0),
+(15, '2022-10-01 12:26:31', 'dgirodiase@stanford.edu', 'Dunc Girodias', 'j9QW6GQI', 'man-blond.jpg', '', '', '1', '0', '0', '', 0, 'customer', 0),
+(16, '2022-10-01 12:26:31', 'btanmanf@smh.com.au', 'Bibbie Tanman', '1aukKNEIneq', 'man-blond.jpg', '', '', '1', '0', '0', '', 0, 'customer', 0),
+(17, '2022-10-01 12:26:31', 'bbartolettig@simplemachines.org', 'Barnabas Bartoletti', '3chTNtqhoo', 'man-blond.jpg', '', '', '1', '0', '0', '', 0, 'customer', 0),
+(18, '2022-10-01 12:26:31', 'nculliph@fc2.com', 'Nixie Cullip', '2UdKIR2f', 'man-blond.jpg', '', '', '1', '0', '0', '', 0, 'customer', 0),
+(19, '2022-10-01 12:26:31', 'mpimblotti@xing.com', 'Matilde Pimblott', 'nGZ8disdg', 'man-blond.jpg', '', '', '1', '0', '0', '', 0, 'customer', 0),
+(20, '2022-10-01 12:26:31', 'askurrayj@un.org', 'Al Skurray', 'bL9tAf', 'man-blond.jpg', '', '', '2', '0', '0', '', 0, 'customer', 0),
+(21, '2022-10-01 12:26:31', 'name@ukr.net', 'name', '159357', NULL, NULL, NULL, '5', NULL, NULL, NULL, NULL, NULL, NULL),
+(22, '2022-10-01 12:26:31', 'names@ukr.net', 'name', '159357', NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL),
+(23, '2022-10-01 12:26:31', 'namess@ukr.net', 'name', '159357', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(24, '2022-10-01 12:26:31', 'kontekstexeo@gmail.com', 'name', '3434', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(25, '2022-10-01 12:26:31', 'admin@ukr.net', 'admin', '$2y$13$zMXFrsHMwwr5rKmaECt30.uK1EPPlHiVKQsKVv8tQRQRpLE1/eoz2', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(26, '2022-10-01 12:26:31', 'max@ukr.net', 'Максим', '$2y$13$jC40rsl7hR6zm7jqQsR0E.Oh0Q05dT9OO69UAYb89iew7gmPpJQ7q', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(27, '2022-10-01 12:26:31', 'hal@ukr.net', 'Максим', '$2y$13$5gntWb6LLbmUJxUNV7yK8OG2ubb4HMkKbK.yFwfJgMdrWxlE9A7h.', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(28, '2022-10-01 12:26:31', 'hal2@ukr.net', 'Максим', '$2y$13$twyC5Ncrq/lVDuJEJ33uIuJ0gD6SUgwLVgDu8wRKIcjtWCXTgICoa', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(29, '2022-10-01 12:26:31', 'konte3kstexeo@gmail.com', 'admin', '$2y$13$wJ9eMxpE.nWMB9RX1/6GQOtZrL1Md9r/rAJaV1xnOH0gZrAWHy3uy', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(30, '2022-10-01 12:26:31', 'admin3@ukr.net', 'admin', '$2y$13$DLMVPpwnXFKkb78ZFAPlV.oeCc625As.BlNEsrs0c76GJZJ9VtKL2', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(31, '2022-10-01 12:26:31', 'admin123@ukr.net', 'admin123', '$2y$13$xaZo5eLS6fTwSGNnT4Xouu2yxgTrDDw0Tu9sLu8AXGHEDIMKpqq/a', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(32, '2022-10-01 12:26:31', 'admin1223@ukr.net', 'admin123', '$2y$13$t0olhGKt.DAM.TMhqNr.7OzK5IT2FYlHUZyVVj4Wm9IQK18pNOGhy', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(33, '2022-10-01 12:26:31', 'admin122223@ukr.net', 'admin123', '$2y$13$RFrX2Rb1QdokxKeHAkG7nu0RYtzUIdw49KXdYmoAhn/U8mQWE.gFi', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(34, '2022-10-01 12:26:31', 'adm44in1223@ukr.net', 'admin123', '$2y$13$OM88nzGTEbj7OnHbr7mnfOFmho4zTubqv8XD/kOEuUdfIVA9v7Z0y', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(35, '2022-10-01 12:26:31', 'ad3m44in1223@ukr.net', 'admin123', '$2y$13$HDHq1sxtVBKVvFFHlVLozOJfRDm5pLXP4bjOB8QhwY08M85vbvJgS', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(36, '2022-10-01 12:26:31', 'na678me@ukr.net', 'name', '$2y$13$ep035D28J4HLWeoB.DTCc.zaJ3Ckwhox3eeSpr8CBnUghKuTimvWq', NULL, NULL, NULL, '2', NULL, NULL, NULL, NULL, NULL, NULL),
+(37, '2022-10-01 12:26:31', 'max@gmail.com', 'MyNameIsMax', '$2y$13$Vm.Hj0XmDLceZ1EVg4kD/OYqoJPgeDdzbzmc6vQgYF4Ik8Nu6mLsS', NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL),
+(38, '2022-10-01 12:26:31', 'mom@ukr.net', 'NinaMom', '$2y$13$Wxaj0fHgijWMi4wnd8uhs.l/RBALZ2QKePfiU6ZLdCEOmwYDuIUkm', NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL),
+(39, '2022-10-01 12:26:31', 'itexpeditionameric222a@gmail.com', 'admin33', '$2y$13$Lfu5GmhwpqcXgGs6m/A7WO7GXH6nq4Ztsg7cGxv3DQHnZ7pFLOi9G', NULL, NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL),
+(40, '2022-10-01 12:26:31', 'itexpeditio44nameric222a@gmail.com', 'admin33', '$2y$13$wtJnB0ZkuamdB./zFyKS2eEUJeFD5g6JH1GN.tZ.6HqCAXS2pFxNe', NULL, NULL, NULL, '1', NULL, NULL, NULL, 1, NULL, NULL),
+(41, '2022-10-01 12:26:31', 'kontekstex8963eo@gmail.com', 'admin', '$2y$13$BQW1O3BCXDNBq1svsCtmiuj7E8Tnc/rqHIKJWmkfPd8C7SmSUQ3V6', NULL, NULL, NULL, '4', NULL, NULL, NULL, NULL, NULL, 1),
+(42, '2022-10-01 12:26:31', 'ma44x@ukr.net', 'max@ukr.net', '$2y$13$dfhf33.p3e10gLBwlfXAruM0b1RLJztrWjNuHPAOb20SqiGqw85.W', NULL, NULL, NULL, '32', NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -410,10 +417,10 @@ INSERT INTO `user_rating` (`id`, `rating`, `user_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_replies`
+-- Структура таблицы `user_reply`
 --
 
-CREATE TABLE `user_replies` (
+CREATE TABLE `user_reply` (
   `id` int NOT NULL,
   `create_at` int NOT NULL,
   `rate` int NOT NULL,
@@ -424,10 +431,10 @@ CREATE TABLE `user_replies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Дамп данных таблицы `user_replies`
+-- Дамп данных таблицы `user_reply`
 --
 
-INSERT INTO `user_replies` (`id`, `create_at`, `rate`, `description`, `task_id`, `user_id`, `executor_id`) VALUES
+INSERT INTO `user_reply` (`id`, `create_at`, `rate`, `description`, `task_id`, `user_id`, `executor_id`) VALUES
 (1, 1657000000, 5, 'Sippunen LOso', 1, 3, 4),
 (2, 1657256000, 3, 'И поют сиренады', 2, 2, 5);
 
@@ -436,33 +443,33 @@ INSERT INTO `user_replies` (`id`, `create_at`, `rate`, `description`, `task_id`,
 --
 
 --
--- Индексы таблицы `categories`
+-- Индексы таблицы `category`
 --
-ALTER TABLE `categories`
+ALTER TABLE `category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `cities`
+-- Индексы таблицы `city`
 --
-ALTER TABLE `cities`
+ALTER TABLE `city`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `opinions`
+-- Индексы таблицы `opinion`
 --
-ALTER TABLE `opinions`
+ALTER TABLE `opinion`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `profiles`
+-- Индексы таблицы `profile`
 --
-ALTER TABLE `profiles`
+ALTER TABLE `profile`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `replies_links`
+-- Индексы таблицы `replies_link`
 --
-ALTER TABLE `replies_links`
+ALTER TABLE `replies_link`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -472,22 +479,23 @@ ALTER TABLE `tags_attribution`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tasks`
+-- Индексы таблицы `task`
 --
-ALTER TABLE `tasks`
+ALTER TABLE `task`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `tasks_replies`
+-- Индексы таблицы `tasks_reply`
 --
-ALTER TABLE `tasks_replies`
+ALTER TABLE `tasks_reply`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `users`
+-- Индексы таблицы `user`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Индексы таблицы `user_rating`
@@ -496,9 +504,9 @@ ALTER TABLE `user_rating`
   ADD PRIMARY KEY (`id`);
 
 --
--- Индексы таблицы `user_replies`
+-- Индексы таблицы `user_reply`
 --
-ALTER TABLE `user_replies`
+ALTER TABLE `user_reply`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -506,33 +514,33 @@ ALTER TABLE `user_replies`
 --
 
 --
--- AUTO_INCREMENT для таблицы `categories`
+-- AUTO_INCREMENT для таблицы `category`
 --
-ALTER TABLE `categories`
+ALTER TABLE `category`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT для таблицы `cities`
+-- AUTO_INCREMENT для таблицы `city`
 --
-ALTER TABLE `cities`
+ALTER TABLE `city`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
--- AUTO_INCREMENT для таблицы `opinions`
+-- AUTO_INCREMENT для таблицы `opinion`
 --
-ALTER TABLE `opinions`
+ALTER TABLE `opinion`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT для таблицы `profiles`
+-- AUTO_INCREMENT для таблицы `profile`
 --
-ALTER TABLE `profiles`
+ALTER TABLE `profile`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT для таблицы `replies_links`
+-- AUTO_INCREMENT для таблицы `replies_link`
 --
-ALTER TABLE `replies_links`
+ALTER TABLE `replies_link`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -542,22 +550,22 @@ ALTER TABLE `tags_attribution`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT для таблицы `tasks`
+-- AUTO_INCREMENT для таблицы `task`
 --
-ALTER TABLE `tasks`
+ALTER TABLE `task`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT для таблицы `tasks_replies`
+-- AUTO_INCREMENT для таблицы `tasks_reply`
 --
-ALTER TABLE `tasks_replies`
+ALTER TABLE `tasks_reply`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT для таблицы `users`
+-- AUTO_INCREMENT для таблицы `user`
 --
-ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+ALTER TABLE `user`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT для таблицы `user_rating`
@@ -566,9 +574,9 @@ ALTER TABLE `user_rating`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT для таблицы `user_replies`
+-- AUTO_INCREMENT для таблицы `user_reply`
 --
-ALTER TABLE `user_replies`
+ALTER TABLE `user_reply`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 

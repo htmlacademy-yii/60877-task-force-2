@@ -1,8 +1,11 @@
 <?php
+
 namespace app\models;
+
 use yii\db\ActiveRecord;
-use app\models\Cities;
+use app\models\City;
 use yii\base\Model;
+
 class Register extends Model
 {
     public $password;
@@ -11,23 +14,18 @@ class Register extends Model
     public $city;
     public $answer_orders;
     public $repeat_password;
+
     public function attributeLabels()
     {
         return [
-            'name' => 'Ваше Имя',
-            'email' => 'Email',
-            'city' => "Город",
-            'password' => 'Пароль', // попадает в атрибуты тега который будет сгенерирован
-            'repeat_password' => 'Повтор пароля',
             'answer_orders' => '',
-            'dt_add' => "Дата"
-
+            'repeat_password' => 'Повтор пароля',
+            'password' => 'Пароль',
+            'email' => 'Email',
+            'name' => 'Ваше Имя'
         ];
     }
-    public static function tableName()
-    {
-        return 'users';
-    }
+
     public function rules()
     {
         return [
@@ -40,9 +38,5 @@ class Register extends Model
             ['answer_orders', 'safe'],
             ['password', 'compare', 'compareAttribute' => 'repeat_password'],
         ];
-    }
-    public function getAllCities() {
-        $cities = Cities::find()->all();
-        return $cities;
     }
 }

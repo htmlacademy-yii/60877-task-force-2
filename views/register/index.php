@@ -4,6 +4,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'Register page';
 ?>
@@ -14,7 +15,6 @@ $this->title = 'Register page';
             <?php
 
 
-            $cities = \app\models\Cities::find()->select('city')->indexBy('city')->column();
             $form = ActiveForm::begin([
                 'method' => 'post',
             ]) ?>
@@ -27,9 +27,9 @@ $this->title = 'Register page';
                     <?php echo $form->field($register, 'email')->textInput(['id' => 'email-user'])->label('Email', ['class' => 'control-label']); ?>
                 </div>
                 <div class="form-group">
-                    <?php echo $form->field($register, 'city')->dropdownList([
-                        "Города" => $cities
-                    ]); ?>
+                    <?php echo $form->field($register, 'city')->dropdownList(
+                        ArrayHelper::map($cities, 'id', 'name')
+                    ); ?>
                 </div>
             </div>
             <div class="form-group">
@@ -43,10 +43,10 @@ $this->title = 'Register page';
             <div class="form-group">
                 <?php
 
-               $template = '{input}{label}{error}{hint}';
+                $template = '{input}{label}{error}{hint}';
                 echo $form->field($register, 'answer_orders', ['template' => $template])
-                    ->checkbox(['id' => 'response-user', 'checked'=>true, 'class' => 'control-label'])
-                    ->label("Я собираюсь откликаться на заказы", ["class"=>"control-label"]);
+                    ->checkbox(['id' => 'response-user', 'checked' => true, 'class' => 'control-label'])
+                    ->label("Я собираюсь откликаться на заказы", ["class" => "control-label"]);
 
                 ?>
 
