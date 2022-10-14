@@ -19,7 +19,7 @@ use Yii;
  * @property string $latitude
  * @property string $longitude
  *
- * @property Categories $category
+ * @property Category $category
  * @property Replies[] $replies
  */
 class Task extends \yii\db\ActiveRecord
@@ -88,7 +88,7 @@ class Task extends \yii\db\ActiveRecord
 
     public function getReplies()
     {
-        return $this->hasMany(TasksReplies::class, ['task_id' => 'id']);
+        return $this->hasMany(TasksReply::class, ['task_id' => 'id']);
     }
 
 

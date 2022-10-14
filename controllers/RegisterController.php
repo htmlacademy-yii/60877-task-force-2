@@ -4,7 +4,7 @@
 namespace app\controllers;
 
 use yii\web\Controller;
-use app\models\Users;
+use app\models\User;
 use app\models\Register;
 use app\models\City;
 use Yii;
@@ -20,13 +20,11 @@ class RegisterController extends Controller
 
         $cities = City::find()->asArray()->all();
 
-        if ($register->load(\Yii::$app->request->post()) & $register->validate()) { // если данные проходят валидацию то делаем дальше
-
-            $users = new Users();
+        if ($register->load(\Yii::$app->request->post()) && $register->validate()) { // если данные проходят валидацию то делаем дальше
+            $users = new User();
             $users->name = $register->name;
             $users->email = $register->email;
-            $users->city = $register->city;
-            $users->dt_add = time();
+            $users->city_id = $register->city;
             $users->answer_orders = $register->answer_orders;
             $users->password_hash = Yii::$app->getSecurity()->generatePasswordHash($register->password); // а в поле пароля хэшированное значение
 

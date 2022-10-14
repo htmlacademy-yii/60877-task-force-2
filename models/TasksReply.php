@@ -15,7 +15,7 @@ use Yii;
  * @property Users $user
  *
  */
-class TasksReplies extends \yii\db\ActiveRecord
+class TasksReply extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -24,7 +24,7 @@ class TasksReplies extends \yii\db\ActiveRecord
 
     public static function tableName()
     {
-        return 'tasks_replies';
+        return 'tasks_reply';
     }
 
     /**
@@ -53,7 +53,7 @@ class TasksReplies extends \yii\db\ActiveRecord
 
     public function getRepliesDateAdd()
     {
-        return $this->hasMany(Replies::class, ['task_id' => 'id']);
+        return $this->hasMany(TasksReply::class, ['task_id' => 'id']);
     }
 
         public function getWasOnSite()
@@ -66,6 +66,6 @@ class TasksReplies extends \yii\db\ActiveRecord
 
     public function getUser()
     {
-        return $this->hasOne(Users::class, ['id'=>'user_id']);
+        return $this->hasOne(User::class, ['id'=>'user_id']);
     }
 }

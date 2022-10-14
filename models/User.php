@@ -15,7 +15,7 @@ use Yii;
  * @property string|null $user_img
  * @property string|null $quote
  * @property string|null $country
- * @property string $city
+ * @property string $city_id
  * @property string|null $age
  * @property string|null $phone
  * @property string|null $telegram
@@ -39,9 +39,9 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'name', 'password_hash', 'city'], 'required'],
+            [['email', 'name', 'password_hash', 'city_id'], 'required'],
             [['dt_add', 'status', 'answer_orders'], 'integer'],
-            [['email', 'name', 'password_hash', 'user_img', 'country', 'city', 'age', 'phone', 'telegram', 'user_status'], 'string', 'max' => 255],
+            [['email', 'name', 'password_hash', 'user_img', 'country', 'city_id', 'age', 'phone', 'telegram', 'user_status'], 'string', 'max' => 255],
             [['quote'], 'string', 'max' => 1000],
         ];
     }
@@ -60,7 +60,7 @@ class User extends \yii\db\ActiveRecord
             'user_img' => Yii::t('app', 'User Img'),
             'quote' => Yii::t('app', 'Quote'),
             'country' => Yii::t('app', 'Country'),
-            'city' => Yii::t('app', 'City'),
+            'city_id' => Yii::t('app', 'City'),
             'age' => Yii::t('app', 'Age'),
             'phone' => Yii::t('app', 'Phone'),
             'telegram' => Yii::t('app', 'Telegram'),
@@ -140,7 +140,7 @@ class User extends \yii\db\ActiveRecord
 
     public function getCities()
     {
-        return $this->hasOne(City::class, ['id'=>'city_id']);
+        return $this->hasOne(City::class, ['id' => 'city_id']);
 
     }
 

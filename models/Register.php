@@ -18,7 +18,7 @@ class Register extends Model
     public function attributeLabels()
     {
         return [
-            'answer_orders' => '',
+            'answer_orders' => 'Я собираюсь откликаться на заказы',
             'repeat_password' => 'Повтор пароля',
             'password' => 'Пароль',
             'email' => 'Email',
@@ -29,14 +29,14 @@ class Register extends Model
     public function rules()
     {
         return [
-            [
-                ['name', 'email', 'city', 'password', 'repeat_password'], 'required'], // password_hash берется с БД
+            [['name', 'email', 'city', 'password', 'repeat_password'], 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => Users::class, 'targetAttribute' => 'email'],
+            ['email', 'unique', 'targetClass' => User::class, 'targetAttribute' => 'email'],
             ['password', 'string'],
             ['repeat_password', 'string'],
             ['answer_orders', 'safe'],
             ['password', 'compare', 'compareAttribute' => 'repeat_password'],
+            ['city', 'targetClass' => City::class, 'exist']
         ];
     }
 }
