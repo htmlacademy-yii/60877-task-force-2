@@ -1,9 +1,9 @@
 <?php
 
-use app\models\TagsAttributes;
+use app\models\TagsAttribute;
 
 /**
- * @var app\models\Users $singleUser ;
+ * @var app\models\User $singleUser ;
  */
 
 
@@ -53,7 +53,7 @@ use app\models\TagsAttributes;
                 <p class="head-info"> Био</p>
                 <p class="bio-info">
                     <span class="country-info"><?php echo $singleUser->country; ?></span>,
-                    <span class="town-info"><?php echo $singleUser->cities->name; ?></span>,
+                    <span class="town-info"><?php echo $singleUser->city->name; ?></span>,
                     <span class="age-info"><?php echo $singleUser->age; ?></span> лет
                 </p>
             </div>

@@ -138,7 +138,7 @@ class User extends \yii\db\ActiveRecord
         return $this->hasMany(TagsAttribute::class, ['id' => 'id'])->viaTable('tags_attribution', ['user_id' => 'id']);
     }
 
-    public function getCities()
+    public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
 

@@ -7,6 +7,7 @@ use yii\web\Controller;
 use app\models\User;
 use app\models\Register;
 use app\models\City;
+use yii\base\Exception;
 use Yii;
 
 class RegisterController extends Controller
@@ -31,7 +32,9 @@ class RegisterController extends Controller
             if ($users->save()) {
                 return Yii::$app->response->redirect(['tasks']); // если успех то на страницу с тасками
             }
-        } else {
+
+        }
+      else {
             return $this->render('index', ['register' => $register, 'cities' => $cities]); // а если нет то на ту же страницу попадаем
         }
 
