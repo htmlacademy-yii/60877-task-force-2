@@ -30,7 +30,7 @@ $this->title = 'My Yii Application';
                        class="link link--block link--big"><?php echo $task->name; ?></a>
                     <p class="price price--task"><?php echo $task->budget; ?> ₽</p>
                 </div>
-                <p class="info-text"><span class="current-time"><?php echo $task->getWasOnSite(); ?> </span>назад
+                <p class="info-text"><span class="current-time"><?php echo $task->getWasOnSite(); ?> </span>
                 </p>
                 <p class="task-text"><?php echo $task->description; ?>
                 </p>

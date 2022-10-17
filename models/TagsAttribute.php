@@ -10,14 +10,14 @@ use Yii;
  * @property int $id
  * @property string|null $attributes
  */
-class TagsAttributes extends \yii\db\ActiveRecord
+class TagsAttribute extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'tags_attributes';
+        return 'tags_attribute';
     }
 
     /**

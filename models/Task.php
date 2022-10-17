@@ -19,17 +19,17 @@ use Yii;
  * @property string $latitude
  * @property string $longitude
  *
- * @property Categories $category
+ * @property Category $category
  * @property Replies[] $replies
  */
-class Tasks extends \yii\db\ActiveRecord
+class Task extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'tasks';
+        return 'task';
     }
 
     /**
@@ -66,26 +66,29 @@ class Tasks extends \yii\db\ActiveRecord
 
     public function getWasOnSite()
     {
-        $timePeriod = strtotime('now') - $this->create_at;
-        $days = $timePeriod / 60 / 60 / 24;
-        return \Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language);
+
+        //$timePeriod = strtotime('now') - strtotime($this->create_at);
+        return \Yii::$app->formatter->asRelativeTime($this->create_at);
+        //$days = $timePeriod / 60 / 60 / 24;
+        //$result = intval(\Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language));
+        //return $result;
     }
 
 //    $task->category;
 
     public function getCategory()
     {
-        return $this->hasOne(Categories::class, ['id' => 'category_id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     public function getWebsiteCategories()
     {
-        return $this->hasOne(Categories::class, ['id' => 'category_id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     public function getReplies()
     {
-        return $this->hasMany(TasksReplies::class, ['task_id' => 'id']);
+        return $this->hasMany(TasksReply::class, ['task_id' => 'id']);
     }
 
 

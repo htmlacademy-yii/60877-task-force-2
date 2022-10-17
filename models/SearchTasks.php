@@ -5,13 +5,13 @@ namespace app\models;
 use SebastianBergmann\Type\NullType;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Tasks;
+use app\models\Task;
 
 /**
  * SearchTasks represents the model behind the search form of `app\models\Tasks`.
  * @property array $categories;
  */
-class SearchTasks extends Tasks
+class SearchTasks extends Task
 {
     public $categories = [];
     public $taskPeriod = 0;

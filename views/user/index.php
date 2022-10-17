@@ -1,9 +1,9 @@
 <?php
 
-use app\models\TagsAttributes;
+use app\models\TagsAttribute;
 
 /**
- * @var app\models\Users $singleUser ;
+ * @var app\models\User $singleUser ;
  */
 
 
@@ -53,7 +53,7 @@ use app\models\TagsAttributes;
                 <p class="head-info"> Био</p>
                 <p class="bio-info">
                     <span class="country-info"><?php echo $singleUser->country; ?></span>,
-                    <span class="town-info"><?php echo $singleUser->city; ?></span>,
+                    <span class="town-info"><?php echo $singleUser->city->name; ?></span>,
                     <span class="age-info"><?php echo $singleUser->age; ?></span> лет
                 </p>
             </div>
@@ -98,20 +98,22 @@ use app\models\TagsAttributes;
                 </dd>
                 <?php
                 $rating = $singleUser->getRating();
-                if (!is_null($rating)):
-                    ?>
+
+                if (!is_null($rating)):?>
                     <dt>Место в рейтинге</dt>
 
                     <dd>
                         <?php
+                        if ($rating !== false) {
+                            echo $rating['rate'];
+                        }
 
-                        echo $rating['rate'];
                         ?>
 
                     </dd>
                 <?php endif; ?>
                 <dt>Дата регистрации</dt>
-                <dd><?php echo date('Y-m-d H:m:s', $singleUser->dt_add); ?></dd>
+                <dd><?php echo $singleUser->dt_add; ?></dd>
                 <dt>Статус</dt>
                 <?php if ($singleUser->status === 1): ?>
                     <dd>Открыт для новых заказов</dd>
