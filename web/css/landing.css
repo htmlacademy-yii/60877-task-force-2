@@ -2446,7 +2446,7 @@ footer {
     float: right; }
 
 .enter-form {
-  display: none; }
+ /* display: none;*/ }
 
 .response-form {
   display: none;

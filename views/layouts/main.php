@@ -59,7 +59,10 @@ AppAsset::register($this);
             </a>
 
             <div class="user-menu">
-                <p class="user-name">Василий</p>
+                <?php
+                $isGuest = Yii::$app->user->isGuest;
+                if(!$isGuest):?>
+                <p class="user-name"><?php var_dump(Yii::$app->user->identity);?></p>
                 <div class="popup-head">
                     <ul class="popup-menu">
                         <li class="menu-item">
@@ -73,6 +76,7 @@ AppAsset::register($this);
                         </li>
                     </ul>
                 </div>
+                <?php endif;?>
             </div>
 
 

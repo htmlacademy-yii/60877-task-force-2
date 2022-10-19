@@ -28,6 +28,7 @@ class User extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $password_hash;
     public static function tableName()
     {
         return 'user';
