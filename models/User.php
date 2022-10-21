@@ -23,12 +23,13 @@ use Yii;
  * @property string|null $user_status
  * @property int|null $answer_orders
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
      * {@inheritdoc}
      */
     public $password_hash;
+
     public static function tableName()
     {
         return 'user';
@@ -75,6 +76,30 @@ class User extends \yii\db\ActiveRecord
      * {@inheritdoc}
      * @return Users the active query used by this AR class.
      */
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        // TODO: Implement findIdentityByAccessToken() method.
+    }
+
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    public function getAuthKey()
+    {
+        // TODO: Implement getAuthKey() method.
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        // TODO: Implement validateAuthKey() method.
+    }
 
     public function getAvgRating()
     {

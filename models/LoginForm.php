@@ -16,7 +16,9 @@ class LoginForm extends Model
         return [
             [['email', 'password'], 'required'],
             ['password', 'validatePassword'],
-            [['email', 'password'], 'safe'],
+            ['email', 'email'],
+            ['email', 'unique'],
+            ['password', 'compare']
         ];
     }
 

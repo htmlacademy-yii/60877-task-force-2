@@ -8,7 +8,7 @@ use yii\widgets\ActiveField;
 <section class="modal enter-form form-modal" id="enter-form">
     <h2>Вход на сайт</h2>
     <?php
-    $form = ActiveForm::begin(['id' => 'login-form', 'errorCssClass' => 'field--error', 'options' => ['class' => 'log-in', 'method' => 'post']]); ?>
+    $form = ActiveForm::begin(['id' => 'login-form', 'errorCssClass' => 'field--error', 'options' => ['class' => 'log-in', 'method' => 'post','enableAjaxValidation' => true,]]); ?>
 
     <?= $form->field($loginForm, 'email', ['template' => "{input}\n{error}", 'errorOptions' => ['class' => 'field__error-message'],
         'options' => ['class' => 'field log-in__field']])

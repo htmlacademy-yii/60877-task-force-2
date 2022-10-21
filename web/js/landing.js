@@ -1,7 +1,7 @@
 var openModalLinks = document.getElementsByClassName("open-modal");
 var closeModalLinks = document.getElementsByClassName("form-modal-close");
 var overlay = document.getElementsByClassName("overlay")[0];
-
+var modalForm = document.querySelector("");
 for (var i = 0; i < openModalLinks.length; i++) {
   var modalLink = openModalLinks[i];
 
