@@ -17,7 +17,7 @@ class LoginForm extends Model
             [['email', 'password'], 'required'],
             ['password', 'validatePassword'],
             ['email', 'email'],
-            ['email', 'unique'],
+            ['email', 'unique', 'targetClass' => User::class, 'targetAttribute' => 'email'],
             ['password', 'compare']
         ];
     }

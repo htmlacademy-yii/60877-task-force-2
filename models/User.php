@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+use yii\web\IdentityInterface;
 use Yii;
 
 /**
