@@ -14,7 +14,7 @@ use yii\widgets\ActiveField;
         'options' => ['class' => 'field log-in__field']])
         ->textInput(['class' => 'field__input input input--big', 'placeholder' => 'Электронная почта']); ?>
 
-    <?= $form->field($loginForm, 'password_hash', ['template' => "{input}\n{error}", 'errorOptions' => ['class' => 'field__error-message'],
+    <?= $form->field($loginForm, 'password_hash_view', ['template' => "{input}\n{error}", 'errorOptions' => ['class' => 'field__error-message'],
         'options' => ['class' => 'field log-in__field']])
         ->passwordInput(['class' => 'field__input input input--big', 'placeholder' => 'Пароль']); ?>
     <button class="button" type="submit">Войти</button>
