@@ -7,18 +7,17 @@ use yii\base\Model;
 class LoginForm extends Model
 {
     public $email;
-    public $password_hash_view;
+    public $password;
     public $password_hash;
     private $_user;
 
     public function rules()
     {
         return [
-            [['email', 'password_hash_view'], 'required'],
-            ['password_hash_view', 'validatePassword'],
+            [['email', 'password'], 'required'],
+            ['password', 'validatePassword'],
             ['email', 'email'],
-            ['email', 'exist', 'targetAttribute' => 'email'],
-            ['password_hash_view', 'compare', 'compareAttribute' => 'password_hash']
+            ['email', 'exist', 'targetClass' => User::class, 'targetAttribute' => 'email'],
         ];
     }
 
@@ -26,8 +25,9 @@ class LoginForm extends Model
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
-
-            if (!$user || !\Yii::$app->security->validatePassword($this->password_hash_view, $user->password_hash)) {
+var_dump($user);
+exit();
+            if (!$user || !\Yii::$app->security->validatePassword( $this->password, $user->password_hash)) {
                 $this->addError($attribute, 'Неправильный email или пароль');
             }
         }
