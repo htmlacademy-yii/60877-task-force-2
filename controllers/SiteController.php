@@ -19,7 +19,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -69,7 +69,7 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
+   /* public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
@@ -84,19 +84,7 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
+    }*/
 
     /**
      * Displays contact page.

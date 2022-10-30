@@ -56,9 +56,10 @@ class TasksReply extends \yii\db\ActiveRecord
         return $this->hasMany(TasksReply::class, ['task_id' => 'id']);
     }
 
-        public function getWasOnSite()
+    public function getWasOnSite()
     {
-        $timePeriod = strtotime('now') - $this->dt_add;
+
+        $timePeriod = (int) strtotime('now') - strtotime($this->dt_add);
         $days = number_format($timePeriod / 60 / 60 / 24);
         return \Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language);
 
@@ -66,6 +67,6 @@ class TasksReply extends \yii\db\ActiveRecord
 
     public function getUser()
     {
-        return $this->hasOne(User::class, ['id'=>'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 }

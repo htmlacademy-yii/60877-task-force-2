@@ -8,10 +8,12 @@ use app\models\SearchTasks;
 use yii\web\Controller;
 use app\models\Task;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 
 
-class TasksController extends Controller
+class TasksController extends SecuredController
 {
+
 
     public function actionIndex()
     {

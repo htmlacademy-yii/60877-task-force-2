@@ -10,9 +10,11 @@ use app\models\Task;
 use app\models\Reply;
 use Yii;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 
-class UserController extends Controller
+class UserController extends SecuredController
 {
+
     public function actionView($id)
     {
         $singleUser = User::find()->where(['id' => $id])->one();

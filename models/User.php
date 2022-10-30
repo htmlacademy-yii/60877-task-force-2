@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+
 use yii\web\IdentityInterface;
 use Yii;
 
@@ -28,7 +29,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public $password_hash;
 
     public static function tableName()
     {
@@ -79,6 +79,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function findIdentity($id)
     {
         return self::findOne($id);
+    }
+
+    public function validatePassword(string $password)
+    {
+        return \Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
     public static function findIdentityByAccessToken($token, $type = null)

@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'defaultRoute' => 'tasks/index',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
@@ -24,6 +25,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'loginUrl' => ['login'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -52,7 +54,7 @@ $config = [
             'showScriptName' => false,
 
             'rules' => [
-                'defaultRoute' => 'tasks/index',
+
                 'tasks/view/<id:\d+>' => 'tasks/view',
                 'user/view/<id:\d+>' => 'user/view',
             ],
