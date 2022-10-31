@@ -11,6 +11,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use app\assets\MainAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -31,7 +32,7 @@ AppAsset::register($this);
         <nav class="main-nav">
 
 
-            <a href='/tasks' class="header-logo">
+            <a href='<?php echo Url::to(['tasks']);?>' class="header-logo">
                 <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
             </a>
 
@@ -41,7 +42,7 @@ AppAsset::register($this);
                         <a class="link link--nav">Новое</a>
                     </li>
                     <li class="list-item">
-                        <a href="/tasks" class="link link--nav">Мои задания</a>
+                        <a href="<?php echo Url::to(['tasks/']);?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
                         <a href="#" class="link link--nav">Создать задание</a>
@@ -72,7 +73,7 @@ AppAsset::register($this);
                             <a href="#" class="link">Связаться с нами</a>
                         </li>
                         <li class="menu-item">
-                            <a href="/user/logout" class="link">Выход из системы</a>
+                            <a href="<?php echo Url::to(['user/logout']);?>" class="link">Выход из системы</a>
                         </li>
                     </ul>
                 </div>

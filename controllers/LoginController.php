@@ -46,9 +46,6 @@ class LoginController extends Controller
 
                 return $this->goHome();
             }
-            else {
-                return $this->render('index', ['loginForm' => $loginForm]);
-            }
         }
 
 

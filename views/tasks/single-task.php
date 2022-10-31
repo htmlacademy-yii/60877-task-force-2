@@ -71,8 +71,8 @@
                 <dt>Дата публикации</dt>
                 <dd><?php
 
-                    echo $task->getWasOnSite();
-                    //echo round($task->getWasOnSite()); ?> дня назад</dd>
+                    echo $task->getWasOnSite(); ?> дня назад
+                </dd>
                 <dt>Срок выполнения</dt>
                 <dd><?php echo $task->expire; ?></dd>
                 <dt>Статус</dt>
