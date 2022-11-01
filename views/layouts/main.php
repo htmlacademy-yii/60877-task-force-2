@@ -11,6 +11,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use app\assets\MainAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -31,7 +32,7 @@ AppAsset::register($this);
         <nav class="main-nav">
 
 
-            <a href='#' class="header-logo">
+            <a href='<?php echo Url::to(['tasks']);?>' class="header-logo">
                 <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
             </a>
 
@@ -41,7 +42,7 @@ AppAsset::register($this);
                         <a class="link link--nav">Новое</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="link link--nav">Мои задания</a>
+                        <a href="<?php echo Url::to(['tasks/']);?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
                         <a href="#" class="link link--nav">Создать задание</a>
@@ -53,13 +54,16 @@ AppAsset::register($this);
             </div>
         </nav>
         <div class="user-block">
-
+            <?php
+            $isGuest = Yii::$app->user->isGuest;
+            if(!$isGuest):?>
             <a href="#">
-                <img class="user-photo" src="img/man-glasses.png" width="55" height="55" alt="Аватар">
+                <img class="user-photo" src="img/<?php echo Yii::$app->user->identity->user_img;?>" width="55" height="55" alt="Аватар">
             </a>
 
             <div class="user-menu">
-                <p class="user-name">Василий</p>
+
+                <p class="user-name"><?php echo Yii::$app->user->identity->name;?></p>
                 <div class="popup-head">
                     <ul class="popup-menu">
                         <li class="menu-item">
@@ -69,13 +73,14 @@ AppAsset::register($this);
                             <a href="#" class="link">Связаться с нами</a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="link">Выход из системы</a>
+                            <a href="<?php echo Url::to(['user/logout']);?>" class="link">Выход из системы</a>
                         </li>
                     </ul>
                 </div>
+
             </div>
 
-
+            <?php endif;?>
         </div>
 
     </header>
@@ -89,7 +94,7 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="float-left">&copy;  <?= date('Y') ?></p>
         <p class="float-right"><?= Yii::powered(); ?></p>
     </div>
 </footer>

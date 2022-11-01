@@ -6,6 +6,7 @@
 
 use yii\bootstrap4\Html;
 use app\assets\LandingAsset;
+use yii\helpers\Url;
 
 app\assets\LandingAsset::register($this);
 ?>
@@ -70,7 +71,7 @@ app\assets\LandingAsset::register($this);
                     <a href="#" class="header__account-enter open-modal" data-for="enter-form">
                         <span>Вход</span></a>
                     или
-                    <a href="/register" class="header__account-registration">
+                    <a href="<?php echo Url::to(['/register']);?>" class="header__account-registration">
                         Регистрация
                     </a>
                 </div>
@@ -84,7 +85,7 @@ app\assets\LandingAsset::register($this);
                     <p>Сломался кран на кухне? Надо отправить документы? Нет времени самому гулять с собакой?
                         У нас вы быстро найдёте исполнителя для любой жизненной ситуации?<br>
                         Быстро, безопасно и с гарантией. Просто, как раз, два, три. </p>
-                  <a href="/register">  <button class="button">Создать аккаунт</button></a>
+                  <a href="<?php echo Url::to(['/register']);?>">  <button class="button">Создать аккаунт</button></a>
                 </div>
                 <div class="landing-center">
                     <div class="landing-instruction">
@@ -183,22 +184,22 @@ app\assets\LandingAsset::register($this);
                 <div class="page-footer__links">
                     <ul class="links__list">
                         <li class="links__item">
-                            <a href="/tasks">Задания</a>
+                            <a href="<?php echo Url::to(['/tasks']);?>">Задания</a>
                         </li>
                         <li class="links__item">
-                            <a href="/user">Мой профиль</a>
+                            <a href="#">Мой профиль</a>
                         </li>
                         <li class="links__item">
-                            <a href="/users">Исполнители</a>
+                            <a href="#">Исполнители</a>
                         </li>
                         <li class="links__item">
-                            <a href="/register">Регистрация</a>
+                            <a href="<?php echo Url::to(['/register']);?>">Регистрация</a>
                         </li>
                         <li class="links__item">
-                            <a href="">Создать задание</a>
+                            <a href="#">Создать задание</a>
                         </li>
                         <li class="links__item">
-                            <a href="">Справка</a>
+                            <a href="#">Справка</a>
                         </li>
                     </ul>
                 </div>
@@ -212,14 +213,7 @@ app\assets\LandingAsset::register($this);
                 </div>
             </div>
         </footer>
-        <section class="modal enter-form form-modal" id="enter-form">
-            <h2>Вход на сайт</h2>
-
-
             <?php echo $content; ?>
-
-
-            <button class="form-modal-close" type="button">Закрыть</button>
         </section>
     </div>
     <div class="overlay"></div>

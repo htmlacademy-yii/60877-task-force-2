@@ -69,7 +69,10 @@
                 <dt>Категория</dt>
                 <dd><?php echo $task->category->name; ?></dd>
                 <dt>Дата публикации</dt>
-                <dd><?php echo round($task->getWasOnSite()); ?> дня назад</dd>
+                <dd><?php
+
+                    echo $task->getWasOnSite(); ?> дня назад
+                </dd>
                 <dt>Срок выполнения</dt>
                 <dd><?php echo $task->expire; ?></dd>
                 <dt>Статус</dt>
