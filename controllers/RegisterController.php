@@ -17,10 +17,6 @@ class RegisterController extends Controller
 
         $register = new Register();
 
-        //  $cities = \app\models\Cities::find()->select('city')->indexBy('city')->column();
-
-        $cities = City::find()->asArray()->all();
-
         if ($register->load(\Yii::$app->request->post()) && $register->validate()) { // если данные проходят валидацию то делаем дальше
             $users = new User();
             $users->name = $register->name;

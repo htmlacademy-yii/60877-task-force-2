@@ -23,6 +23,7 @@ use Yii;
  * @property int|null $status
  * @property string|null $user_status
  * @property int|null $answer_orders
+ * @property int|null $date_of_birth
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -69,6 +70,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'status' => Yii::t('app', 'Status'),
             'user_status' => Yii::t('app', 'User Status'),
             'answer_orders' => Yii::t('app', 'Answer Orders'),
+            'date_of_birth' => Yii::t('app', 'Date Of Birth'),
         ];
     }
 

@@ -42,13 +42,13 @@ AppAsset::register($this);
                         <a class="link link--nav">Новое</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['tasks/']);?>" class="link link--nav">Мои задания</a>
+                        <a href="<?php echo Url::to(['/tasks']);?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
                         <a href="#" class="link link--nav">Создать задание</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="link link--nav">Настройки</a>
+                        <a href="<?php echo Url::to(['/edit-profile']);?>" class="link link--nav">Настройки</a>
                     </li>
                 </ul>
             </div>
