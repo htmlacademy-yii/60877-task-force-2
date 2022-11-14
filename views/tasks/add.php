@@ -9,17 +9,17 @@ $this->title = 'Страница добавления задания';
 <main class="main-content main-content--center container">
     <div class="add-task-form regular-form">
         <?php
-        $form = ActiveForm::begin(['options' => ['method' => 'post', 'enableAjaxValidation' => true]]); ?>
+        $form = ActiveForm::begin(['options' => ['method' => 'post', 'enctype' => 'multipart/form-data', 'enableAjaxValidation' => true]]); ?>
             <h3 class="head-main head-main">Публикация нового задания</h3>
             <div class="form-group">
 
-                <?= $form->field($model, 'informationaboutperson', ['errorOptions' => ['id' => 'help-block'],
+                <?= $form->field($model, 'about_job', ['template' => '{label}{input}{error}{hint}', 'errorOptions' => ['id' => 'help-block'],
                     'options' => ['id' => 'essence-work']])
-                    ->textInput(['value' => ''])->label('Информация о себе', ['class'=>'control-label']); ?>
+                    ->textInput(['value' => ''])->label('Опишите суть работы', ['class'=>'control-label']); ?>
             </div>
             <div class="form-group">
 
-                <?= $form->field($model, 'informationaboutperson', ['errorOptions' => ['id' => 'help-block'],
+                <?= $form->field($model, 'describe_task', ['errorOptions' => ['id' => 'help-block'],
                     'options' => ['id' => 'essence-work']])
                     ->textarea(['value' => '', 'class'=>'username'])->label('Подробности задания', ['class'=>'control-label']); ?>
             </div>
@@ -49,9 +49,9 @@ $this->title = 'Страница добавления задания';
             </div>
             <p class="form-label">Файлы</p>
 
-                <?= $form->field($model, 'files', ['errorOptions' => ['id' => 'help-block'],
+                <?= $form->field($model, 'files[]', ['errorOptions' => ['id' => 'help-block'],
                     'options' => ['class'=>'add-file']])
-                    ->fileInput()->label('Добавить новый файл', ['class'=>'control-label']); ?>
+                    ->fileInput(['multiple' => true, 'accept' => 'uploads/*'])->label('', ['class'=>'control-label']); ?>
 
         <?= Html::submitButton('Опубликовать', ['class' => 'button button--blue']) ?>
         <?php ActiveForm::end(); ?>

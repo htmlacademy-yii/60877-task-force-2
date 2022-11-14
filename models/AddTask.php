@@ -3,13 +3,14 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Model;
 
 /**
  * This is the model class for table "users".
  *
  * @property int $categories;
  */
-class AddTask extends \yii\db\ActiveRecord
+class AddTask extends Model
 {
     /**
      * {@inheritdoc}
@@ -18,6 +19,10 @@ class AddTask extends \yii\db\ActiveRecord
     public $location;
     public $expire_date;
     public $files;
+    public $budget;
+    public $about_job;
+    public $describe_task;
+    public $name;
 
     public static function tableName()
     {
@@ -30,11 +35,26 @@ class AddTask extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['about_job', 'describe_task', 'budget', 'expire_date'], 'required'],
-            ['about_job', 'string', 'max' => 255],
-            ['describe_task', 'string', 'max' => 255],
+            [['about_job', 'describe_task'], 'required'],
+            ['about_job', 'string', 'min' => 10],
+            ['describe_task', 'string', 'min' => 30],
+            [['files'], 'file', 'skipOnEmpty' => false, 'maxSize' => 1024 * 1024, 'maxFiles' => 4],
+            ['categories', 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'name'],
+            ['budget', 'integer'],
+            [['expire_date'], 'date', 'format' => 'php:Y-m-d'],
         ];
+    }
 
+    public function upload()
+    {
+        if ($this->validate()) {
+            foreach ($this->imageFiles as $file) {
+                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function attributeLabels()

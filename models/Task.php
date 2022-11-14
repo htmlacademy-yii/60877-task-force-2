@@ -27,6 +27,7 @@ class Task extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $describe_task;
     public static function tableName()
     {
         return 'task';
