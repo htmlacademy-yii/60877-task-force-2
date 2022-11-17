@@ -16,7 +16,7 @@ class RegisterController extends Controller
     {
 
         $register = new Register();
-
+        $cities = City::find()->all();
         if ($register->load(\Yii::$app->request->post()) && $register->validate()) { // если данные проходят валидацию то делаем дальше
             $users = new User();
             $users->name = $register->name;
@@ -29,8 +29,7 @@ class RegisterController extends Controller
                 return Yii::$app->response->redirect(['tasks']); // если успех то на страницу с тасками
             }
 
-        }
-      else {
+        } else {
             return $this->render('index', ['register' => $register, 'cities' => $cities]); // а если нет то на ту же страницу попадаем
         }
 

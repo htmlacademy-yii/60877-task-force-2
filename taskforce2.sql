@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 09 2022 г., 08:54
+-- Время создания: Ноя 17 2022 г., 13:05
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -100,6 +100,26 @@ INSERT INTO `city` (`id`, `name`, `latitude`, `longitude`) VALUES
 (33, 'Апрелевка', '56.00000000', '37.00000000'),
 (34, 'Апшеронск', '44.00000000', '40.00000000'),
 (35, 'Арамиль', '57.00000000', '61.00000000');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `files`
+--
+
+CREATE TABLE `files` (
+  `id` int NOT NULL,
+  `tasks_id` int NOT NULL,
+  `files_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `files`
+--
+
+INSERT INTO `files` (`id`, `tasks_id`, `files_name`) VALUES
+(1, 5, 'tyu.jpg'),
+(2, 7, 'tyu2.jpg');
 
 -- --------------------------------------------------------
 
@@ -251,31 +271,32 @@ CREATE TABLE `task` (
   `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `category_id` int NOT NULL,
   `description` varchar(255) NOT NULL,
-  `expire` datetime NOT NULL,
+  `expire` date NOT NULL,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `budget` int NOT NULL,
   `latitude` decimal(65,12) NOT NULL,
   `longitude` decimal(65,12) NOT NULL,
   `status` int NOT NULL,
-  `user_id` int DEFAULT NULL
+  `user_id` int DEFAULT NULL,
+  `files` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `task`
 --
 
-INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`) VALUES
-(1, '2022-10-12 21:00:00', 2, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15 00:00:00', 'Ukraine', '1 Eagan Crossing', 6587, '6.964166700000', '158.208333300000', 1, 2),
-(2, '2018-10-01 21:00:00', 3, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2022-12-07 00:00:00', 'exploit revolutionary portals', '24043 Paget Alley', 2904, '5.623505000000', '10.254404400000', 1, 2),
-(3, '2018-10-01 21:00:00', 2, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23 00:00:00', 'matrix next-generation e-commerce', '2867 Dryden Pass', 1170, '63.593219000000', '53.906853200000', 1, 3),
-(4, '2018-10-01 21:00:00', 1, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10 00:00:00', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', 838, '20.580035800000', '-75.243530700000', 1, 5),
-(5, '2018-10-01 21:00:00', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15 00:00:00', 'integrate cross-platform e-business', '1 Stone Corner Junction', 7484, '14.932657400000', '-91.694184500000', 1, 4),
-(6, '2018-10-01 21:00:00', 7, 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24 00:00:00', 'enable dot-com niches', '12 Stephen Terrace', 5725, '40.163127000000', '116.638868000000', 1, 5),
-(7, '2018-10-01 21:00:00', 5, 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19 00:00:00', 'transform web-enabled relationships', '6213 Lake View Drive', 4414, '44.379487100000', '20.263894100000', 1, 6),
-(8, '2018-10-01 21:00:00', 8, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14 00:00:00', 'strategize frictionless solutions', '994 Corry Park', 3454, '-7.325148500000', '108.360746400000', 1, 7),
-(9, '2018-10-01 21:00:00', 4, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12 00:00:00', 'innovate seamless metrics', '2 Bluestem Park', 3101, '43.000000000000', '-87.970000000000', 0, 8),
-(10, '2018-10-01 21:00:00', 4, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19 00:00:00', 'integrate wireless infomediaries', '1 Dexter Hill', 6562, '41.341016800000', '-8.316930300000', 1, 9);
+INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`, `files`) VALUES
+(1, '2022-10-12 21:00:00', 2, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15', 'Ukraine', '1 Eagan Crossing', 6587, '6.964166700000', '158.208333300000', 1, 2, ''),
+(2, '2018-10-01 21:00:00', 3, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2022-12-07', 'exploit revolutionary portals', '24043 Paget Alley', 2904, '5.623505000000', '10.254404400000', 1, 2, ''),
+(3, '2018-10-01 21:00:00', 2, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23', 'matrix next-generation e-commerce', '2867 Dryden Pass', 1170, '63.593219000000', '53.906853200000', 1, 3, ''),
+(4, '2018-10-01 21:00:00', 1, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', 838, '20.580035800000', '-75.243530700000', 1, 5, ''),
+(5, '2018-10-01 21:00:00', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15', 'integrate cross-platform e-business', '1 Stone Corner Junction', 7484, '14.932657400000', '-91.694184500000', 1, 4, ''),
+(6, '2018-10-01 21:00:00', 7, 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24', 'enable dot-com niches', '12 Stephen Terrace', 5725, '40.163127000000', '116.638868000000', 1, 5, ''),
+(7, '2018-10-01 21:00:00', 5, 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19', 'transform web-enabled relationships', '6213 Lake View Drive', 4414, '44.379487100000', '20.263894100000', 1, 6, ''),
+(8, '2018-10-01 21:00:00', 8, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14', 'strategize frictionless solutions', '994 Corry Park', 3454, '-7.325148500000', '108.360746400000', 1, 7, ''),
+(9, '2018-10-01 21:00:00', 4, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12', 'innovate seamless metrics', '2 Bluestem Park', 3101, '43.000000000000', '-87.970000000000', 0, 8, ''),
+(10, '2018-10-01 21:00:00', 4, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19', 'integrate wireless infomediaries', '1 Dexter Hill', 6562, '41.341016800000', '-8.316930300000', 1, 9, '');
 
 -- --------------------------------------------------------
 
@@ -399,18 +420,6 @@ INSERT INTO `user` (`id`, `dt_add`, `email`, `name`, `password_hash`, `user_img`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `user_cat_id`
---
-
-CREATE TABLE `user_cat_id` (
-  `id` int NOT NULL,
-  `user_id` int NOT NULL,
-  `cat_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `user_rating`
 --
 
@@ -471,6 +480,13 @@ ALTER TABLE `city`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
 -- Индексы таблицы `opinion`
 --
 ALTER TABLE `opinion`
@@ -514,13 +530,6 @@ ALTER TABLE `user`
   ADD KEY `id` (`id`);
 
 --
--- Индексы таблицы `user_cat_id`
---
-ALTER TABLE `user_cat_id`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
-
---
 -- Индексы таблицы `user_rating`
 --
 ALTER TABLE `user_rating`
@@ -547,6 +556,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `city`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT для таблицы `files`
+--
+ALTER TABLE `files`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `opinion`
@@ -589,12 +604,6 @@ ALTER TABLE `tasks_reply`
 --
 ALTER TABLE `user`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT для таблицы `user_cat_id`
---
-ALTER TABLE `user_cat_id`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `user_rating`

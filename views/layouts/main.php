@@ -33,6 +33,7 @@ AppAsset::register($this);
 
 
             <a href='<?php echo Url::to(['tasks']);?>' class="header-logo">
+                <?php var_dump(Html::img(Yii::$app->urlManager->createUrl($model->image)));?>
                 <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
             </a>
 
@@ -45,7 +46,7 @@ AppAsset::register($this);
                         <a href="<?php echo Url::to(['/tasks']);?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
-                        <a href="#" class="link link--nav">Создать задание</a>
+                        <a href="<?php echo Url::to(['/add-task']);?>" class="link link--nav">Создать задание</a>
                     </li>
                     <li class="list-item">
                         <a href="<?php echo Url::to(['/edit-profile']);?>" class="link link--nav">Настройки</a>

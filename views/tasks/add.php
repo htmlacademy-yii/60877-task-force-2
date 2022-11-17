@@ -3,12 +3,15 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+
 $this->title = 'Страница добавления задания';
 ?>
 
 <main class="main-content main-content--center container">
     <div class="add-task-form regular-form">
+
         <?php
+
         $form = ActiveForm::begin(['options' => ['method' => 'post', 'enctype' => 'multipart/form-data', 'enableAjaxValidation' => true]]); ?>
             <h3 class="head-main head-main">Публикация нового задания</h3>
             <div class="form-group">
@@ -44,7 +47,7 @@ $this->title = 'Страница добавления задания';
                 <div class="form-group">
                     <?= $form->field($model, 'expire_date', ['errorOptions' => ['id' => 'help-block'],
                         'options' => []])
-                        ->textInput()->label('Срок исполнения', ['class'=>'control-label']); ?>
+                        ->input('date')->label('Срок исполнения', ['class'=>'control-label']); ?>
                 </div>
             </div>
             <p class="form-label">Файлы</p>

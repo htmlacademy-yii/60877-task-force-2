@@ -24,11 +24,6 @@ class AddTask extends Model
     public $describe_task;
     public $name;
 
-    public static function tableName()
-    {
-        return 'task';
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -38,8 +33,8 @@ class AddTask extends Model
             [['about_job', 'describe_task'], 'required'],
             ['about_job', 'string', 'min' => 10],
             ['describe_task', 'string', 'min' => 30],
-            [['files'], 'file', 'skipOnEmpty' => false, 'maxSize' => 1024 * 1024, 'maxFiles' => 4],
-            ['categories', 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'name'],
+            [['files'], 'file', 'maxSize' => 1024 * 1024, 'maxFiles' => 4],
+            ['categories', 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
             ['budget', 'integer'],
             [['expire_date'], 'date', 'format' => 'php:Y-m-d'],
         ];
@@ -48,7 +43,7 @@ class AddTask extends Model
     public function upload()
     {
         if ($this->validate()) {
-            foreach ($this->imageFiles as $file) {
+            foreach ($this->files as $file) {
                 $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
             }
             return true;
