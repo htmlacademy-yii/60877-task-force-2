@@ -31,6 +31,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * {@inheritdoc}
      */
 
+    const EXECUTOR = 'executor';
+    const CUSTOMER = 'customer';
+
     public static function tableName()
     {
         return 'user';

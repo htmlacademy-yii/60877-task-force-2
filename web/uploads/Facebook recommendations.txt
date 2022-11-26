@@ -1,0 +1,4 @@
+Use UTMs to create content-based audiences
+Use in-market segments on other channels (like search) to create source audiences for Facebook LAL/remarketing campaigns.
+Try creating Facebook LAL audiences with a >1% match.
+?utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{adset.name}}&utm_term={{ad.name}}

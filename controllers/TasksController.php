@@ -8,9 +8,11 @@ use app\models\Files;
 use app\models\Replies;
 use app\models\SearchTasks;
 use app\models\Task;
+use Codeception\Step\Executor;
+use yii\base\BaseObject;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
-use yii\web\UploadedFile;
+
 use app\models\User;
 
 class TasksController extends SecuredController
@@ -30,9 +32,11 @@ class TasksController extends SecuredController
                         'allow' => false,
                         'actions' => ['add'],
                         'matchCallback' => function ($rule, $action) {
-                            $user = User::find()->where(['id' => \Yii::$app->user->getId()])->one();
+                            $user = \Yii::$app->user->identity->user_status;
+
                             $user_status = $user->user_status;
-                            return $user_status === 'customer';
+                            $user_constant = User::EXECUTOR;
+                            return $user_status === $user_constant;
                         }
                     ]
                 ]
@@ -68,35 +72,70 @@ class TasksController extends SecuredController
 
     public function actionAdd()
     {
-        $model = new AddTask();
+
 
         $categories = Category::find()->all();
-
-        $files = new Files();
+        $model = new AddTask();
 
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+
+            /*начинаю сохранять в БД данные с формы*/
+
+
+            /*  $newTask->name = $model->about_job;
+
+              $newTask->description = $model->describe_task;
+              $newTask->category_id = $model->categories;
+              $newTask->address = $model->location; // в $model->location null
+
+              $newTask->budget = $model->budget;
+
+              $newTask->expire = $model->expire_date;
+              $newTask->create_at = date('Y-m-d h-m-s');
+              $newTask->status = 1;
+              $newTask->user_id = \Yii::$app->user->identity->id;
+
+              $newTask->save();
+
+              $instances = UploadedFile::getInstances($model, 'files');
+
+              foreach ($instances as $instance) {
+                  $files = new Files();
+                  $instance->saveAs("uploads/".$instance->name);
+                  $files->tasks_id = $newTask->id;
+                  $files->files_name = $instance->name;
+                  $files->save();
+              }*/
+            /*окончил сохранение*/
+            /*заканчиваю сохранять данные с формы */
             $newTask = new Task();
-            if ($files !== null || $files !== '') {
+            $connection = $newTask->getDb();
+            $transaction = $connection->beginTransaction();
+            try {
+                $model->createNewTask();
+                $model->saveFile();
 
-                foreach ($files as $file) {
-                    $file->files_name = UploadedFile::getInstances($model, 'files');
-                    $file->save();
-                }
+                /*
 
-
+                 foreach ($instances as $instance) {
+                     $files = new Files();
+                     $instance->saveAs("uploads/" . $instance->name);
+                     $files->tasks_id = $newTask->id;
+                     $files->files_name = $instance->name;
+                     $files->save();
+                 }*/
+                $transaction->commit();
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                throw $e;
+            } catch (\Throwable $e) {
+                $transaction->rollBack();
+                throw $e;
             }
-            $newTask->description = $model->about_job;
-            $newTask->name = $model->name;
-
-            $newTask->category_id = $model->categories;
-            $newTask->address = $model->location;
-            $newTask->budget = $model->budget;
-            $newTask->expire = $model->expire_date;
-            $newTask->save();
-        } else {
-            return $this->render('add', ['model' => $model, 'categories' => $categories]);
         }
 
+
+        return $this->render('add', ['model' => $model, 'categories' => $categories]);
     }
 
 }

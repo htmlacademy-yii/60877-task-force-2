@@ -32,8 +32,7 @@ AppAsset::register($this);
         <nav class="main-nav">
 
 
-            <a href='<?php echo Url::to(['tasks']);?>' class="header-logo">
-                <?php var_dump(Html::img(Yii::$app->urlManager->createUrl($model->image)));?>
+            <a href='<?php echo Url::to(['tasks']); ?>' class="header-logo">
                 <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
             </a>
 
@@ -43,13 +42,13 @@ AppAsset::register($this);
                         <a class="link link--nav">Новое</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/tasks']);?>" class="link link--nav">Мои задания</a>
+                        <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/add-task']);?>" class="link link--nav">Создать задание</a>
+                        <a href="<?php echo Url::to(['/add-task']); ?>" class="link link--nav">Создать задание</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/edit-profile']);?>" class="link link--nav">Настройки</a>
+                        <a href="<?php echo Url::to(['/edit-profile']); ?>" class="link link--nav">Настройки</a>
                     </li>
                 </ul>
             </div>
@@ -57,31 +56,32 @@ AppAsset::register($this);
         <div class="user-block">
             <?php
             $isGuest = Yii::$app->user->isGuest;
-            if(!$isGuest):?>
-            <a href="#">
-                <img class="user-photo" src="img/<?php echo Yii::$app->user->identity->user_img;?>" width="55" height="55" alt="Аватар">
-            </a>
+            if (!$isGuest):?>
+                <a href="#">
+                    <img class="user-photo" src="img/<?php echo Yii::$app->user->identity->user_img; ?>" width="55"
+                         height="55" alt="Аватар">
+                </a>
 
-            <div class="user-menu">
+                <div class="user-menu">
 
-                <p class="user-name"><?php echo Yii::$app->user->identity->name;?></p>
-                <div class="popup-head">
-                    <ul class="popup-menu">
-                        <li class="menu-item">
-                            <a href="#" class="link">Настройки</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="link">Связаться с нами</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="<?php echo Url::to(['user/logout']);?>" class="link">Выход из системы</a>
-                        </li>
-                    </ul>
+                    <p class="user-name"><?php echo Yii::$app->user->identity->name; ?></p>
+                    <div class="popup-head">
+                        <ul class="popup-menu">
+                            <li class="menu-item">
+                                <a href="#" class="link">Настройки</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="link">Связаться с нами</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="<?php echo Url::to(['user/logout']); ?>" class="link">Выход из системы</a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <?php endif;?>
+            <?php endif; ?>
         </div>
 
     </header>
@@ -95,7 +95,7 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy;  <?= date('Y') ?></p>
+        <p class="float-left">&copy; <?= date('Y') ?></p>
         <p class="float-right"><?= Yii::powered(); ?></p>
     </div>
 </footer>
