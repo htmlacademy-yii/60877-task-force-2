@@ -33,7 +33,7 @@ AppAsset::register($this);
 
 
             <a href='<?php echo Url::to(['tasks']); ?>' class="header-logo">
-                <img class="logo-image" src="img/logotype.png" width=227 height=60 alt="taskforce">
+                <?php echo Html::img(Yii::$app->urlManager->createUrl('img/logotype.png')); ?>
             </a>
 
             <div class="nav-wrapper">
@@ -58,8 +58,7 @@ AppAsset::register($this);
             $isGuest = Yii::$app->user->isGuest;
             if (!$isGuest):?>
                 <a href="#">
-                    <img class="user-photo" src="img/<?php echo Yii::$app->user->identity->user_img; ?>" width="55"
-                         height="55" alt="Аватар">
+                    <?php echo Html::img('../img/' . \Yii::$app->user->identity->user_img); ?>
                 </a>
 
                 <div class="user-menu">
