@@ -36,13 +36,13 @@ $this->title = 'Страница добавления задания';
 
             <?= $form->field($model, 'location', ['errorOptions' => ['id' => 'help-block'],
                 'options' => ['id' => 'location']])
-                ->textInput()->label('Локация', ['class' => 'control-label']); ?>
+                ->textInput(['class'=>'location-icon'])->label('Локация', ['class' => 'control-label']); ?>
     <!-- </div>-->
      <div class="half-wrapper">
          <!-- <div class="form-group">-->
                 <?= $form->field($model, 'budget', ['errorOptions' => ['id' => 'help-block'],
                     'options' => []])
-                    ->textInput()->label('Бюджет', ['class' => 'control-label']); ?>
+                    ->textInput(['class'=>'budget-icon'])->label('Бюджет', ['class' => 'control-label']); ?>
          <!--  </div>-->
          <!--  <div class="form-group">-->
                 <?= $form->field($model, 'expire_date', ['errorOptions' => ['id' => 'help-block'],
