@@ -16,13 +16,13 @@ $this->title = 'Страница добавления задания';
         <h3 class="head-main head-main">Публикация нового задания</h3>
        <!-- <div class="form-group">-->
 
-            <?= $form->field($model, 'about_job', ['template' => '{label}{input}{error}{hint}', 'errorOptions' => ['id' => 'help-block'],
+            <?= $form->field($model, 'about_job', ['template' => '{label}{input}{error}{hint}',
                 'options' => ['class'=>'form-group']])
                 ->textInput(['value' => ''])->label('Опишите суть работы', ['class' => 'control-label']); ?>
         <!-- </div>-->
         <!-- <div class="form-group">-->
 
-            <?= $form->field($model, 'describe_task', ['errorOptions' => ['id' => 'help-block'],
+            <?= $form->field($model, 'describe_task', ['errorOptions' => ['class' => 'help-block1'],
                 'options' => ['class' => 'form-group']])
                 ->textarea(['value' => '', 'class' => 'username'])->label('Подробности задания', ['class' => 'control-label']); ?>
         <!--   </div>-->
@@ -34,25 +34,25 @@ $this->title = 'Страница добавления задания';
         <!--  </div>-->
     <!-- <div class="form-group">-->
 
-            <?= $form->field($model, 'location', ['errorOptions' => ['id' => 'help-block'],
+            <?= $form->field($model, 'location', ['errorOptions' => ['class' => 'help-block2'],
                 'options' => ['id' => 'location']])
                 ->textInput(['class'=>'location-icon'])->label('Локация', ['class' => 'control-label']); ?>
     <!-- </div>-->
      <div class="half-wrapper">
          <!-- <div class="form-group">-->
-                <?= $form->field($model, 'budget', ['errorOptions' => ['id' => 'help-block'],
+                <?= $form->field($model, 'budget', ['errorOptions' => ['class' => 'help-block3'],
                     'options' => []])
                     ->textInput(['class'=>'budget-icon'])->label('Бюджет', ['class' => 'control-label']); ?>
          <!--  </div>-->
          <!--  <div class="form-group">-->
-                <?= $form->field($model, 'expire_date', ['errorOptions' => ['id' => 'help-block'],
+                <?= $form->field($model, 'expire_date', ['errorOptions' => ['class' => 'help-block4'],
                     'options' => []])
                     ->input('date')->label('Срок исполнения', ['class' => 'control-label']); ?>
          <!--   </div>-->
         </div>
         <p class="form-label">Файлы</p>
 
-        <?= $form->field($model, 'files[]', ['errorOptions' => ['id' => 'help-block'],
+        <?= $form->field($model, 'files[]', ['errorOptions' => ['class' => 'help-block5'],
             'options' => ['class' => 'add-file']])
             ->fileInput(['multiple' => 'multiple', 'accept' => ['pdf, png']])->label('', ['class' => 'control-label']); ?>
 

@@ -112,8 +112,8 @@ class TasksController extends SecuredController
             $connection = $newTask->getDb();
             $transaction = $connection->beginTransaction();
             try {
-                $model->createNewTask();
-                $model->saveFile();
+              $task_after_save =  $model->createNewTask();
+                $model->saveFile($task_after_save);
 
                 /*
 

@@ -33,7 +33,7 @@ class AddTask extends Model
     public $expire_date;
     public $files;
     public $location;
-
+public $task_id;
     /**
      * {@inheritdoc}
      */
@@ -79,20 +79,26 @@ class AddTask extends Model
         $newTask->status = 1;
         $newTask->user_id = \Yii::$app->user->identity->id;
         $newTask->save();
+        return $newTask;
     }
 
-    public function saveFile()
+    public function saveFile($task_after_save)
     {
-        $newTask = new Task();
+
         $instances = UploadedFile::getInstances($this, 'files');
 
         foreach ($instances as $instance) {
             $files = new Files();
 
             $instance->saveAs("uploads/" . $instance->name);
-            $files->tasks_id = $newTask->id;
+
+
+
+
+            $files->tasks_id = $task_after_save->id;
             $files->files_name = $instance->name;
             $files->save();
+
         }
     }
 
