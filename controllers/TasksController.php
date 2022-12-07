@@ -69,11 +69,11 @@ class TasksController extends SecuredController
         $model = new AddTask();
 
 
-    if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
 
 
-        $redirect = $model->createNewTask();
-        \Yii::$app->response->redirect(['/tasks/view/', 'id' => $redirect->id]);
+            $task = $model->createNewTask();
+            \Yii::$app->response->redirect(['/tasks/view/', 'id' => $task->id]);
         }
 
 
