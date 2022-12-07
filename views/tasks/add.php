@@ -7,10 +7,6 @@ use app\models\User;
 
 $this->title = 'Страница добавления задания';
 ?>
-<?php echo Yii::$app->session->getFlash('success_task_add'); ?>
-<br>
-<?php echo Yii::$app->session->getFlash('success_files_add'); ?>
-?>
 <main class="main-content main-content--center container">
     <div class="add-task-form regular-form">
 

@@ -83,7 +83,6 @@ class AddTask extends Model
                 $transaction->rollBack();
                 throw $e;
             }
-
         return $newTask;
     }
 
