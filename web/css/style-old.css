@@ -631,7 +631,6 @@ template {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    /*height: 59px;*/
     border-bottom: 1px solid #d6d6d6;
     padding: 15px 12px;
 }
@@ -788,6 +787,7 @@ template {
     line-height: 22px;
     font-weight: 700;
     font-size: 16px;
+    flex-direction: column;
 }
 
 .current-rate {
@@ -1449,7 +1449,6 @@ select {
 .search-form select {
     margin-top: 20px;
     width: 100%;
-    padding: 13px 16px;
     margin-bottom: 25px;
     font-size: 15px;
     color: #8f9bb3;
@@ -1504,7 +1503,7 @@ input[type=checkbox] {
 .regular-form .form-group {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    /*display: flex;*/
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
@@ -1521,7 +1520,7 @@ input[type=checkbox] {
 .regular-form input,
 .regular-form select,
 .regular-form textarea {
-    padding: 9px;
+   /* padding: 9px;*/
     border-radius: 7px;
     border: solid 2px #989898;
 }
@@ -1544,7 +1543,7 @@ input[type=checkbox] {
 }
 
 input[type=date] {
-    /*height: 20px;*/
+    height: 20px;
 }
 
 .registration-form {
@@ -1555,9 +1554,9 @@ input[type=date] {
     width: 295px;
 }
 
-.registration-form input {
+/*.registration-form input {
     width: 642px;
-}
+}*/
 
 .registration-form input[type=checkbox] {
     -webkit-transform: scale(1.4);
@@ -1664,14 +1663,9 @@ input[type=date] {
 }
 
 .add-task-form textarea {
-    /*min-width: 642px;*/
+    min-width: 642px;
     max-width: 642px;
     min-height: 108px;
-}
-
-.field-addtask-budget {
-  display: flex;
-  flex-direction: column;
 }
 
 .add-task-form .half-wrapper {
@@ -1681,7 +1675,7 @@ input[type=date] {
 }
 
 .add-task-form .half-wrapper input {
-    /* width: 177px;*/
+    width: 177px;
     margin-right: 50px;
 }
 
@@ -1750,22 +1744,20 @@ form .has-error textarea:hover {
     border-color: #fa6400;
 }
 
-.help-block {
+/*.help-block {
     font-family: Arial, sans-serif;
     font-size: 11px;
     color: #fa6400;
     visibility: hidden;
     min-height: 25px;
-}
+}*/
 
 .location-icon {
     background-image: url("../img/location-icon.svg");
     background-repeat: no-repeat;
     background-size: 19px 24px;
-    background-position: 99% 5px;
-    width: 100%;
+    background-position: 630px 6px;
 }
-
 
 .budget-icon {
     -webkit-appearance: none;
@@ -1928,5 +1920,7 @@ form .has-error textarea:hover {
 .pop-up--open {
     display: block;
 }
+
+
 
 /*# sourceMappingURL=style.css.map */

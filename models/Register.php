@@ -36,9 +36,9 @@ class Register extends Model
             ['repeat_password', 'string'],
             ['answer_orders', 'safe'],
             ['password', 'compare', 'compareAttribute' => 'repeat_password'],
-            ['city', 'exist', 'targetClass' => City::class, ],
-            ['name', 'string', 'max'=>255],
-            ['email', 'string', 'max'=>255],
+            ['city', 'exist', 'targetClass' => City::class,],
+            ['name', 'string', 'max' => 255],
+            ['email', 'string', 'max' => 255],
         ];
     }
 }

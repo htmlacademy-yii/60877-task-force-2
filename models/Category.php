@@ -47,6 +47,6 @@ class Category extends \yii\db\ActiveRecord
 
         public function getWebsiteData()
     {
-        return $this->hasMany(Tasks::class, ['id'=>'category_id']);
+        return $this->hasMany(Task::class, ['id'=>'category_id']);
     }
 }

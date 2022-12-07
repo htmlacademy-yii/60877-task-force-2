@@ -2,18 +2,40 @@
 
 namespace app\controllers;
 
+use app\models\AddTask;
 use app\models\Category;
 use app\models\Replies;
 use app\models\SearchTasks;
-use yii\web\Controller;
 use app\models\Task;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 
+use app\models\User;
 
 class TasksController extends SecuredController
 {
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@']
+                    ],
+                    [
+                        'allow' => false,
+                        'actions' => ['add'],
+                        'matchCallback' => function ($rule, $action) {
+                            return \Yii::$app->user->identity->user_status === User::EXECUTOR;
+                        }
+                    ]
+                ]
+            ]
+        ];
+    }
 
     public function actionIndex()
     {
@@ -40,4 +62,24 @@ class TasksController extends SecuredController
         return $this->render('single-task', ['task' => $task]);
 
     }
+
+    public function actionAdd()
+    {
+        $categories = Category::find()->all();
+        $model = new AddTask();
+
+
+        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+
+
+            $task = $model->createNewTask();
+            \Yii::$app->response->redirect(['/tasks/view/', 'id' => $task->id]);
+        }
+
+
+        return $this->render('add', ['model' => $model, 'categories' => $categories]);
+    }
+
 }
+
+

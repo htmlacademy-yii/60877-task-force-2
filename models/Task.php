@@ -18,7 +18,8 @@ use Yii;
  * @property string $budget
  * @property string $latitude
  * @property string $longitude
- *
+ * @property string $status
+ * @property integer $user_id
  * @property Category $category
  * @property Replies[] $replies
  */
@@ -27,6 +28,8 @@ class Task extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $describe_task;
+
     public static function tableName()
     {
         return 'task';
@@ -38,7 +41,7 @@ class Task extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'required'],
+            [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget'], 'required'],
             [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
         ];
 
