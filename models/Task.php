@@ -42,6 +42,7 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget'], 'required'],
+            ['user_id', 'int'],
             [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
         ];
 
@@ -64,6 +65,8 @@ class Task extends \yii\db\ActiveRecord
             'latitude' => 'Latitude',
             'longitude' => 'Longitude',
             'without_author' => 'Без автора',
+            'your_comment' => 'Ваш комментарий',
+            'price' => 'Стоимость',
         ];
     }
 
