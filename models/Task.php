@@ -25,6 +25,9 @@ use Yii;
  */
 class Task extends \yii\db\ActiveRecord
 {
+    public $your_comment;
+    public $price;
+    public $your_comment_finish_task;
     /**
      * {@inheritdoc}
      */
@@ -42,8 +45,9 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget'], 'required'],
-            ['user_id', 'int'],
             [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
+            ['your_comment', 'string'],
+            ['price', 'integer']
         ];
 
     }
@@ -67,20 +71,15 @@ class Task extends \yii\db\ActiveRecord
             'without_author' => 'Без автора',
             'your_comment' => 'Ваш комментарий',
             'price' => 'Стоимость',
+            'your_comment_finish_task' => 'Ваш комментарий'
         ];
     }
 
     public function getWasOnSite()
     {
-
-        //$timePeriod = strtotime('now') - strtotime($this->create_at);
         return \Yii::$app->formatter->asRelativeTime($this->create_at);
-        //$days = $timePeriod / 60 / 60 / 24;
-        //$result = intval(\Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language));
-        //return $result;
     }
 
-//    $task->category;
 
     public function getCategory()
     {

@@ -54,7 +54,8 @@ $config = [
             'showScriptName' => false,
 
             'rules' => [
-
+                'tasks/tasksreplyadd' => 'tasks/replyadd',
+                'tasks/rejectedtask' => 'tasks/view/\d+',
                 'tasks/view/<id:\d+>' => 'tasks/view',
                 'user/view/<id:\d+>' => 'user/view',
             ],

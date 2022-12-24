@@ -4,13 +4,16 @@ namespace app\controllers;
 
 use app\models\AddTask;
 use app\models\Category;
+use app\models\City;
 use app\models\Replies;
 use app\models\SearchTasks;
 use app\models\Task;
 use app\models\TasksReply;
+use app\models\TaskStatuses;
+use yii\base\BaseObject;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
-
+use Yii;
 use app\models\User;
 
 class TasksController extends SecuredController
@@ -61,27 +64,11 @@ class TasksController extends SecuredController
         if ($task === null) {
             throw new NotFoundHttpException("Нету такого таска!");
         }
-        $request  = \Yii::$app->request;
-
-        $reply_status = $request->get('reply');
-
-
-        $currentReply = TasksReply::find()->where(['task_id'=>$task->id])->one();
-
-        if ($reply_status==='success') {
-            $currentReply->status=1;
-            $currentReply->getErrors();
-            $currentReply->save();
-        }
-        else {
-            $currentReply->status=0;
-            $currentReply->getErrors();
-            $currentReply->save();
-        }
 
         $currentUserStatus = User::find()->where(['id' => $task->user_id])->one();
-        return $this->render('single-task', ['task' => $task, 'currentUserStatus'=>$currentUserStatus]);
+        return $this->render('single-task', ['task' => $task, 'currentUserStatus' => $currentUserStatus]);
     }
+
 
     public function actionAdd()
     {
@@ -101,7 +88,49 @@ class TasksController extends SecuredController
     }
 
 
+    public function actionAddReply()
+    {
+        $taskModel = new Task();
+        if ($taskModel->load(\Yii::$app->request->post()) && $taskModel->validate()) { // если данные проходят валидацию то делаем дальше
+            $newReply = new TasksReply();
+            $newReply->dt_add = time();
+            $newReply->rate = null;
+            $newReply->description = $this->your_comment;
+            $newReply->photo = \Yii::$app->user->identity->user_img;
+            $newReply->task_id = \Yii::$app->request->get('id');
+            $newReply->price = $this->price;
+            $newReply->user_id = \Yii::$app->user->identity->id;
+            $newReply->price = $this->price;
+            if ($newReply->save()) {
+                return $this->render('single-task');
+            }
+        }
+    }
 
+    public function actionRejectedtask($id)
+    {
+        $rejectedTask = TaskStatuses::find()->where(['task_id' => $id])->andWhere(['user_id' => \Yii::$app->user->identity->id])->one();
+        $rejectedTask->status = 'finished';
+        $rejectedTask->update();
+        return $this->render('rejectedtask');
+    }
+
+    public function actionReplynotadd($id)
+    {
+        $currentReply = TasksReply::find()->where(['task_id' => $id])->one();
+        $currentReply->status = 0;
+        $currentReply->update();
+        return $this->render('tasksreplyrejected');
+    }
+
+    public function actionFinishTask($id)
+    {
+        $authorofthetask = Task::find()->where(['id'=>$id])->one();
+        $authorofthetask->status = 'done';
+        $authorofthetask->update();
+        $authortaskid = $authorofthetask->user_id;
+        return $this->render('single-task', ['authortaskid'=>$authortaskid]);
+    }
 }
 
 

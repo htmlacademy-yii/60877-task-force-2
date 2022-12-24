@@ -64,7 +64,7 @@ class SearchTasks extends Task
             return $dataProvider;
         }
 
-        $query->where(['status' => 1])->orderBy('create_at DESC');
+        $query->where(['status' => 'new'])->orderBy('create_at DESC');
 
         $query->andFilterWhere(['category_id' => $this->categories]);
 
