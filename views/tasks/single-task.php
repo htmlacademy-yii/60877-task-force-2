@@ -29,7 +29,7 @@ use app\models\Task;
             <a class="button button--pink action-btn" data-action="completion">Завершить задание</a>
         <?php endif; ?>
         <div class="task-map">
-            <?php echo Html::img(Yii::$app->urlManager->createUrl('img/map.png')); ?>
+            <?php echo Html::img('img/map.png'); ?>
             <p class="map-address town">Москва</p>
             <p class="map-address">Новый арбат, 23, к. 1</p>
         </div>
