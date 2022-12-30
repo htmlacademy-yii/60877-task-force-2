@@ -11,8 +11,6 @@ use app\models\Task;
 ?>
 
 <main class="main-content container">
-    <?php var_dump($authortaskid);
-    die(); ?>
     <div class="left-column">
         <div class="head-wrapper">
             <h3 class="head-main"><?php echo $task->name; ?></h3>
@@ -22,12 +20,18 @@ use app\models\Task;
             <?php echo $task->description; ?>
         </p>
 
+        <?php if ($taskOwnerStatus === 'executor'): ?>
+            <a class="button button--blue action-btn" data-action="act_response">Откликнуться на задание</a>
+        <?php endif; ?>
 
-        <a class="button button--blue action-btn" data-action="act_response">Откликнуться на задание</a>
-        <a class="button button--orange action-btn" data-action="refusal">Отказаться от задания</a>
-        <?php if ($authortaskid === \Yii::$app->user->identity->id && $task->status === 'new'): ?>
+        <?php if ($task->user_id===\Yii::$app->user->identity->id): ?>
+            <a class="button button--orange action-btn" data-action="refusal">Отказаться от задания</a>
+        <?php endif; ?>
+
+        <?php if ($task->user_id === \Yii::$app->user->identity->id && $task->status === 'new'): ?>
             <a class="button button--pink action-btn" data-action="completion">Завершить задание</a>
         <?php endif; ?>
+
         <div class="task-map">
             <?php echo Html::img('img/map.png'); ?>
             <p class="map-address town">Москва</p>
@@ -37,46 +41,49 @@ use app\models\Task;
             <h4 class="head-regular">Отклики на задание</h4>
         <?php endif; ?>
         <?php foreach ($task->replies as $reply): ?>
+            <div class="response-card">
+                <?php echo \yii\helpers\Html::img("@web/img/{$reply->user->user_img}", ['alt' => '', 'id' => '', 'width' => 100, 'height' => 100]) ?>
 
-            <?php if (\Yii::$app->user->identity->id === $task->user_id): ?>
-                <div class="response-card">
-                    <?php echo \yii\helpers\Html::img("@web/img/{$reply->user->user_img}", ['alt' => '', 'id' => '', 'width' => 100, 'height' => 100]) ?>
+                <div class="feedback-wrapper">
 
-                    <div class="feedback-wrapper">
+                    <a href="#" class="link link--block link--big"><?php echo $reply->user->name; ?></a>
+                    <div class="response-wrapper">
 
-                        <a href="#" class="link link--block link--big"><?php echo $reply->user->name; ?></a>
-                        <div class="response-wrapper">
-
-                            <div class="stars-rating small">
-                                <?php for ($i = 0; $i < $reply->user->getAvgRating(); $i++): ?>
-                                    <span class="fill-star"></span>
-                                <?php endfor; ?>
-                            </div>
-                            <?php if (count($reply->user->replies) > 0): ?>
-                                <p class="reviews"><?= count($reply->user->replies) ?> отзыва</p>
-                            <?php endif; ?>
+                        <div class="stars-rating small">
+                            <?php for ($i = 0; $i < $reply->user->getAvgRating(); $i++): ?>
+                                <span class="fill-star"></span>
+                            <?php endfor; ?>
                         </div>
-                        <p class="response-message">
-                            <?php echo $reply->description; ?>
-                        </p>
-                    </div>
-
-                    <div class="feedback-wrapper">
-                        <p class="info-text"><span class="current-time"> <?php echo $reply->getWasOnSite(); ?></span>
-                            назад
-                        </p>
-                        <p class="price price--small"><?php echo $reply->price; ?> uah</p>
-                    </div>
-                    <div class="button-popup">
-                        <?php if (\Yii::$app->user->identity->id === $task->user_id && $currentUserStatus->user_status === 'customer'): ?>
-                            <a href="<?php echo Url::to(['tasks/tasksreplyadd/', 'id' => $task->id]); ?>"
-                               class="button button--blue button--small">Принять</a>
-                            <a href="<?php echo Url::to(['tasks/tasksreplyrejected/', 'id' => $task->id]); ?>"
-                               class="button button--orange button--small">Отказать</a>
+                        <?php if (count($reply->user->replies) > 0): ?>
+                            <p class="reviews"><?= count($reply->user->replies) ?> отзыва</p>
                         <?php endif; ?>
                     </div>
+                    <p class="response-message">
+                        <?php echo $reply->description; ?>
+                    </p>
                 </div>
-            <?php endif; ?>
+
+                <div class="feedback-wrapper">
+                    <p class="info-text"><span class="current-time"> <?php echo $reply->getWasOnSite(); ?></span>
+                        назад
+                    </p>
+                    <p class="price price--small"><?php echo $reply->price; ?> uah</p>
+                </div>
+                <div class="button-popup">
+                    <?php
+
+                    if (\Yii::$app->user->identity->id === $task->user_id && $userModel->user_status === 'customer' && $reply_status !== 'rejected' && $reply_status !== 'in_progress'):
+
+
+                        ?>
+                        <a href="<?php echo Url::to(['tasks/tasks-reply-add', 'id' => $task->id, 'user_id' => $reply->user->id]); ?>"
+                           class="button button--blue button--small">Принять</a>
+                        <a href="<?php echo Url::to(['tasks/replynotadd/', 'task_id' => $task->id, 'reply_id' => $reply->id]); ?>"
+                           class="button button--orange button--small">Отказать</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+
         <?php endforeach; ?>
     </div>
     <div class="right-column">
@@ -140,11 +147,11 @@ use app\models\Task;
         <div class="completion-form pop-up--form regular-form">
 
             <?php
-            $form = ActiveForm::begin();
-            $taskModel = new Task();
+            $form = ActiveForm::begin(['action' => ['tasks/finishtask']]);
+            $finishReplyModel = new \app\models\FinishReply(); // разные модели
             ?>
             <div class="form-group">
-                <?php echo $form->field($taskModel, 'your_comment_finish_task')->textarea()->label(); ?>
+                <?php echo $form->field($finishReplyModel, 'your_comment_finish_task')->textarea()->label(); ?>
             </div>
             <p class="completion-head control-label">Оценка работы</p>
             <div class="stars-rating big active-stars">
@@ -170,13 +177,14 @@ use app\models\Task;
         </p>
         <div class="addition-form pop-up--form regular-form">
             <?php
-            $form = ActiveForm::begin();
-            $taskModel = new Task();
+            $addReplyModel = new \app\models\AddReply(); // разные модели
+            $form = ActiveForm::begin(['action' => ['tasks/addreply']]); // перенаправить на нужный экшн
+
             ?>
 
-            <?php echo $form->field($taskModel, 'your_comment')->textarea()->label(); ?>
+            <?php echo $form->field($addReplyModel, 'your_comment')->textarea()->label(); ?>
 
-            <?php echo $form->field($taskModel, 'price')->textInput()->label(); ?>
+            <?php echo $form->field($addReplyModel, 'price')->textInput()->label(); ?>
             <?php echo Html::submitButton('Завершить', ['class' => 'button button--pop-up button--blue']) ?>
             <?php ActiveForm::end(); ?>
         </div>

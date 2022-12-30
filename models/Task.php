@@ -25,13 +25,19 @@ use Yii;
  */
 class Task extends \yii\db\ActiveRecord
 {
-    public $your_comment;
-    public $price;
-    public $your_comment_finish_task;
+
     /**
      * {@inheritdoc}
      */
-    public $describe_task;
+    const STATUS_NEW = "new";
+    const STATUS_INWORK = "in_progress";
+    const STATUS_DONE = "done";
+    const STATUS_FAILED = "failed";
+    const STATUS_CANCELLED = "canceled";
+    const STATUS_REJECTED = "rejected";
+
+    public $your_comment;
+    public $price;
 
     public static function tableName()
     {
