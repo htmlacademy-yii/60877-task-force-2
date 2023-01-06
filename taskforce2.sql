@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 17 2022 г., 13:05
+-- Время создания: Янв 06 2023 г., 23:25
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -119,7 +119,34 @@ CREATE TABLE `files` (
 
 INSERT INTO `files` (`id`, `tasks_id`, `files_name`) VALUES
 (1, 5, 'tyu.jpg'),
-(2, 7, 'tyu2.jpg');
+(2, 7, 'tyu2.jpg'),
+(3, 18, '1 (1).png'),
+(4, 19, '1 (1).png'),
+(5, 29, '1 (1).png'),
+(6, 30, 'Berezynets_MV_939003687_UKR_17179147.pdf'),
+(7, 31, 'Evercity2.jpg'),
+(8, 32, 'Evercity2.jpg'),
+(9, 103, '1.PNG'),
+(10, 104, '1 (1).png'),
+(11, 104, '1.PNG'),
+(12, 110, 'cities.sql'),
+(13, 111, 'cities.sql'),
+(14, 112, '1 Страх высоты.fb2'),
+(15, 113, '1 Страх высоты.fb2'),
+(16, 114, '2 Коллектор.fb2'),
+(17, 115, 'password - hash.txt'),
+(18, 116, 'password - hash.txt'),
+(19, 117, 'man-blond.jpg'),
+(20, 118, 'man-blond.jpg'),
+(21, 119, 'password - hash.txt'),
+(22, 120, 'password - hash.txt'),
+(23, 121, 'password - hash.txt'),
+(24, 122, 'password - hash.txt'),
+(25, 123, 'man-brune.jpg'),
+(26, 124, 'man-brune.jpg'),
+(27, 125, 'user-man2.jpg'),
+(28, 126, 'user-man.jpg'),
+(29, 126, 'user-man2.jpg');
 
 -- --------------------------------------------------------
 
@@ -271,32 +298,121 @@ CREATE TABLE `task` (
   `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `category_id` int NOT NULL,
   `description` varchar(255) NOT NULL,
-  `expire` date NOT NULL,
+  `expire` date DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `budget` int NOT NULL,
-  `latitude` decimal(65,12) NOT NULL,
-  `longitude` decimal(65,12) NOT NULL,
-  `status` int NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `budget` int DEFAULT NULL,
+  `latitude` decimal(65,12) DEFAULT NULL,
+  `longitude` decimal(65,12) DEFAULT NULL,
+  `status` varchar(255) NOT NULL,
   `user_id` int DEFAULT NULL,
-  `files` varchar(255) NOT NULL
+  `executor_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `task`
 --
 
-INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`, `files`) VALUES
-(1, '2022-10-12 21:00:00', 2, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15', 'Ukraine', '1 Eagan Crossing', 6587, '6.964166700000', '158.208333300000', 1, 2, ''),
-(2, '2018-10-01 21:00:00', 3, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2022-12-07', 'exploit revolutionary portals', '24043 Paget Alley', 2904, '5.623505000000', '10.254404400000', 1, 2, ''),
-(3, '2018-10-01 21:00:00', 2, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23', 'matrix next-generation e-commerce', '2867 Dryden Pass', 1170, '63.593219000000', '53.906853200000', 1, 3, ''),
-(4, '2018-10-01 21:00:00', 1, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', 838, '20.580035800000', '-75.243530700000', 1, 5, ''),
-(5, '2018-10-01 21:00:00', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15', 'integrate cross-platform e-business', '1 Stone Corner Junction', 7484, '14.932657400000', '-91.694184500000', 1, 4, ''),
-(6, '2018-10-01 21:00:00', 7, 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24', 'enable dot-com niches', '12 Stephen Terrace', 5725, '40.163127000000', '116.638868000000', 1, 5, ''),
-(7, '2018-10-01 21:00:00', 5, 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19', 'transform web-enabled relationships', '6213 Lake View Drive', 4414, '44.379487100000', '20.263894100000', 1, 6, ''),
-(8, '2018-10-01 21:00:00', 8, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14', 'strategize frictionless solutions', '994 Corry Park', 3454, '-7.325148500000', '108.360746400000', 1, 7, ''),
-(9, '2018-10-01 21:00:00', 4, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12', 'innovate seamless metrics', '2 Bluestem Park', 3101, '43.000000000000', '-87.970000000000', 0, 8, ''),
-(10, '2018-10-01 21:00:00', 4, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19', 'integrate wireless infomediaries', '1 Dexter Hill', 6562, '41.341016800000', '-8.316930300000', 1, 9, '');
+INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`, `executor_id`) VALUES
+(1, '2022-10-12 21:00:00', 2, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15', 'Ukraine', '1 Eagan Crossing', 6587, '6.964166700000', '158.208333300000', 'new', 2, NULL),
+(2, '2018-10-01 21:00:00', 3, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2022-12-07', 'exploit revolutionary portals', '24043 Paget Alley', 2904, '5.623505000000', '10.254404400000', 'in_progress', 2, NULL),
+(3, '2018-10-01 21:00:00', 2, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23', 'matrix next-generation e-commerce', '2867 Dryden Pass', 1170, '63.593219000000', '53.906853200000', 'failed', 3, NULL),
+(4, '2018-10-01 21:00:00', 1, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', 838, '20.580035800000', '-75.243530700000', 'done', 5, NULL),
+(5, '2018-10-01 21:00:00', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15', 'integrate cross-platform e-business', '1 Stone Corner Junction', 7484, '14.932657400000', '-91.694184500000', 'canceled', 4, NULL),
+(6, '2018-10-01 21:00:00', 7, 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24', 'enable dot-com niches', '12 Stephen Terrace', 5725, '40.163127000000', '116.638868000000', 'canceled', 5, NULL),
+(7, '2018-10-01 21:00:00', 5, 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19', 'transform web-enabled relationships', '6213 Lake View Drive', 4414, '44.379487100000', '20.263894100000', 'new', 6, NULL),
+(8, '2018-10-01 21:00:00', 8, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14', 'strategize frictionless solutions', '994 Corry Park', 3454, '-7.325148500000', '108.360746400000', 'new', 7, NULL),
+(9, '2018-10-01 21:00:00', 4, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12', 'innovate seamless metrics', '2 Bluestem Park', 3101, '43.000000000000', '-87.970000000000', 'new', 8, NULL),
+(10, '2018-10-01 21:00:00', 4, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19', 'integrate wireless infomediaries', '1 Dexter Hill', 6562, '41.341016800000', '-8.316930300000', 'new', 9, NULL),
+(11, '2022-11-22 03:11:14', 3, '444444444444444444444444443333333333333333333333333333333', '2022-11-23', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'new', NULL, NULL),
+(12, '2022-11-22 03:11:59', 3, '444444444444444444444444443333333333333333333333333333333', '2022-11-23', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'done', 8, NULL),
+(13, '2022-11-22 03:11:17', 3, '5555555555555555555555555555555555555555555555555', '2022-11-23', 'name3333333333333333333', 'location', 12300, NULL, NULL, 'done', 8, NULL),
+(14, '2022-11-22 03:11:36', 3, '5555555555555555555555555555555555555555555555555', '2022-11-23', 'name3333333333333333333', 'location', 12300, NULL, NULL, 'done', 8, NULL),
+(15, '2022-11-22 03:11:32', 3, '5555555555555555555555555555555555555555555555555', '2022-11-23', 'name3333333333333333333', 'location', 12300, NULL, NULL, 'done', 8, NULL),
+(16, '2022-11-22 03:11:17', 3, '5555555555555555555555555555555555555555555555555', '2022-11-23', 'name3333333333333333333', 'location', 12300, NULL, NULL, 'done', 8, NULL),
+(17, '2022-11-22 03:11:01', 3, '5555555555555555555555555555555555555555555555555', '2022-11-23', 'name3333333333333333333', 'location', 12300, NULL, NULL, 'done', 8, NULL),
+(18, '2022-11-25 01:11:48', 4, 'Kolosov222222222222222222222222222222222222', '2022-11-26', 'Nikita22222222', 'location', 12300, NULL, NULL, 'done', 8, NULL),
+(19, '2022-11-25 01:11:25', 4, 'Kolosov222222222222222222222222222222222222', '2022-11-26', 'Nikita22222222', 'location', 12300, NULL, NULL, 'failed', 8, NULL),
+(20, '2022-11-26 09:11:18', 5, '333333333333333333333333333333333333333333333333333333', '2022-11-26', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'failed', 8, NULL),
+(21, '2022-11-26 09:11:20', 5, '333333333333333333333333333333333333333333333333333333', '2022-11-26', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'in_progress', 8, NULL),
+(22, '2022-11-26 09:11:10', 5, '333333333333333333333333333333333333333333333333333333', '2022-11-26', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'failed', 8, NULL),
+(23, '2022-11-26 09:11:35', 5, '333333333333333333333333333333333333333333333333333333', '2022-11-26', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'in_progress', 8, NULL),
+(24, '2022-11-26 09:11:05', 5, '333333333333333333333333333333333333333333333333333333', '2022-11-26', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'new', 8, NULL),
+(25, '2022-11-25 22:11:35', 5, '333333333333333333333333333333333333333333333333333333', '2022-11-26', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, 'in_progress', 8, NULL),
+(26, '2022-11-25 22:11:43', 7, 'I need to kill this bastard Huilo', '2022-11-30', 'Blackout task', 'Москва, красная площадь', 1200000, NULL, NULL, 'new', 8, NULL),
+(27, '2022-11-26 06:11:11', 5, 'Хочу чтобы убили Хуйла и весь Кремль', '2022-11-26', 'NikitaNikita2022', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(28, '2022-11-26 06:11:34', 5, 'щщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщ', '2022-11-26', '333333333333333333333333333333333333333333', 'Москва, красная площадь', 1200000, NULL, NULL, 'new', 8, NULL),
+(29, '2022-11-26 06:11:10', 5, 'щщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщщ', '2022-11-26', '333333333333333333333333333333333333333333', 'Москва, красная площадь', 1200000, NULL, NULL, 'in_progress', 8, NULL),
+(30, '2022-11-26 06:11:22', 5, '8888888888888888888888888888888888888888888888', '2022-11-26', '333333333333333333333333333333333333333333', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(31, '2022-11-26 06:11:17', 6, '5555555555555555555555555555555555555555555555555555555555555555', '2022-11-26', '333333333333333333333333333333333333333333', 'Москва, красная площадь', 1200000, NULL, NULL, 'new', 8, NULL),
+(32, '2022-11-26 07:11:21', 6, '5555555555555555555555555555555555555555555555555555555555555555', '2022-11-26', '333333333333333333333333333333333333333333', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(33, '2022-11-26 07:11:10', 7, 'I want to build ecommerce project. Help me with this. Please', '2022-11-26', 'I want to build ecommerce project ', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(34, '2022-11-26 07:11:48', 7, 'I did not want to talk with Mia Khalifa, please help me with this', '2022-11-26', 'I want to set brekets on my teeth', 'Москва, красная площадь', 1200000, NULL, NULL, 'in_progress', 8, NULL),
+(35, '2022-11-26 07:11:03', 7, 'I did not want to talk with Mia Khalifa, please help me with this', '2022-11-26', 'I want to set brekets on my teeth', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(36, '2022-11-26 07:11:14', 7, '444444444444444444444444444444444444444444444444444', '2022-11-26', 'Nikita22222222', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(37, '2022-11-26 07:11:02', 7, '444444444444444444444444444444444444444444444444444', '2022-11-26', 'Nikita22222222', 'Москва, красная площадь', 1200000, NULL, NULL, 'in_progress', 8, NULL),
+(38, '2022-11-26 07:11:15', 7, '222222222222222222222222222222222222222222222222222222222', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(47, '2022-11-26 07:11:01', 7, 'Please, blackout the hole of the Moscow. Please!', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(48, '2022-11-26 07:11:13', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(50, '2022-11-26 07:11:22', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'in_progress', 8, NULL),
+(51, '2022-11-26 08:11:28', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'done', 8, NULL),
+(52, '2022-11-26 08:11:13', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'canceled', 8, NULL),
+(53, '2022-11-26 08:11:45', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'canceled', 8, NULL),
+(54, '2022-11-26 08:11:00', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'in_progress', 8, NULL),
+(55, '2022-11-26 08:11:39', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'canceled', 8, NULL),
+(56, '2022-11-26 08:11:41', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'canceled', 8, NULL),
+(57, '2022-11-26 08:11:55', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'canceled', 8, NULL),
+(58, '2022-11-26 08:11:31', 7, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-26', 'Blackout task for Moscow', 'Москва, красная площадь', 1200000, NULL, NULL, 'canceled', 8, NULL),
+(59, '2022-11-26 08:11:19', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, 'canceled', 8, NULL),
+(60, '2022-11-26 08:11:43', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(61, '2022-11-26 08:11:54', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(62, '2022-11-26 08:11:07', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(63, '2022-11-26 08:11:01', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(64, '2022-11-26 08:11:30', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(65, '2022-11-26 08:11:48', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(66, '2022-11-26 08:11:02', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(67, '2022-11-26 08:11:34', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(68, '2022-11-26 08:11:15', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(69, '2022-11-26 08:11:01', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(70, '2022-11-26 08:11:02', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(71, '2022-11-26 08:11:10', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(72, '2022-11-26 08:11:25', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(73, '2022-11-26 08:11:37', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(74, '2022-11-26 08:11:52', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(75, '2022-11-26 08:11:57', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(76, '2022-11-26 08:11:57', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(77, '2022-11-26 08:11:09', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(78, '2022-11-26 08:11:01', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(79, '2022-11-26 08:11:08', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(80, '2022-11-26 09:11:24', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(81, '2022-11-26 09:11:54', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(82, '2022-11-26 09:11:36', 3, '1111111111111111111111111111111111111111111111111111111', '2022-11-26', 'I love IrenI Love iren', 'Москва, красная площадь', 1200000, NULL, NULL, '', 8, NULL),
+(83, '2022-11-26 02:11:07', 5, 'Сидели и молилиись и сидели. Москва, 1990', '2022-11-28', 'Перво наперво сидели у костра', 'location', 1200000, NULL, NULL, '', 8, NULL),
+(96, '2022-11-26 02:11:00', 1, '44444444444444444444444444444444444444444444444444444444', '2022-11-27', 'Blackout task for Moscow', 'location', 12300, NULL, NULL, '', 8, NULL),
+(97, '2022-11-26 02:11:27', 1, '8888888888888888888888888888888888888888888888', '2022-11-27', '999999999999999999999999999999999999999999999999', 'location', 12300, NULL, NULL, '', 8, NULL),
+(98, '2022-11-26 02:11:22', 1, '8888888888888888888888888888888888888888888888', '2022-11-27', '999999999999999999999999999999999999999999999999', 'location', 12300, NULL, NULL, '', 8, NULL),
+(99, '2022-11-26 02:11:36', 5, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-27', 'Nikita22222222', 'location', 12300, NULL, NULL, '', 8, NULL),
+(100, '2022-11-26 02:11:30', 5, 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', '2022-11-27', 'Nikita22222222', 'location', 12300, NULL, NULL, '', 8, NULL),
+(101, '2022-11-26 02:11:42', 5, '111111111111111111111111111111111111111', '2022-11-27', '111111111111111111111111111111111111111', 'location', 12300, NULL, NULL, '', 8, NULL),
+(103, '2022-11-26 02:11:16', 5, '111111111111111111111111111111111111111', '2022-11-27', '111111111111111111111111111111111111111', 'location', 12300, NULL, NULL, '', 8, NULL),
+(104, '2022-11-26 02:11:04', 5, '7777777777777777777777777777777777', '2022-11-27', 'Blackout task for Moscow', 'location', 12300, NULL, NULL, '', 8, NULL),
+(110, '2022-11-30 09:11:11', 5, 'I need to force Russia to burn, every second and day', '2022-11-30', 'Moscow must fall', 'location', 1200000, NULL, NULL, '', 8, NULL),
+(111, '2022-11-30 09:11:45', 5, 'I need to force Russia to burn, every second and day', '2022-11-30', 'Moscow must fall', 'location', 1200000, NULL, NULL, '', 8, NULL),
+(112, '2022-11-30 08:11:11', 6, '22222222222222222222222222222222222222222', '2022-12-01', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(113, '2022-11-30 08:11:45', 6, '22222222222222222222222222222222222222222', '2022-12-01', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(114, '2022-12-01 09:12:29', 5, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', '2022-12-02', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(115, '2022-12-05 08:12:49', 6, '12333333333333333333333333333333333333333333', '2022-12-06', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(116, '2022-12-05 08:12:00', 6, '12333333333333333333333333333333333333333333', '2022-12-06', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(117, '2022-12-06 09:12:10', 6, '2222222222222222222222222222222222222222222222222222222222222222222222222222', '2022-12-06', 'Blackout22222222222222222222222', 'location', 12300, NULL, NULL, '', 8, NULL),
+(118, '2022-12-06 09:12:18', 6, '2222222222222222222222222222222222222222222222222222222222222222222222222222', '2022-12-06', 'Blackout22222222222222222222222', 'location', 12300, NULL, NULL, '', 8, NULL),
+(119, '2022-12-06 09:12:20', 6, '12333333333333333333333333333333333333333333', '2022-12-06', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(120, '2022-12-06 09:12:20', 6, '12333333333333333333333333333333333333333333', '2022-12-06', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(121, '2022-12-06 09:12:50', 6, '12333333333333333333333333333333333333333333', '2022-12-06', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(122, '2022-12-06 09:12:50', 6, '12333333333333333333333333333333333333333333', '2022-12-06', '333333333333333333333333333333333333333333', 'location', 12300, NULL, NULL, '', 8, NULL),
+(123, '2022-12-06 09:12:36', 6, '222222222222222222222222222222222222222222222222222222222222222', '2022-12-06', 'The last task from me', 'location', 12300, NULL, NULL, '', 8, NULL),
+(124, '2022-12-06 09:12:36', 6, '222222222222222222222222222222222222222222222222222222222222222', '2022-12-06', 'The last task from me', 'location', 12300, NULL, NULL, '', 8, NULL),
+(125, '2022-12-07 07:12:09', 5, 'Please help me to solve Russia\'s problem', '2022-12-11', 'The last my task', 'location', 1200000, NULL, NULL, '', 8, NULL),
+(126, '2022-12-07 07:12:00', 7, 'The Kingdom of Heaven. Please help333333333333333333333333333333333333333333333333333333', '2022-12-24', 'The Kingdom of Heaven. Please help', 'location', 12300, NULL, NULL, '', 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -307,39 +423,61 @@ INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `
 CREATE TABLE `tasks_reply` (
   `id` int UNSIGNED NOT NULL,
   `dt_add` timestamp NOT NULL,
-  `rate` int NOT NULL,
+  `rate` int DEFAULT NULL,
   `description` varchar(255) NOT NULL,
-  `photo` varchar(255) NOT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `task_id` int NOT NULL,
   `price` int NOT NULL,
-  `user_id` int NOT NULL
+  `user_id` int NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `tasks_reply`
 --
 
-INSERT INTO `tasks_reply` (`id`, `dt_add`, `rate`, `description`, `photo`, `task_id`, `price`, `user_id`) VALUES
-(1, '2022-10-04 09:38:50', 1, 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 'man-hat.png', 1, 10000, 1),
-(2, '2022-10-04 09:38:50', 4, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 45000, 2),
-(3, '2022-10-04 09:38:50', 5, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 89523, 3),
-(4, '2022-10-04 09:38:50', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', 'man-hat.png', 2, 4896, 2),
-(5, '2022-10-04 09:38:50', 3, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'man-hat.png', 3, 456, 2),
-(6, '2022-10-04 09:38:50', 4, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pe', 'man-hat.png', 3, 4899, 2),
-(7, '2022-10-04 09:38:50', 5, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'man-hat.png', 3, 789, 3),
-(8, '2022-10-04 09:38:50', 4, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mau', 'man-hat.png', 3, 4589, 4),
-(9, '2022-10-04 09:38:50', 3, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Do', 'man-hat.png', 5, 4500, 5),
-(10, '2022-10-04 09:38:50', 5, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'man-hat.png', 3, 789, 4),
-(11, '2022-10-04 09:38:50', 4, 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'man-hat.png', 8, 0, 4),
-(12, '2022-10-04 09:38:50', 5, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ph', 'man-hat.png', 9, 1258, 4),
-(13, '2022-10-04 09:38:50', 1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. ', 'man-hat.png', 11, 4589, 5),
-(14, '2022-10-04 09:38:50', 3, 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 'man-hat.png', 34, 45000, 5),
-(15, '2022-10-04 09:38:50', 3, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrice', 'man-hat.png', 12, 4589, 4),
-(16, '2022-10-04 09:38:50', 3, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', 'man-hat.png', 12, 0, 4),
-(17, '2022-10-04 09:38:50', 4, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'man-hat.png', 12, 4589, 4),
-(18, '2022-10-04 09:38:50', 2, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', 'man-hat.png', 12, 4589, 2),
-(19, '2022-10-04 09:38:50', 3, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'man-hat.png', 21, 458, 2),
-(20, '2022-10-04 09:38:50', 4, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 'man-hat.png', 12, 458, 2);
+INSERT INTO `tasks_reply` (`id`, `dt_add`, `rate`, `description`, `photo`, `task_id`, `price`, `user_id`, `status`) VALUES
+(1, '2022-10-04 09:38:50', 1, 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 'man-hat.png', 1, 10000, 1, ''),
+(2, '2022-10-04 09:38:50', 4, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 45000, 2, ''),
+(3, '2022-10-04 09:38:50', 5, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 89523, 3, ''),
+(4, '2022-10-04 09:38:50', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', 'man-hat.png', 2, 4896, 2, ''),
+(5, '2022-10-04 09:38:50', 3, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'man-hat.png', 3, 456, 2, ''),
+(6, '2022-10-04 09:38:50', 4, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pe', 'man-hat.png', 3, 4899, 2, ''),
+(7, '2022-10-04 09:38:50', 5, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'man-hat.png', 3, 789, 3, ''),
+(8, '2022-10-04 09:38:50', 4, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mau', 'man-hat.png', 3, 4589, 4, ''),
+(9, '2022-10-04 09:38:50', 3, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Do', 'man-hat.png', 5, 4500, 5, ''),
+(10, '2022-10-04 09:38:50', 5, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'man-hat.png', 3, 789, 4, ''),
+(11, '2022-10-04 09:38:50', 4, 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'man-hat.png', 8, 0, 4, ''),
+(12, '2022-10-04 09:38:50', 5, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ph', 'man-hat.png', 9, 1258, 4, ''),
+(13, '2022-10-04 09:38:50', 1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. ', 'man-hat.png', 11, 4589, 5, ''),
+(14, '2022-10-04 09:38:50', 3, 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 'man-hat.png', 34, 45000, 5, ''),
+(15, '2022-10-04 09:38:50', 3, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrice', 'man-hat.png', 12, 4589, 4, ''),
+(16, '2022-10-04 09:38:50', 3, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', 'man-hat.png', 12, 0, 4, ''),
+(17, '2022-10-04 09:38:50', 4, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'man-hat.png', 12, 4589, 4, ''),
+(18, '2022-10-04 09:38:50', 2, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', 'man-hat.png', 12, 4589, 2, ''),
+(19, '2022-10-04 09:38:50', 3, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'man-hat.png', 21, 458, 2, ''),
+(20, '2022-10-04 09:38:50', 4, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 'man-hat.png', 12, 458, 2, '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `task_statuses`
+--
+
+CREATE TABLE `task_statuses` (
+  `id` int NOT NULL,
+  `task_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `task_statuses`
+--
+
+INSERT INTO `task_statuses` (`id`, `task_id`, `user_id`, `status`) VALUES
+(1, 9, 5, 'new'),
+(2, 10, 9, 'new');
 
 -- --------------------------------------------------------
 
@@ -523,6 +661,12 @@ ALTER TABLE `tasks_reply`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `task_statuses`
+--
+ALTER TABLE `task_statuses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `user`
 --
 ALTER TABLE `user`
@@ -561,7 +705,7 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT для таблицы `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблицы `opinion`
@@ -591,13 +735,19 @@ ALTER TABLE `tags_attribution`
 -- AUTO_INCREMENT для таблицы `task`
 --
 ALTER TABLE `task`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT для таблицы `tasks_reply`
 --
 ALTER TABLE `tasks_reply`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT для таблицы `task_statuses`
+--
+ALTER TABLE `task_statuses`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
