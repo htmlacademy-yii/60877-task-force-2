@@ -3,17 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Class m220805_162152_added_user_status
+ * Class m230115_120643_files
  */
-class m220805_162152_added_user_status extends Migration
+class m230115_120643_files extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->addColumn('users', 'user_status', $this->text());
-
+        $this->createTable('files', [
+            'id' => $this->primaryKey()->notNull()->unique(),
+            'tasks_id' => $this->integer(),
+            'files_name' => $this->string('255')
+        ]);
     }
 
     /**
@@ -21,7 +24,7 @@ class m220805_162152_added_user_status extends Migration
      */
     public function safeDown()
     {
-        $this->dropColumn('users', 'user_status');
+        $this->dropTable('files');
     }
 
     /*
@@ -33,7 +36,7 @@ class m220805_162152_added_user_status extends Migration
 
     public function down()
     {
-        echo "m220805_162152_added_user_status cannot be reverted.\n";
+        echo "m230115_120643_files cannot be reverted.\n";
 
         return false;
     }

@@ -12,7 +12,7 @@ use Yii;
  * @property string $rate
  * @property string $description
  */
-class Opinions extends \yii\db\ActiveRecord
+class Opinion extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

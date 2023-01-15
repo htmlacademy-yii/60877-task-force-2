@@ -6,7 +6,7 @@ namespace app\models;
 
 use yii\base\Model;
 
-class AddReply extends Model
+class FinishReply extends Model
 {
     public $your_comment_finish_task;
 

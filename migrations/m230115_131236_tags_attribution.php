@@ -3,20 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Class m220719_204004_single_task_user
+ * Class m230115_131236_tags_attribution
  */
-class m220719_204004_single_task_user extends Migration
+class m230115_131236_tags_attribution extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('replies_links', [
-            'id' => $this->primaryKey(),
+        $this->createTable('tags_attribution', [
+            'id' => $this->integer()->primaryKey()->notNull()->unique(),
             'user_id' => $this->integer(),
-            'replies_id' => $this->integer(),
-            'task_id' => $this->integer(),
+            'attributes_id' => $this->integer(),
         ]);
     }
 
@@ -25,7 +24,7 @@ class m220719_204004_single_task_user extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('replies_links');
+        $this->dropTable('tags_attribution');
     }
 
     /*
@@ -37,7 +36,7 @@ class m220719_204004_single_task_user extends Migration
 
     public function down()
     {
-        echo "m220719_204004_single_task_user cannot be reverted.\n";
+        echo "m230115_131236_tags_attribution cannot be reverted.\n";
 
         return false;
     }
