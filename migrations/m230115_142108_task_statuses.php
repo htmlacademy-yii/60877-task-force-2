@@ -12,7 +12,7 @@ class m230115_142108_task_statuses extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('tasks_reply', [
+        $this->createTable('task_statuses', [
             'id' => $this->primaryKey(),
             'task_id' => $this->integer(),
             'user_id' => $this->integer(),
