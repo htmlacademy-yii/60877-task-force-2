@@ -13,7 +13,7 @@ class m230115_144053_user_rating extends Migration
     public function safeUp()
     {
         $this->createTable('user_rating', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'rating' => $this->integer(),
             'user_id' => $this->integer(),
         ]);

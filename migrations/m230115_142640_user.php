@@ -13,7 +13,7 @@ class m230115_142640_user extends Migration
     public function safeUp()
     {
         $this->createTable('task', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'dt_add' => $this->timestamp(),
             'email' => $this->string('255'),
             'name' => $this->string('255'),

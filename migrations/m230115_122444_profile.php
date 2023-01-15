@@ -13,7 +13,7 @@ class m230115_122444_profile extends Migration
     public function safeUp()
     {
         $this->createTable('profile', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'address' => $this->string('255'),
             'bd' => $this->timestamp(),
             'about'=>$this->string('255'),

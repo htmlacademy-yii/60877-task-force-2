@@ -13,7 +13,7 @@ class m230115_121447_opinion extends Migration
     public function safeUp()
     {
         $this->createTable('opinion', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'dt_add' => $this->timestamp(),
             'rate' => $this->integer(),
             'description'=>$this->string('255')

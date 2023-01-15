@@ -13,7 +13,7 @@ class m230115_141413_tasks_reply extends Migration
     public function safeUp()
     {
         $this->createTable('tasks_reply', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'dt_add' => $this->timestamp(),
             'rate' => $this->integer(),
             'description' => $this->string('255'),

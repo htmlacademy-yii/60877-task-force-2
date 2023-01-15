@@ -13,7 +13,7 @@ class m230115_131236_tags_attribution extends Migration
     public function safeUp()
     {
         $this->createTable('tags_attribution', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
             'attributes_id' => $this->integer(),
         ]);

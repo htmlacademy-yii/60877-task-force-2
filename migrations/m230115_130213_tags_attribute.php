@@ -13,7 +13,7 @@ class m230115_130213_tags_attribute extends Migration
     public function safeUp()
     {
         $this->createTable('tags_attribute', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'attributes' => $this->string('255'),
         ]);
     }

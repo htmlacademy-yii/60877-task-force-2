@@ -13,7 +13,7 @@ class m230115_124449_replies_link extends Migration
     public function safeUp()
     {
         $this->createTable('replies_link', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
             'replies_id' => $this->integer(),
             'task_id' => $this->integer(),

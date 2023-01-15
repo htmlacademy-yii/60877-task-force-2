@@ -14,7 +14,7 @@ class m230114_215533_category extends Migration
     public function safeUp()
     {
         $this->createTable('category', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'icon' => $this->string(255),
         ]);

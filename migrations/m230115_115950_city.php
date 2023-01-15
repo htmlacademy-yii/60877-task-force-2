@@ -13,7 +13,7 @@ class m230115_115950_city extends Migration
     public function safeUp()
     {
         $this->createTable('city', [
-            'id' => $this->integer()->primaryKey()->notNull()->unique(),
+            'id' => $this->primaryKey(),
             'name' => $this->string(255),
             'latitude' => $this->integer(),
             'longitude' => $this->integer(),
