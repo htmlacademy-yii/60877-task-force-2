@@ -4,6 +4,6 @@
  * @var $index integer
  */
 return [
-    'name' => $faker->name,
-    'icon' => $faker->icon,
+    'name' => $faker->word(),
+    'icon' => $faker->word(),
 ];

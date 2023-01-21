@@ -4,16 +4,16 @@
  * @var $index integer
  */
 return [
-    'create_at' => $faker->create_at,
-    'category_id' => $faker->category_id,
-    'description' => $faker->description,
-    'expire' => $faker->expire,
-    'name' => $faker->name,
-    'address' => $faker->address,
-    'budget'=>$faker->budget,
-    'latitude'=>$faker->latitude,
-    'longitude'=>$faker->longitude,
-    'status'=>$faker->status,
-    'user_id'=>$faker->user_id,
-    'executor_id'=>$faker->executor_id
+    'create_at' => $faker->time("Y-m-d H:i:s"),
+    'category_id' => $faker->randomDigit(),
+    'description' => $faker->sentence(),
+    'expire' => $faker->date(),
+    'name' => $faker->word(),
+    'address' => $faker->sentence(),
+    'budget'=>$faker->randomNumber(5, true),
+    'latitude'=>$faker->randomFloat(8),
+    'longitude'=>$faker->randomFloat(8),
+    'status'=>$faker->word(),
+    'user_id'=>$faker->randomDigit(),
+    'executor_id'=>$faker->randomDigit()
 ];

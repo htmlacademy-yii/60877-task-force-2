@@ -4,12 +4,12 @@
  * @var $index integer
  */
 return [
-    'dt_add' => $faker->dt_add,
-    'rate' => $faker->rate,
-    'description' => $faker->description,
-    'photo' => $faker->photo,
-    'task_id' => $faker->task_id,
-    'price'=>$faker->price,
-    'user_id'=>$faker->user_id,
-    'status'=>$faker->status
+    'dt_add' => $faker->time("Y-m-d H:i:s"),
+    'rate' => $faker->randomDigit(),
+    'description' => $faker->sentence(),
+    'photo' => $faker->word(),
+    'task_id' => $faker->randomDigit(),
+    'price'=>$faker->randomNumber(5, false),
+    'user_id'=>$faker->randomDigit(),
+    'status'=>$faker->word()
 ];

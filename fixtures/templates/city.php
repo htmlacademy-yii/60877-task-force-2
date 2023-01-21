@@ -4,7 +4,7 @@
  * @var $index integer
  */
 return [
-    'name' => $faker->name,
-    'latitude' => $faker->latitude,
-    'longitude' => $faker->longitude,
+    'name' => $faker->word(),
+    'latitude' => $faker->randomFloat(10),
+    'longitude' => $faker->randomFloat(10),
 ];

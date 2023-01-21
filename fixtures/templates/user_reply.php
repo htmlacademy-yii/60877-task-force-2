@@ -4,10 +4,10 @@
  * @var $index integer
  */
 return [
-    'create_at' => $faker->create_at,
-    'rate' => $faker->rate,
-    'description' => $faker->description,
-    'task_id' => $faker->task_id,
-    'user_id' => $faker->user_id,
-    'executor_id'=>$faker->executor_id
+    'create_at' => $faker->time("Y-m-d H:i:s"),
+    'rate' => $faker->randomDigit(),
+    'description' => $faker->sentence(),
+    'task_id' => $faker->randomDigit(),
+    'user_id' => $faker->randomDigit(),
+    'executor_id'=>$faker->randomDigit()
 ];

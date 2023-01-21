@@ -4,7 +4,7 @@
  * @var $index integer
  */
 return [
-    'task_id' => $faker->task_id,
-    'user_id' => $faker->user_id,
-    'status' => $faker->status,
+    'task_id' => $faker->randomDigit(),
+    'user_id' => $faker->randomDigit(),
+    'status' => $faker->word(),
 ];

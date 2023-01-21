@@ -4,10 +4,10 @@
  * @var $index integer
  */
 return [
-    'address' => $faker->address,
-    'bd' => $faker->bd,
-    'about' => $faker->about,
-    'phone' => $faker->phone,
-    'skype' => $faker->skype,
-    'city_id'=>$faker->city_id
+    'address' => $faker->sentence(),
+    'bd' => $faker->time("Y-m-d H:i:s"),
+    'about' => $faker->sentence(),
+    'phone' => $faker->randomNumber(8, true),
+    'skype' => $faker->word(),
+    'city_id'=>$faker->randomDigit()
 ];

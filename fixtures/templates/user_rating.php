@@ -4,6 +4,6 @@
  * @var $index integer
  */
 return [
-    'rating' => $faker->rating,
-    'user_id' => $faker->user_id,
+    'rating' => $faker->randomDigit(),
+    'user_id' => $faker->randomDigit(),
 ];

@@ -4,7 +4,7 @@
  * @var $index integer
  */
 return [
-    'dt_add' => $faker->dt_add,
-    'rate' => $faker->rate,
-    'description' => $faker->description,
+    'dt_add' => $faker->time("Y-m-d H:i:s"),
+    'rate' => $faker->randomDigit(),
+    'description' => $faker->sentence(),
 ];

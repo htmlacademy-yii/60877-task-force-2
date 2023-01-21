@@ -27,6 +27,8 @@ class TagsAttribution extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['id'], 'required'],
+            [['id'], 'integer'],
             [['user_id', 'attributes_id'], 'integer'],
         ];
     }

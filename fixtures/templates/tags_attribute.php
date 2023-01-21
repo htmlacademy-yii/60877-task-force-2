@@ -4,5 +4,5 @@
  * @var $index integer
  */
 return [
-    'attributes' => $faker->attributes,
+    'attributes' => $faker->word(),
 ];

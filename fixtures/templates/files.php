@@ -4,6 +4,6 @@
  * @var $index integer
  */
 return [
-    'tasks_id' => $faker->tasks_id,
-    'files_name' => $faker->files_name,
+    'tasks_id' => $faker->randomDigit(),
+    'files_name' => $faker->word(),
 ];
