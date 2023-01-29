@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 21 2023 г., 12:05
+-- Время создания: Янв 30 2023 г., 01:01
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -95,7 +95,7 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`id`, `tasks_id`, `files_name`) VALUES
-(1, 2, 'culpa'),
+(1, 2, 'culpa.png'),
 (2, 4, 'ad'),
 (3, 3, 'commodi'),
 (4, 9, 'est'),
@@ -278,16 +278,16 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`, `executor_id`) VALUES
-(1, '1982-12-15 08:33:22', 3, 'Nobis doloribus numquam tempore rerum impedit aut.', '1988-03-28', 'omnis', 'Et nemo mollitia est unde.', 44997, '583.222903820000', '1936.796443260000', 'repudiandae', 2, 0),
-(2, '2014-09-08 02:11:51', 9, 'Alias tempora nobis et nam cumque occaecati provident aperiam.', '2008-08-11', 'amet', 'Minus illum sint sed fuga quaerat magnam perferendis.', 18896, '30.869115730000', '137048016.960550000000', 'aut', 6, 9),
-(3, '1988-05-12 04:18:39', 0, 'Debitis ipsum est adipisci laboriosam.', '2007-07-07', 'voluptatum', 'Quo alias temporibus atque illo.', 55306, '0.237428910000', '24575.365921260000', 'quo', 5, 8),
-(4, '1990-09-25 17:39:03', 2, 'Nam sint unde aut ullam et mollitia dolorem vitae.', '2004-04-11', 'aut', 'Non quisquam laborum corporis ut ut sapiente voluptatem eum.', 70159, '58902.877412210000', '17.083807660000', 'maxime', 4, 3),
-(5, '1986-07-12 07:29:21', 6, 'Repellat asperiores qui facere consequatur illo saepe.', '1997-04-12', 'aut', 'Officiis vitae non rerum rerum et eum vel.', 50663, '4303801.041109300000', '17308175.226466000000', 'quas', 9, 1),
-(6, '2011-11-05 19:39:24', 4, 'Mollitia reprehenderit aperiam odio et blanditiis in accusamus.', '2015-11-25', 'sed', 'Quod sint aut minus voluptatem exercitationem.', 66550, '46184241.870132000000', '106.340598520000', 'quo', 9, 7),
-(7, '2016-08-20 02:11:17', 8, 'Ipsum consequuntur necessitatibus delectus et eum.', '1988-05-12', 'omnis', 'Ut qui totam rerum impedit.', 21456, '53374.928861100000', '5.134234330000', 'aut', 6, 2),
-(8, '1979-07-31 13:51:24', 6, 'Consectetur et autem officiis vitae ut.', '2006-01-10', 'quaerat', 'Id sunt cum minima veniam harum voluptatem rerum.', 94626, '1.783484240000', '2.909982890000', 'sit', 2, 0),
-(9, '1977-03-27 04:47:38', 2, 'Ea consectetur et enim quia.', '2022-09-27', 'repudiandae', 'Voluptate dolores et ipsum non.', 79259, '5566743.491280400000', '11.453754060000', 'omnis', 5, 8),
-(10, '1974-10-10 04:02:28', 6, 'Non aperiam et est pariatur corporis voluptates consequatur.', '2015-03-19', 'fuga', 'Maxime hic et qui vitae omnis.', 78789, '136.648322850000', '55010406.822735000000', 'consequatur', 1, 6);
+(1, '1982-12-15 08:33:22', 3, 'Nobis doloribus numquam tempore rerum impedit aut.', '1988-03-28', 'omnis', 'Et nemo mollitia est unde.', 44997, '583.222903820000', '1936.796443260000', 'new', 2, 0),
+(2, '2014-09-08 02:11:51', 2, 'Alias tempora nobis et nam cumque occaecati provident aperiam.', '2008-08-11', 'amet', 'Minus illum sint sed fuga quaerat magnam perferendis.', 18896, '30.869115730000', '137048016.960550000000', 'new', 6, 9),
+(3, '1988-05-12 04:18:39', 1, 'Debitis ipsum est adipisci laboriosam.', '2007-07-07', 'voluptatum', 'Quo alias temporibus atque illo.', 55306, '0.237428910000', '24575.365921260000', 'new', 5, 8),
+(4, '1990-09-25 17:39:03', 2, 'Nam sint unde aut ullam et mollitia dolorem vitae.', '2004-04-11', 'aut', 'Non quisquam laborum corporis ut ut sapiente voluptatem eum.', 70159, '58902.877412210000', '17.083807660000', 'new', 4, 3),
+(5, '1986-07-12 07:29:21', 6, 'Repellat asperiores qui facere consequatur illo saepe.', '1997-04-12', 'aut', 'Officiis vitae non rerum rerum et eum vel.', 50663, '4303801.041109300000', '17308175.226466000000', 'new', 9, 1),
+(6, '2011-11-05 19:39:24', 4, 'Mollitia reprehenderit aperiam odio et blanditiis in accusamus.', '2015-11-25', 'sed', 'Quod sint aut minus voluptatem exercitationem.', 66550, '46184241.870132000000', '106.340598520000', 'new', 9, 7),
+(7, '2016-08-20 02:11:17', 8, 'Ipsum consequuntur necessitatibus delectus et eum.', '1988-05-12', 'omnis', 'Ut qui totam rerum impedit.', 21456, '53374.928861100000', '5.134234330000', 'new', 6, 2),
+(8, '1979-07-31 13:51:24', 6, 'Consectetur et autem officiis vitae ut.', '2006-01-10', 'quaerat', 'Id sunt cum minima veniam harum voluptatem rerum.', 94626, '1.783484240000', '2.909982890000', 'new', 2, 0),
+(9, '2020-03-27 04:47:38', 2, 'Ea consectetur et enim quia.', '2022-09-27', 'repudiandae', 'Voluptate dolores et ipsum non.', 79259, '5566743.491280400000', '11.453754060000', 'new', 5, 8),
+(10, '1974-10-10 04:02:28', 6, 'Non aperiam et est pariatur corporis voluptates consequatur.', '2015-03-19', 'fuga', 'Maxime hic et qui vitae omnis.', 78789, '136.648322850000', '55010406.822735000000', 'new', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -393,16 +393,26 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `dt_add`, `email`, `name`, `password_hash`, `user_img`, `quote`, `country`, `city_id`, `age`, `phone`, `telegram`, `status`, `user_status`, `answer_orders`, `category_id`, `date_of_birth`) VALUES
-(1, '2019-07-23 05:56:59', 'roy.wunsch@gmail.com', 'Dana Anderson V', '{ML2#`Hm&v-W5$M:urlb', 'voluptatum', 'Est tenetur deserunt perspiciatis qui quia sed.', 'esse', 3, '23274', '24783', 'unde', 1, 'tempora', 1, 4, '2011-09-15'),
-(2, '1979-05-08 06:12:40', 'ulices20@gmail.com', 'Johnnie Abshire', 'kpO/MEL=O', 'quis', 'Quam ipsam aut neque vel voluptatem.', 'amet', 2, '47432', '40630', 'voluptatibus', 0, 'autem', 1, 6, '1992-07-10'),
-(3, '1976-12-08 21:18:20', 'mireille.borer@yahoo.com', 'Prof. Stacey Stokes', '=NOlJ/:T`QTB6', 'veritatis', 'Voluptas sunt ut excepturi esse est cumque.', 'debitis', 4, '32887', '38380', 'molestiae', 1, 'est', 0, 0, '1987-03-07'),
-(4, '1972-06-01 12:18:51', 'kling.keenan@turner.com', 'Dallas Kuphal', '/8]g]_2X9', 'dolorem', 'Unde veritatis omnis libero.', 'ut', 9, '72084', '97994', 'aut', 1, 'maxime', 0, 6, '2007-07-09'),
-(5, '1992-10-01 02:54:00', 'leonard80@kautzer.com', 'Jonatan Skiles', '`;$}Q$Z2a+3Wpy+uxe', 'et', 'Vel quis dolor repudiandae dolore eum modi architecto ducimus.', 'perferendis', 4, '57050', '13756', 'unde', 1, 'natus', 1, 2, '1997-10-27'),
-(6, '2003-04-27 12:46:01', 'zakary48@gmail.com', 'Tevin Vandervort', '/?MhGaoSj', 'omnis', 'Ipsam consequatur totam saepe cum eos ex.', 'pariatur', 3, '68251', '24988', 'et', 0, 'rerum', 1, 2, '1983-04-25'),
-(7, '2011-01-30 13:17:45', 'pconroy@veum.com', 'Diego Cormier', '*@H-o@TEX%aJmx2/\"', 'architecto', 'Nam eaque aut illo corporis est corporis.', 'non', 7, '13883', '93502', 'autem', 1, 'nam', 1, 3, '2013-09-11'),
-(8, '2018-03-30 07:50:45', 'bkub@gmail.com', 'Mr. Dante Runolfsdottir', '_e}f@7Gc4U.Mo', 'aut', 'Est sapiente eos corporis fugiat distinctio nam quibusdam.', 'voluptas', 4, '28108', '80016', 'et', 1, 'in', 0, 4, '2020-01-09'),
-(9, '1983-01-06 08:16:52', 'jnader@kulas.com', 'Bert Zemlak', '|O?a*nf.S\\R#{rR\"]`&', 'illum', 'Possimus consequatur porro molestias excepturi.', 'repellendus', 9, '45941', '36604', 'aut', 0, 'perferendis', 1, 5, '1976-11-09'),
-(10, '1993-12-13 04:13:10', 'jarvis.fay@gmail.com', 'Tomasa Maggio', 'S7aOor', 'ut', 'Aut et reprehenderit amet quis consequatur.', 'voluptatem', 7, '77749', '42289', 'eveniet', 1, 'sint', 1, 1, '1974-02-02');
+(1, '1987-02-01 14:33:32', 'sbartell@gmail.com', 'Violette Corkery MD', '$2y$13$Ze2TnLQFZ19.o2/VkAPcdubf2FKI8/3TCgBnxn5CS.nPhTFxRrWH2', 'ab', 'Nobis reiciendis deserunt dicta accusantium omnis.', 'non', 8, '94695', '37755', 'ipsa', 1, 'executor', 1, 7, '2017-08-29'),
+(2, '2013-03-05 03:16:03', 'alverta.ullrich@bauch.com', 'Bryon Bernhard MD', '$2y$13$7vAx8TAKimJcrLJjtYnbaOAt3I/xZPYiDK10TYy4NQAUywbnyxnHW', 'distinctio', 'Doloribus inventore tenetur debitis dolor.', 'beatae', 3, '71736', '21058', 'quisquam', 1, 'executor', 1, 2, '2013-02-26'),
+(3, '2003-04-25 10:02:18', 'kbeahan@conroy.com', 'Mrs. Hanna Bogan', '$2y$13$QKF/0KAUZd991PYfKiICAei1sYm7xP81KjsQ/oJDSJ4q25kmiAa5G', 'molestias', 'Aliquam adipisci reprehenderit modi vero blanditiis reiciendis.', 'velit', 7, '91494', '46776', 'sapiente', 0, 'executor', 1, 0, '1972-09-30'),
+(4, '1992-01-12 10:23:13', 'gerhold.hudson@johnson.biz', 'Prof. Lonie Bashirian', '$2y$13$S5jDj/J9DnFWC0qD4KNFReQ25Ldp1hOVxyNglXIQ1CcH7N.c0GhRC', 'ut', 'Fugit non sapiente magnam repellat ut.', 'ullam', 0, '67769', '92671', 'nemo', 1, 'executor', 1, 3, '1997-02-25'),
+(5, '2019-11-12 04:31:22', 'taya.stiedemann@hotmail.com', 'Dr. Delmer Hermann II', '$2y$13$Cpa8JvnJERfHPb.XXVztGuYPMSb24pyBJRp5Qfrw6RsmYGs/Vft02', 'error', 'Rerum nemo explicabo modi veritatis.', 'dolore', 3, '20310', '25595', 'fugit', 0, 'executor', 0, 0, '2015-07-15'),
+(6, '2011-01-31 16:21:25', 'heaven48@cronin.com', 'Cleveland Bartell', '$2y$13$tTqi0bkWodFBEmiOsG6Buu2YT5fDbXOba.JcJYX96Ywz3O8awZ2Qu', 'accusamus', 'Vel porro occaecati rem molestias sequi cumque.', 'voluptas', 5, '76395', '60097', 'repellendus', 0, 'executor', 1, 6, '2014-11-12'),
+(7, '2007-05-07 03:08:27', 'novella55@yahoo.com', 'Ms. Dorothy Purdy Jr.', '$2y$13$VMlbSm.7QN9jiXyd7/uzlOeZD0T9T2Fo7oBODXmHSKJ1q3FmBUc72', 'tenetur', 'Qui neque rerum mollitia consequatur.', 'blanditiis', 8, '37490', '18690', 'in', 1, 'executor', 1, 8, '1980-05-10'),
+(8, '1985-12-26 16:31:11', 'estel.beahan@lindgren.com', 'Elenor Zieme', '$2y$13$JiJr6loDS/LB8F66NcjReuewvIOIafvh3eFa6FuZkAn9HFnKJVOUq', 'assumenda', 'Voluptatem non non deleniti soluta aut dolorem.', 'porro', 6, '10759', '66997', 'mollitia', 0, 'executor', 1, 4, '2015-10-26'),
+(9, '2020-04-16 08:51:28', 'irma49@gmail.com', 'Deborah Roberts', '$2y$13$VGCDfKXDtGgySqnyYGBoEOavHuPKfvPdbP1Iwkwmi4foI4DtVyIaS', 'autem', 'Praesentium odio similique vel veniam libero magni maxime.', 'nihil', 2, '97051', '51247', 'rerum', 1, 'id', 1, 0, '2009-12-29'),
+(10, '2021-05-05 07:02:41', 'braun.dulce@klein.net', 'Giovanny Robel', '$2y$13$YmY9T87jstooCIFvputtF.sOk9qjHespzZcP//B5hWJcaEutXIJje', 'ipsa', 'Rerum ad voluptatibus quos hic eaque qui quia.', 'culpa', 8, '85247', '42594', 'beatae', 1, 'deserunt', 1, 9, '1984-09-04'),
+(11, '2021-09-17 10:54:16', 'treichel@hotmail.com', 'Cory Runolfsson DVM', '$2y$13$1XGW2BvdwV1W.gZOqqLvpeL15gA3e5Gu4f1rWbXgnrICaivro9sVm', 'eligendi', 'Voluptatibus enim consequatur quia inventore.', 'doloremque', 1, '79377', '62993', 'autem', 1, 'hic', 0, 2, '2010-07-10'),
+(12, '1983-09-20 19:57:22', 'isac.christiansen@gibson.info', 'Carol Moen', '$2y$13$zQtORST3VIaT6H0/u0SZY.94/Obau5ltoYA34fxzkmurx.qdHyQQ.', 'incidunt', 'Est et aut magni voluptas.', 'deleniti', 5, '20062', '45845', 'sit', 0, 'harum', 1, 7, '2002-10-10'),
+(13, '2015-11-11 15:05:10', 'akiehn@hotmail.com', 'Dillon Beahan', '$2y$13$l0eB44TbTC47YYjB54.KiuBTp5U34GxrkByTWTht/i9IfNrRRhaq2', 'dolorum', 'Ullam corrupti quaerat illo maiores nobis molestias distinctio mollitia.', 'velit', 9, '92963', '18585', 'molestiae', 0, 'occaecati', 0, 9, '1987-04-06'),
+(14, '2006-03-19 09:06:57', 'scarlett55@kunde.com', 'Mr. Jillian Rippin DVM', '$2y$13$Zv4i1GRyanO/r7I/aQNtL.VSgwvr6oDOqW/ccJ/CahYOeRD8HBE36', 'necessitatibus', 'Voluptatem accusantium qui quidem similique.', 'aut', 2, '48632', '62128', 'nam', 0, 'non', 1, 4, '2006-10-18'),
+(15, '2008-08-07 23:03:19', 'stacy59@kling.org', 'Romaine Hansen', '$2y$13$7wkhV9Qwdvizoe23ZC311.Jic7T5CCsVPdSPcDLIVo2F3YBmEyx62', 'quos', 'Quia consequatur reiciendis corporis et officia.', 'odio', 6, '69534', '88252', 'cum', 1, 'qui', 0, 2, '2004-11-08'),
+(16, '1994-05-26 00:58:14', 'asteuber@mckenzie.org', 'Berta Towne', '$2y$13$YmMEAkHRrYEKii1IMsW7OeNPRnU2Fn95s3eH5fINMgEvaVDhXeAKC', 'ipsum', 'Et tempore eum ut nam ut.', 'natus', 4, '35417', '79401', 'similique', 0, 'error', 0, 8, '2000-03-21'),
+(17, '1999-09-08 12:36:35', 'kgulgowski@corwin.info', 'Deontae Lueilwitz', '$2y$13$as84taQRB8HSuLLKjV8kS.mmjbuaRK19kGDiWHUCPIAdiWiDska42', 'aliquid', 'Id culpa hic eveniet non ab atque.', 'ducimus', 0, '55571', '24426', 'qui', 0, 'et', 1, 1, '1980-09-10'),
+(18, '2009-08-17 04:42:08', 'huel.garett@gmail.com', 'Prof. Dewitt Conn', '$2y$13$oFTqmhKpUGEJ2BvGAxBTSOrH/6A2VaZImB.nagC67Tpq2Rz71hfIi', 'occaecati', 'Ut corporis occaecati aperiam excepturi a et.', 'omnis', 9, '96771', '54544', 'ut', 0, 'magni', 0, 2, '2011-04-03'),
+(19, '1975-10-09 23:39:21', 'enoch30@rohan.com', 'Krystina Stracke', '$2y$13$NiVVgmWM3Sw62mQz2eO7Ne1b1WB002BN/I/X8Q9dKSvm1kV6p5eby', 'voluptate', 'Repellat dolores dignissimos eligendi et sint deleniti aut.', 'laboriosam', 5, '15688', '45422', 'id', 0, 'aut', 0, 2, '1975-08-11'),
+(20, '1974-03-17 03:26:56', 'easton76@beier.com', 'Elenor Harber IV', '$2y$13$hvnvfP/064nTDDm3BfacPOgJDegur2CNAuyiMVhdWEoL6jdM11ZPq', 'quia', 'Maxime ut non ut repellendus.', 'hic', 0, '85030', '46912', 'dicta', 1, 'quas', 1, 2, '2013-03-04');
 
 -- --------------------------------------------------------
 
@@ -628,7 +638,7 @@ ALTER TABLE `task_statuses`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблицы `user_rating`
