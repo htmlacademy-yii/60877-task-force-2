@@ -58,6 +58,8 @@ $config = [
                 'tasks/rejectedtask' => 'tasks/view/\d+',
                 'tasks/view/<id:\d+>' => 'tasks/view',
                 'user/view/<id:\d+>' => 'user/view',
+                'site/tasks' => 'tasks/index',
+                'tasks/tasks' => 'tasks/index',
             ],
         ],
 

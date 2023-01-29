@@ -51,6 +51,7 @@ class SearchTasks extends Task
      */
     public function search($params)
     {
+
         $this->load($params);
         $query = self::find();
 
@@ -69,15 +70,13 @@ class SearchTasks extends Task
         $query->andFilterWhere(['category_id' => $this->categories]);
 
         if ($this->without_author === '1') {
-
             $query->where(['user_id' => null]);
         }
 
 
         if ($this->taskPeriod !== 0) {
-            $query->andFilterWhere(['<', 'create_at', time() - $this->taskPeriod]);
+            $query->andFilterWhere(['<', 'create_at', date('Y-m-d H:i:s', time() - $this->taskPeriod)]);
         }
-
 
         return $dataProvider;
     }

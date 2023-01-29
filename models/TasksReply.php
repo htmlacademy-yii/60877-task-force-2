@@ -12,7 +12,7 @@ use Yii;
  * @property string $rate
  * @property string $description
  *
- * @property Users $user
+ * @property User $user
  *
  */
 class TasksReply extends \yii\db\ActiveRecord

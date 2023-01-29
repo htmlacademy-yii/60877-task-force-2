@@ -6,6 +6,7 @@ use app\models\AddTask;
 use app\models\AddTaskReply;
 use app\models\Category;
 use app\models\City;
+use app\models\Files;
 use app\models\Replies;
 use app\models\SearchTasks;
 use app\models\Task;
@@ -50,7 +51,7 @@ class TasksController extends SecuredController
         $dataProvider = $modelSearch->search($this->request->post());
         $categories = Category::find()->all();
 
-        return $this->render('index', [
+       return $this->render('index', [
             'modelSearch' => $modelSearch,
             'dataProvider' => $dataProvider,
             'categories' => $categories,
@@ -70,7 +71,11 @@ class TasksController extends SecuredController
         $userModel = User::find()->where(['id' => $task->user_id])->one();
         $taskOwnerStatus = $userModel->user_status;
 
-        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'taskOwnerStatus' => $taskOwnerStatus]);
+
+        $files = Files::find()->where(['tasks_id'=>Yii::$app->request->get('id')])->all();
+
+
+        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'taskOwnerStatus' => $taskOwnerStatus, 'files'=>$files]);
     }
 
 

@@ -3,11 +3,12 @@
  * @var $faker \Faker\Generator
  * @var $index integer
  */
+$password = "Maxym";
 return [
     'dt_add' => $faker->time("Y-m-d H:i:s"),
     'email' => $faker->email(),
     'name' => $faker->name,
-    'password_hash' => $faker->password(),
+    'password_hash' => Yii::$app->security->generatePasswordHash($password),
     'user_img' => $faker->word(),
     'quote'=>$faker->sentence(),
     'country'=>$faker->word(),

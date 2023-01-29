@@ -31,7 +31,7 @@ MainAsset::register($this);
         <nav class="main-nav">
 
 
-            <a href='<?php echo Url::to(['tasks']); ?>' class="header-logo">
+            <a href='<?php echo Url::to(['/']); ?>' class="header-logo">
                 <?php echo Html::img(Yii::$app->urlManager->createUrl('img/logotype.png')); ?>
             </a>
 
@@ -44,7 +44,7 @@ MainAsset::register($this);
                         <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/add-task']); ?>" class="link link--nav">Создать задание</a>
+                        <a href="<?php echo Url::to(['tasks/add']); ?>" class="link link--nav">Создать задание</a>
                     </li>
                     <li class="list-item">
                         <a href="<?php echo Url::to(['/edit-profile']); ?>" class="link link--nav">Настройки</a>

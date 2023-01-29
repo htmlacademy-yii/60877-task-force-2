@@ -24,7 +24,7 @@ use app\models\Task;
             <a class="button button--blue action-btn" data-action="act_response">Откликнуться на задание</a>
         <?php endif; ?>
 
-        <?php if ($task->user_id===\Yii::$app->user->identity->id): ?>
+        <?php if ($task->user_id === \Yii::$app->user->identity->id): ?>
             <a class="button button--orange action-btn" data-action="refusal">Отказаться от задания</a>
         <?php endif; ?>
 
@@ -42,8 +42,11 @@ use app\models\Task;
         <?php endif; ?>
         <?php foreach ($task->replies as $reply): ?>
             <div class="response-card">
-                <?php echo \yii\helpers\Html::img("@web/img/{$reply->user->user_img}", ['alt' => '', 'id' => '', 'width' => 100, 'height' => 100]) ?>
-
+                <?php
+                if (file_exists("@web/img/{$reply->user->user_img}")) {
+                    echo \yii\helpers\Html::img("@web/img/{$reply->user->user_img}", ['alt' => 'Фотка ', 'id' => '', 'width' => 100, 'height' => 100]);
+                }
+                ?>
                 <div class="feedback-wrapper">
 
                     <a href="#" class="link link--block link--big"><?php echo $reply->user->name; ?></a>
@@ -110,14 +113,23 @@ use app\models\Task;
         <div class="right-card white file-card">
             <h4 class="head-card">Файлы задания</h4>
             <ul class="enumeration-list">
-                <li class="enumeration-item">
-                    <a href="#" class="link link--block link--clip">my_picture.jpg</a>
-                    <p class="file-size">356 Кб</p>
-                </li>
-                <li class="enumeration-item">
-                    <a href="#" class="link link--block link--clip">information.docx</a>
-                    <p class="file-size">12 Кб</p>
-                </li>
+
+                <?php foreach ($files as $file): ?>
+
+                    <?php if (file_exists(Url::to('/uploads/' . $file->files_name))): ?>
+                        <li class="enumeration-item">
+                            <a href="<?php echo Url::to('@web/uploads/' . $file->files_name); ?>"
+                               class="link link--block link--clip"><?php echo $file->files_name; ?></a>
+                            <p class="file-size">
+                                <?php
+                                $size = filesize(Yii::getAlias('@webroot') . '/uploads/' . $file->files_name);
+                                echo Yii::$app->formatter->asShortSize($size);
+                                ?>
+                            </p>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+
             </ul>
         </div>
     </div>
