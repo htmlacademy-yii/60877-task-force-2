@@ -16,7 +16,7 @@ class m230115_142108_task_statuses extends Migration
             'id' => $this->primaryKey(),
             'task_id' => $this->integer(),
             'user_id' => $this->integer(),
-            'statuses' => $this->string("255"),
+            'status' => $this->string("255"),
         ]);
     }
 
