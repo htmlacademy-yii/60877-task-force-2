@@ -3,7 +3,6 @@
 /**
  * @var app\models\Task $task
  */
-
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use app\models\Task;
@@ -37,13 +36,17 @@ use app\models\Task;
             <p class="map-address town">Москва</p>
             <p class="map-address">Новый арбат, 23, к. 1</p>
         </div>
-        <?php if (count($task->replies) > 0): ?>
+        <?php
+
+        echo Yii::getAlias('@web');
+        if (count($task->replies) > 0): ?>
             <h4 class="head-regular">Отклики на задание</h4>
         <?php endif; ?>
         <?php foreach ($task->replies as $reply): ?>
             <div class="response-card">
                 <?php
-                if (file_exists("@web/img/{$reply->user->user_img}")) {
+
+                if (file_exists("img/".$reply->user->user_img)) {
                     echo \yii\helpers\Html::img("@web/img/{$reply->user->user_img}", ['alt' => 'Фотка ', 'id' => '', 'width' => 100, 'height' => 100]);
                 }
                 ?>
@@ -116,7 +119,7 @@ use app\models\Task;
 
                 <?php foreach ($files as $file): ?>
 
-                    <?php if (file_exists(Url::to('/uploads/' . $file->files_name))): ?>
+                    <?php if (file_exists(Yii::getAlias("@app/web/uploads/".$file->files_name))):?>
                         <li class="enumeration-item">
                             <a href="<?php echo Url::to('@web/uploads/' . $file->files_name); ?>"
                                class="link link--block link--clip"><?php echo $file->files_name; ?></a>
@@ -201,9 +204,4 @@ use app\models\Task;
             <?php ActiveForm::end(); ?>
         </div>
         <div class="button-container">
-            <button class="button--close" type="button">Закрыть окно</button>
-        </div>
-    </div>
-</section>
-
-<div class="overlay"></div>
+          
