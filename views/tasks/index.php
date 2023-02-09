@@ -11,6 +11,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\grid\GridView;
 
 $this->title = 'My Yii Application';
 ?>
@@ -25,7 +26,7 @@ $this->title = 'My Yii Application';
 
             <div class="task-card">
                 <div class="header-task">
-                    <a href=" <?php echo Url::to(['tasks/view', 'id' => $task->id]);?>
+                    <a href=" <?php echo Url::to(['tasks/view', 'id' => $task->id]); ?>
 "
                        class="link link--block link--big"><?php echo $task->name; ?></a>
                     <p class="price price--task"><?php echo $task->budget; ?> ₽</p>
@@ -37,36 +38,37 @@ $this->title = 'My Yii Application';
                 <div class="footer-task">
                     <p class="info-text town-text"><?php echo $task->address; ?></p>
                     <p class="info-text category-text"><?php echo $task->websiteCategories->name; ?></p>
-                    <a href="<?php echo Url::to(['tasks/view', 'id' => $task->id]);?>"
+                    <a href="<?php echo Url::to(['tasks/view', 'id' => $task->id]); ?>"
                        class="button button--black">Смотреть Задание</a>
                 </div>
             </div>
         <?php endforeach; ?>
 
         <div class="pagination-wrapper">
-            <ul class="pagination-list">
+            <?php echo \yii\widgets\ListView::widget(['dataProvider' => $dataProvider]); ?>
+            <!--     <ul class="pagination-list">
 
-                <li class="pagination-item mark">
+
+
                     <a href="#" class="link link--page"></a>
-                </li>
 
-                <li class="pagination-item">
-                    <a href="#" class="link link--page">1</a>
-                </li>
+                              <li class="pagination-item">
+                                  <a href="#" class="link link--page">1</a>
+                              </li>
 
-                <li class="pagination-item pagination-item--active">
-                    <a href="#" class="link link--page">2</a>
-                </li>
+                              <li class="pagination-item pagination-item--active">
+                                  <a href="#" class="link link--page">2</a>
+                              </li>
 
-                <li class="pagination-item">
-                    <a href="#" class="link link--page">3</a>
-                </li>
+                              <li class="pagination-item">
+                                  <a href="#" class="link link--page">3</a>
+                              </li>
 
-                <li class="pagination-item mark">
-                    <a href="#" class="link link--page"></a>
-                </li>
+                              <li class="pagination-item mark">
+                                  <a href="#" class="link link--page"></a>
+                              </li>
 
-            </ul>
+            </ul>-->
         </div>
     </div>
     <div class="right-column">

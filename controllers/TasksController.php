@@ -51,7 +51,11 @@ class TasksController extends SecuredController
         $dataProvider = $modelSearch->search($this->request->post());
         $categories = Category::find()->all();
 
-       return $this->render('index', [
+        $params = \Yii::$app->request->queryParams;
+        $searchModel = new SearchTasks();
+        $dataProvider = $searchModel->search($params);
+
+        return $this->render('index', [
             'modelSearch' => $modelSearch,
             'dataProvider' => $dataProvider,
             'categories' => $categories,
@@ -72,10 +76,10 @@ class TasksController extends SecuredController
         $taskOwnerStatus = $userModel->user_status;
 
 
-        $files = Files::find()->where(['tasks_id'=>Yii::$app->request->get('id')])->all();
+        $files = Files::find()->where(['tasks_id' => Yii::$app->request->get('id')])->all();
 
 
-        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'taskOwnerStatus' => $taskOwnerStatus, 'files'=>$files]);
+        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'taskOwnerStatus' => $taskOwnerStatus, 'files' => $files]);
     }
 
 
