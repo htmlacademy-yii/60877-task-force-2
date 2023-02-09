@@ -45,7 +45,14 @@ $this->title = 'My Yii Application';
         <?php endforeach; ?>
 
         <div class="pagination-wrapper">
-            <?php echo \yii\widgets\ListView::widget(['dataProvider' => $dataProvider]); ?>
+            <?php echo \yii\widgets\ListView::widget([
+                    'dataProvider' => $dataProvider,
+                'options' => [
+                'tag' => 'ul',
+                'class' => 'pagination-list',
+            ],
+                'layout' => "{pager}\n{items}\n",
+            ]); ?>
             <!--     <ul class="pagination-list">
 
 
