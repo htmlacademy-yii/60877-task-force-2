@@ -59,6 +59,11 @@ class SearchTasks extends Task
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination'=> [
+                'pagesize'=>5
+            ]
+
+
         ]);
 
         if (!$this->validate()) {
@@ -70,7 +75,8 @@ class SearchTasks extends Task
         $query->andFilterWhere(['category_id' => $this->categories]);
 
         if ($this->without_author === '1') {
-            $query->where(['user_id' => null]);
+            $query->where(['without_author' => 1]);
+            $query->andFilterWhere(['category_id' => $this->categories]);
         }
 
 

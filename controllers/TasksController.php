@@ -13,6 +13,7 @@ use app\models\Task;
 use app\models\TasksReply;
 use app\models\TaskStatuses;
 use yii\base\BaseObject;
+use yii\data\Pagination;
 use yii\db\Exception;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
@@ -47,13 +48,11 @@ class TasksController extends SecuredController
     public function actionIndex()
     {
 
-        $modelSearch = new SearchTasks();
-        $dataProvider = $modelSearch->search($this->request->post());
         $categories = Category::find()->all();
 
-        $params = \Yii::$app->request->queryParams;
-        $searchModel = new SearchTasks();
-        $dataProvider = $searchModel->search($params);
+        $modelSearch = new SearchTasks();
+
+        $dataProvider = $modelSearch->search($this->request->post());
 
         return $this->render('index', [
             'modelSearch' => $modelSearch,

@@ -4,7 +4,7 @@
 
 /** @var \yii\data\ActiveDataProvider $dataProvider */
 
-/** @var \app\models\Categories[] $categories */
+/** @var \app\models\Category[] $categories */
 
 /** @var \app\models\SearchTasks $modelSearch */
 
@@ -21,62 +21,12 @@ $this->title = 'My Yii Application';
 
         <h3 class="head-main head-task">Новые задания</h3>
 
-        <?php foreach ($dataProvider->models as $task): ?>
-
-
-            <div class="task-card">
-                <div class="header-task">
-                    <a href=" <?php echo Url::to(['tasks/view', 'id' => $task->id]); ?>
-"
-                       class="link link--block link--big"><?php echo $task->name; ?></a>
-                    <p class="price price--task"><?php echo $task->budget; ?> ₽</p>
-                </div>
-                <p class="info-text"><span class="current-time"><?php echo $task->getWasOnSite(); ?> </span>
-                </p>
-                <p class="task-text"><?php echo $task->description; ?>
-                </p>
-                <div class="footer-task">
-                    <p class="info-text town-text"><?php echo $task->address; ?></p>
-                    <p class="info-text category-text"><?php echo $task->websiteCategories->name; ?></p>
-                    <a href="<?php echo Url::to(['tasks/view', 'id' => $task->id]); ?>"
-                       class="button button--black">Смотреть Задание</a>
-                </div>
-            </div>
-        <?php endforeach; ?>
-
-        <div class="pagination-wrapper">
             <?php echo \yii\widgets\ListView::widget([
-                    'dataProvider' => $dataProvider,
-                'options' => [
-                'tag' => 'ul',
-                'class' => 'pagination-list',
-            ],
-                'layout' => "{pager}\n{items}\n",
+                'dataProvider' => $dataProvider,
+                'itemView' => '__taskitem',
+                'layout' => "{items}\n{pager}"
             ]); ?>
-            <!--     <ul class="pagination-list">
 
-
-
-                    <a href="#" class="link link--page"></a>
-
-                              <li class="pagination-item">
-                                  <a href="#" class="link link--page">1</a>
-                              </li>
-
-                              <li class="pagination-item pagination-item--active">
-                                  <a href="#" class="link link--page">2</a>
-                              </li>
-
-                              <li class="pagination-item">
-                                  <a href="#" class="link link--page">3</a>
-                              </li>
-
-                              <li class="pagination-item mark">
-                                  <a href="#" class="link link--page"></a>
-                              </li>
-
-            </ul>-->
-        </div>
     </div>
     <div class="right-column">
         <div class="right-card black">
