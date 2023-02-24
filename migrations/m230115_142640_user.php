@@ -25,9 +25,9 @@ class m230115_142640_user extends Migration
             'age' => $this->string('255'),
             'phone' => $this->string('255'),
             'telegram' => $this->string("255"),
-            'status' => $this->integer(),
+            'status' => $this->boolean(),
             'user_status' => $this->string("255"),
-            'answer_orders' => $this->integer(),
+            'answer_orders' => $this->boolean(),
             'category_id' => $this->integer(),
             'date_of_birth' => $this->date(),
         ]);

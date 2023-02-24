@@ -26,6 +26,7 @@ class m230115_131513_task extends Migration
             'status' => $this->string('255'),
             'user_id' => $this->integer(),
             'executor_id' => $this->integer(),
+            'without_author' => $this->boolean()->defaultValue(1)
         ]);
     }
 

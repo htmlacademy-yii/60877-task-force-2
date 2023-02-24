@@ -16,9 +16,9 @@ return [
     'age'=>$faker->randomNumber(5, true),
     'phone'=>$faker->randomNumber(5, true),
     'telegram'=>$faker->word(),
-    'status'=>$faker->boolean(),
+    'status'=>1,
     'user_status'=>$faker->word(),
-    'answer_orders'=>$faker->boolean(),
+    'answer_orders'=>1,
     'category_id'=>$faker->randomDigit(),
     'date_of_birth'=>$faker->date()
 ];
