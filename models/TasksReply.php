@@ -60,7 +60,9 @@ class TasksReply extends \yii\db\ActiveRecord
     {
 
         $timePeriod = (int) strtotime('now') - strtotime($this->dt_add);
-        $days = number_format($timePeriod / 60 / 60 / 24);
+        $days = number_format($timePeriod / 60 / 60 / 242, );
+        $days = (round((int)$days));
+
         return \Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language);
 
     }

@@ -2,33 +2,33 @@
 
 return [
     'tags_attribute0' => [
-        'attributes' => 'est',
+        'attributes' => 'excepturi',
     ],
     'tags_attribute1' => [
-        'attributes' => 'nisi',
+        'attributes' => 'necessitatibus',
     ],
     'tags_attribute2' => [
-        'attributes' => 'omnis',
-    ],
-    'tags_attribute3' => [
         'attributes' => 'non',
     ],
-    'tags_attribute4' => [
-        'attributes' => 'dolore',
-    ],
-    'tags_attribute5' => [
-        'attributes' => 'qui',
-    ],
-    'tags_attribute6' => [
-        'attributes' => 'laboriosam',
-    ],
-    'tags_attribute7' => [
+    'tags_attribute3' => [
         'attributes' => 'omnis',
     ],
+    'tags_attribute4' => [
+        'attributes' => 'optio',
+    ],
+    'tags_attribute5' => [
+        'attributes' => 'nesciunt',
+    ],
+    'tags_attribute6' => [
+        'attributes' => 'dolorem',
+    ],
+    'tags_attribute7' => [
+        'attributes' => 'explicabo',
+    ],
     'tags_attribute8' => [
-        'attributes' => 'tempora',
+        'attributes' => 'velit',
     ],
     'tags_attribute9' => [
-        'attributes' => 'eos',
+        'attributes' => 'sed',
     ],
 ];

@@ -2,43 +2,43 @@
 
 return [
     'category0' => [
-        'name' => 'ex',
-        'icon' => 'officia',
+        'name' => 'placeat',
+        'icon' => 'possimus',
     ],
     'category1' => [
-        'name' => 'necessitatibus',
-        'icon' => 'consequuntur',
+        'name' => 'sit',
+        'icon' => 'corporis',
     ],
     'category2' => [
-        'name' => 'quam',
-        'icon' => 'aliquam',
+        'name' => 'eum',
+        'icon' => 'illo',
     ],
     'category3' => [
-        'name' => 'sint',
-        'icon' => 'perspiciatis',
+        'name' => 'itaque',
+        'icon' => 'molestiae',
     ],
     'category4' => [
-        'name' => 'blanditiis',
-        'icon' => 'debitis',
+        'name' => 'alias',
+        'icon' => 'aliquid',
     ],
     'category5' => [
-        'name' => 'pariatur',
-        'icon' => 'maxime',
+        'name' => 'repellendus',
+        'icon' => 'eos',
     ],
     'category6' => [
-        'name' => 'quia',
-        'icon' => 'modi',
+        'name' => 'inventore',
+        'icon' => 'qui',
     ],
     'category7' => [
-        'name' => 'itaque',
-        'icon' => 'illum',
+        'name' => 'laudantium',
+        'icon' => 'doloremque',
     ],
     'category8' => [
-        'name' => 'ut',
-        'icon' => 'quas',
+        'name' => 'et',
+        'icon' => 'dolores',
     ],
     'category9' => [
-        'name' => 'sequi',
-        'icon' => 'velit',
+        'name' => 'aut',
+        'icon' => 'laborum',
     ],
 ];

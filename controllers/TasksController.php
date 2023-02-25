@@ -54,6 +54,7 @@ class TasksController extends SecuredController
 
         $dataProvider = $modelSearch->search($this->request->post());
 
+
         return $this->render('index', [
             'modelSearch' => $modelSearch,
             'dataProvider' => $dataProvider,
