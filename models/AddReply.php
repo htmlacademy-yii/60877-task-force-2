@@ -7,9 +7,12 @@ namespace app\models;
 use yii\base\Model;
 
 class AddReply extends Model
+
 {
     public $your_comment;
     public $price;
+    public $userStatus;
+    public $taskStatus;
 
     public function attributeLabels()
     {
@@ -23,7 +26,9 @@ class AddReply extends Model
     {
         return [
             ['your_comment', 'string'],
-            ['price', 'integer']
+            ['price', 'integer'],
+            ['userStatus', 'compare', 'compareValue' => 'executor', 'operator' => '===', 'type' => 'string'],
+            ['taskStatus', 'compare', 'compareValue' => 'new', 'operator' => '===', 'type' => 'string'],
         ];
 
     }

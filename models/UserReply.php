@@ -32,8 +32,8 @@ class UserReply extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['create_at', 'rate', 'description', 'task_id', 'user_id', 'executor_id'], 'required'],
-            [['create_at', 'rate', 'description', 'task_id', 'user_id', 'executor_id'], 'integer'],
+            [['rate', 'description', 'task_id', 'user_id', 'executor_id'], 'required'],
+            [['rate', 'description', 'task_id', 'user_id', 'executor_id'], 'integer'],
         ];
     }
 

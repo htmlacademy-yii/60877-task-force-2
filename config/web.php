@@ -5,9 +5,11 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'timeZone' => 'Europe/Minsk',
     'defaultRoute' => 'tasks/index',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',
@@ -54,7 +56,9 @@ $config = [
             'showScriptName' => false,
 
             'rules' => [
-                'tasks/tasksreplyadd' => 'tasks/replyadd',
+                'tasks/add-reply/<id:\d+>' => 'tasks/add-reply',
+                'tasks/rejected-task/<id:\d+>' => 'tasks/rejected-task',
+                'tasks/finish-task/<id:\d+>' => 'tasks/finish-task',
                 'tasks/rejectedtask' => 'tasks/view/\d+',
                 'tasks/view/<id:\d+>' => 'tasks/view',
                 'user/view/<id:\d+>' => 'user/view',

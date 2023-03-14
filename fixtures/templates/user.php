@@ -17,7 +17,7 @@ return [
     'phone'=>$faker->randomNumber(5, true),
     'telegram'=>$faker->word(),
     'status'=>1,
-    'user_status'=>$faker->word(),
+    'user_status'=>$faker->randomElement(['executor', 'customer']),
     'answer_orders'=>1,
     'category_id'=>$faker->randomDigit(),
     'date_of_birth'=>$faker->date()

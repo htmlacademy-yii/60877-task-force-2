@@ -1028,7 +1028,7 @@ template {
     position: absolute;
     z-index: -10;
     content: "";
-    top: 22px;
+    top: 0;
     right: 0;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;

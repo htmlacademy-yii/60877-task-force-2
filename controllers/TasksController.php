@@ -2,16 +2,19 @@
 
 namespace app\controllers;
 
+use app\models\AddReply;
 use app\models\AddTask;
 use app\models\AddTaskReply;
 use app\models\Category;
 use app\models\City;
 use app\models\Files;
+use app\models\FinishReply;
 use app\models\Replies;
 use app\models\SearchTasks;
 use app\models\Task;
 use app\models\TasksReply;
 use app\models\TaskStatuses;
+use app\models\UserReply;
 use yii\base\BaseObject;
 use yii\data\Pagination;
 use yii\db\Exception;
@@ -75,11 +78,14 @@ class TasksController extends SecuredController
         $userModel = User::find()->where(['id' => $task->user_id])->one();
         $taskOwnerStatus = $userModel->user_status;
 
+        $reply_stat = TasksReply::find()->where(['task_id' => $id])->one();
+
+        $reply_status = $reply_stat->status;
 
         $files = Files::find()->where(['tasks_id' => Yii::$app->request->get('id')])->all();
 
 
-        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'taskOwnerStatus' => $taskOwnerStatus, 'files' => $files]);
+        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'reply_status' => $reply_status, 'taskOwnerStatus' => $taskOwnerStatus, 'files' => $files, 'id' => $id]);
     }
 
 
@@ -104,76 +110,101 @@ class TasksController extends SecuredController
 
     public function actionAddReply($id)
     {
-        $taskModel = new AddTaskReply();//  у юзера статус исполнитель и таск в статусе new
-        $userId = \Yii::$app->user->identity->id;
-        $userCurrent = User::find()->where(['id' => $userId])->one();
-        $userStatus = $userCurrent->user_status;
+        $taskModel = new AddReply(); // модель формы
+
+        $formData = \Yii::$app->request->post();
+        /** @var Task $task */
         $task = Task::find()->where(['id' => $id])->one();
-        $taskStatus = $task->status;
-        if ($taskModel->load(\Yii::$app->request->post()) && $taskModel->validate() && $userStatus === 'executor' && $taskStatus === 'new') { // доступно только исполнителю
+        $user = \Yii::$app->user->identity;
+
+        $formData["AddReply"]['taskStatus'] = $task->status;
+        $formData["AddReply"]['userStatus'] = $user->user_status;
+
+        if ($taskModel->load($formData) && $taskModel->validate() /*&& $userStatus === 'executor' && $taskStatus === 'new'*/) {
+
             $newReply = new TasksReply();
-            $newReply->dt_add = time();
-            $newReply->rate = null;
-            $newReply->description = $this->your_comment;
-            $newReply->task_id = \Yii::$app->request->get('id');
-            $newReply->price = $this->price;
-            $newReply->user_id = \Yii::$app->user->identity->id;
-            $newReply->price = $this->price;
+            $newReply->dt_add = date("Y-m-d H:i:s");
+            $newReply->description = $taskModel->your_comment;
+            $newReply->task_id = (int)$id;
+            $newReply->price = $taskModel->price;
+            $newReply->user_id = (int)$user->id;
             if ($newReply->save()) {
-                $task->status = Task::STATUS_DONE;
-                return $this->render('single-task');
+                return $this->redirect('/tasks/view/' . $id);
+            } else {
+
+                var_dump("u did not add");
             }
-        }
-    }
 
-    public function actionRejectedtask($id)
-    {
-        $rejectedTask = Task::find()->where(['id' => $id])->one();
-        if ($rejectedTask->status === 'new' && $rejectedTask->user_id = \Yii::$app->user->identity->id) {
-            $rejectedTask->status = Task::STATUS_FAILED;
-            $rejectedTask->update();
-        } else {
-            throw new \Exception('Не смогли отменить задание');
-        }
-        return $this->redirect('view/' . $id);
-    }
-
-    public function actionReplynotadd($task_id, $reply_id)
-    {
-        $task = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->one();
-
-        $currentReply = TasksReply::find()->where(['id' => $reply_id])->one();
-        $reply_status = $currentReply->status;
-        $userModel = User::find()->where(['id' => $task->user_id])->one();
-        if ($task->user_id === \Yii::$app->user->identity->id) {
-            $currentReply->status = Task::STATUS_REJECTED;
-            $currentReply->update();
-        }
-        return $this->render('single-task', ['reply_status' => $reply_status, 'task' => $task, 'userModel' => $userModel]);
-    }
-
-    public function actionTasksReplyAdd($id, $user_id)
-    {
-        $currentTask = Task::find()->where(['id' => $id])->one();
-        if ($currentTask->user_id === \Yii::$app->user->identity->id) {
-            $currentTask->executor_id = $user_id;
-            $currentTask->status = Task::STATUS_INWORK;
-            $currentTask->update();
         }
 
-        return $this->redirect('view/' . $id);
     }
 
     public function actionFinishTask($id)
     {
-        $authorofthetask = Task::find()->where(['id' => $id])->one();
-        if ($authorofthetask->user_id === \Yii::$app->user->identity->id) {
-            $authorofthetask->status = Task::STATUS_DONE;
-            $authortaskid = $authorofthetask->user_id;
-            $authorofthetask->update();
+        $taskModel = new FinishReply();
+        $formData = \Yii::$app->request->post();
+        $user = \Yii::$app->user->identity;
+        $task = Task::find()->where(['id' => $id])->one();
+        if ($taskModel->load($formData) && $taskModel->validate()) {
+            $newUserReply = new UserReply();
+
+            $newUserReply->create_at = date("Y-m-d H:i:s");
+            $newUserReply->rate = $taskModel->finish_task_rate;
+            $newUserReply->description = $taskModel->your_comment_finish_task;
+            $newUserReply->task_id = (int)$id;
+            $newUserReply->executor_id = $task->executor_id;
+            $newUserReply->user_id = (int)$user->id;
+            /** @var Task $task */
+            $task->status = 1;
+            if ($newUserReply->save()) {
+                return $this->redirect('/tasks/view/' . $id);
+            } else {
+                var_dump($newUserReply->getErrors());
+            }
         }
-        return $this->render('single-task', ['authortaskid' => $authortaskid]);
     }
+
+
+    public function actionRejectedTask($id)
+    {
+        $rejectedTask = Task::find()->where(['id' => $id])->one();
+
+        if ($rejectedTask->status === 'in_progress' && $rejectedTask->user_id = \Yii::$app->user->identity->id) {
+            $rejectedTask->status = Task::STATUS_FAILED;
+            $rejectedTask->save();
+            return $this->redirect('/tasks/view/' . $id);
+        } else {
+            throw new \Exception('Не смогли отменить задание');
+        }
+
+    }
+
+
+
+//действия с кнопками на отзывах
+public function actionAcceptTaskReply()
+{
+    $request = Yii::$app->request;
+    $id = $request->get('id');
+    $user_id = $request->get('user_id');
+    $changeTaskStatus = Task::find()->where(['id'=>$id])->one();
+    $changeTaskStatus->executor_id = $user_id;
+    $changeTaskStatus->save();
+    return $this->redirect('/tasks/view/' . $id);
+}
+
+public function actionRejectTaskReply()
+{
+    $request = Yii::$app->request;
+    $task_id = $request->get('task_id');
+    $user_id = $request->get('user_id');
+    $changeTaskStatus = Task::find()->where(['id'=>$id])->one();
+    $changeTaskStatus->executor_id = $user_id;
+    $changeTaskStatus->save();
+    return $this->redirect('/tasks/view/' . $id);
+}
+
+
 }
 
 

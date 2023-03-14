@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\Task;
 use Symfony\Component\CssSelector\Exception\InternalErrorException;
 use Yii;
 use yii\base\BaseObject;
@@ -10,7 +11,6 @@ use yii\db\Exception;
 use yii\web\NotFoundHttpException;
 use yii\web\ServerErrorHttpException;
 use yii\web\UploadedFile;
-use app\models\Task;
 use app\models\Files;
 
 /**
@@ -30,7 +30,6 @@ class AddTask extends Model
      * {@inheritdoc}
      */
     public $about_job;
-
     public $describe_task;
     public $categories;
     public $budget;
@@ -38,6 +37,8 @@ class AddTask extends Model
     public $files;
     public $location;
     public $task_id;
+
+    public $task;
 
     /**
      * {@inheritdoc}
@@ -53,6 +54,7 @@ class AddTask extends Model
             ['categories', 'exist', 'targetClass' => Category::class, 'targetAttribute' => 'id'],
             ['budget', 'integer'],
             [['expire_date'], 'date', 'format' => 'php:Y-m-d'],
+
         ];
     }
 
@@ -68,21 +70,21 @@ class AddTask extends Model
         $newTask->create_at = date('Y-m-d h-m-s');
         $newTask->status = 1;
         $newTask->user_id = \Yii::$app->user->identity->id;
-            $transaction = \Yii::$app->db->beginTransaction();
-            try {
-                if (!$newTask->save()){
-                    throw new Exception("Can not save new task");
-                }
-                $this->saveFile($newTask);
-
-                $transaction->commit();
-            } catch (\Exception $e) {
-                $transaction->rollBack();
-                throw $e;
-            } catch (\Throwable $e) {
-                $transaction->rollBack();
-                throw $e;
+        $transaction = \Yii::$app->db->beginTransaction();
+        try {
+            if (!$newTask->save()) {
+                throw new Exception("Can not save new task");
             }
+            $this->saveFile($newTask);
+
+            $transaction->commit();
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            throw $e;
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
         return $newTask;
     }
 
@@ -94,7 +96,7 @@ class AddTask extends Model
             $instance->saveAs("uploads/" . $instance->name);
             $files->tasks_id = $task_after_save->id;
             $files->files_name = $instance->name;
-            if(!$files->save()) {
+            if (!$files->save()) {
                 throw new ServerErrorHttpException("Файл(ы) не был(и) сохранен(ы)!");
             }
         }

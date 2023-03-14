@@ -17,10 +17,10 @@ use Yii;
  */
 class TasksReply extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
-    public $name;
 
     public static function tableName()
     {
@@ -33,8 +33,10 @@ class TasksReply extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dt_add', 'rate', 'description'], 'required'],
-            [['dt_add', 'rate', 'description'], 'string', 'max' => 255],
+            [['dt_add', 'price', 'user_id', 'task_id', 'description'], 'required'],
+            [['dt_add', 'description'], 'string', 'max' => 255],
+            ['user_id', 'unique', 'targetAttribute' => 'user_id'],
+
         ];
     }
 
@@ -46,7 +48,6 @@ class TasksReply extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'dt_add' => 'Dt Add',
-            'rate' => 'Rate',
             'description' => 'Description',
         ];
     }
