@@ -11,6 +11,7 @@ use app\models\Task;
 ?>
 
 <main class="main-content container">
+
     <div class="left-column">
         <div class="head-wrapper">
             <h3 class="head-main"><?php echo $task->name; ?></h3>
@@ -49,7 +50,7 @@ use app\models\Task;
 
         <?php foreach ($task->replies as $reply): ?>
 
-            <?php if (\Yii::$app->user->identity->id === $task->user_id): ?>
+            <?php if (\Yii::$app->user->identity->id === $task->user_id||\Yii::$app->user->identity->id===$reply->user_id): ?>
                 <div class="response-card">
                     <?php
 
@@ -82,10 +83,13 @@ use app\models\Task;
                         </p>
                         <p class="price price--small"><?php echo $reply->price; ?> uah</p>
                     </div>
+
+
+
                     <div class="button-popup">
                         <?php
 
-                        if (\Yii::$app->user->identity->id === $task->user_id && $taskOwnerStatus === 'customer'):?>
+                        if (\Yii::$app->user->identity->id === $task->user_id && $taskOwnerStatus === 'customer'&&$task->status!=='in_progress'&&$reply_status!=='rejected'):?>
                             <a href="<?php echo Url::to(['tasks/accept-task-reply/', 'id' => $task->id, 'user_id' => $reply->user->id]); ?>"
                                class="button button--blue button--small">Принять</a>
                             <a href="<?php echo Url::to(['tasks/reject-task-reply/', 'task_id' => $task->id, 'user_id' => $reply->user->id]); ?>"

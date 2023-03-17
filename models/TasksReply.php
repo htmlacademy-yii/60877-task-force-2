@@ -17,7 +17,8 @@ use Yii;
  */
 class TasksReply extends \yii\db\ActiveRecord
 {
-
+    const STATUS_REJECTED = "rejected";
+    const STATUS_INPROGRESS = "in_progress";
     /**
      * {@inheritdoc}
      */

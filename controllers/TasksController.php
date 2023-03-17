@@ -82,6 +82,10 @@ class TasksController extends SecuredController
 
         $reply_status = $reply_stat->status;
 
+        if ($reply_status==='null') {
+            $reply_status = 'new';
+        }
+
         $files = Files::find()->where(['tasks_id' => Yii::$app->request->get('id')])->all();
 
 
@@ -119,7 +123,6 @@ class TasksController extends SecuredController
 
         $formData["AddReply"]['taskStatus'] = $task->status;
         $formData["AddReply"]['userStatus'] = $user->user_status;
-
         if ($taskModel->load($formData) && $taskModel->validate() /*&& $userStatus === 'executor' && $taskStatus === 'new'*/) {
 
             $newReply = new TasksReply();
@@ -131,8 +134,9 @@ class TasksController extends SecuredController
             if ($newReply->save()) {
                 return $this->redirect('/tasks/view/' . $id);
             } else {
-
-                var_dump("u did not add");
+                var_dump($newReply->getErrors());
+                var_dump("Тут ошибка!");
+                return $this->redirect('/tasks/view/' . $id);
             }
 
         }
@@ -155,7 +159,8 @@ class TasksController extends SecuredController
             $newUserReply->executor_id = $task->executor_id;
             $newUserReply->user_id = (int)$user->id;
             /** @var Task $task */
-            $task->status = 1;
+            $task->status = Task::STATUS_DONE;
+            $task->save();
             if ($newUserReply->save()) {
                 return $this->redirect('/tasks/view/' . $id);
             } else {
@@ -168,7 +173,6 @@ class TasksController extends SecuredController
     public function actionRejectedTask($id)
     {
         $rejectedTask = Task::find()->where(['id' => $id])->one();
-
         if ($rejectedTask->status === 'in_progress' && $rejectedTask->user_id = \Yii::$app->user->identity->id) {
             $rejectedTask->status = Task::STATUS_FAILED;
             $rejectedTask->save();
@@ -179,30 +183,39 @@ class TasksController extends SecuredController
 
     }
 
-
-
 //действия с кнопками на отзывах
-public function actionAcceptTaskReply()
-{
-    $request = Yii::$app->request;
-    $id = $request->get('id');
-    $user_id = $request->get('user_id');
-    $changeTaskStatus = Task::find()->where(['id'=>$id])->one();
-    $changeTaskStatus->executor_id = $user_id;
-    $changeTaskStatus->save();
-    return $this->redirect('/tasks/view/' . $id);
-}
+    public function actionAcceptTaskReply()
+    {
+        $request = Yii::$app->request;
+        $id = $request->get('id');
+        $user_id = $request->get('user_id');
+        $changeTaskStatus = Task::find()->where(['id' => $id])->one();
+        $changeTaskStatus->executor_id = $user_id;
+        $changeTaskStatus->status = TasksReply::STATUS_INPROGRESS;
+        $changeTaskStatus->save();
+        return $this->redirect('/tasks/view/' . $id);
+    }
 
-public function actionRejectTaskReply()
-{
-    $request = Yii::$app->request;
-    $task_id = $request->get('task_id');
-    $user_id = $request->get('user_id');
-    $changeTaskStatus = Task::find()->where(['id'=>$id])->one();
-    $changeTaskStatus->executor_id = $user_id;
-    $changeTaskStatus->save();
-    return $this->redirect('/tasks/view/' . $id);
-}
+    public function actionRejectTaskReply()
+    {
+        $request = Yii::$app->request;
+        $task_id = $request->get('task_id');
+        $user_id = $request->get('user_id');
+        $reply_status = TasksReply::STATUS_REJECTED;
+        $changeReplyStatus = TasksReply::find()->where(['task_id' => $task_id])->one();
+
+        $changeReplyStatus->status = $reply_status;
+        var_dump($changeReplyStatus->save());
+        var_dump($changeReplyStatus->getErrors());
+        exit();
+        if ($changeReplyStatus->save()) {
+
+            return $this->redirect('/tasks/view/' . $task_id);
+        } else {
+            throw new \Exception('Не смогли отказать юзеру!');
+        }
+
+    }
 
 
 }

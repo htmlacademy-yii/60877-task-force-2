@@ -51,7 +51,7 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget'], 'required'],
-            [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
+            [['create_at', 'description', 'expire', 'name', 'address', 'latitude', 'longitude'], 'string', 'max' => 255],
             ['your_comment', 'string'],
             ['price', 'integer']
         ];

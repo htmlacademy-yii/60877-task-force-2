@@ -33,7 +33,8 @@ class UserReply extends \yii\db\ActiveRecord
     {
         return [
             [['rate', 'description', 'task_id', 'user_id', 'executor_id'], 'required'],
-            [['rate', 'description', 'task_id', 'user_id', 'executor_id'], 'integer'],
+            [['rate', 'task_id', 'user_id', 'executor_id'], 'integer'],
+            [['description'], 'string'],
         ];
     }
 
