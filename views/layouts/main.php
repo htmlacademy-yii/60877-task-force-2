@@ -4,16 +4,15 @@
 
 /** @var string $content */
 
-use app\assets\AppAsset;
+use app\assets\MainAsset;
 use app\widgets\Alert;
 use yii\bootstrap4\Breadcrumbs;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
-use app\assets\MainAsset;
 use yii\helpers\Url;
 
-AppAsset::register($this);
+MainAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ AppAsset::register($this);
         <nav class="main-nav">
 
 
-            <a href='<?php echo Url::to(['tasks']); ?>' class="header-logo">
+            <a href='<?php echo Url::to(['/']); ?>' class="header-logo">
                 <?php echo Html::img(Yii::$app->urlManager->createUrl('img/logotype.png')); ?>
             </a>
 
@@ -45,7 +44,7 @@ AppAsset::register($this);
                         <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/add-task']); ?>" class="link link--nav">Создать задание</a>
+                        <a href="<?php echo Url::to(['tasks/add']); ?>" class="link link--nav">Создать задание</a>
                     </li>
                     <li class="list-item">
                         <a href="<?php echo Url::to(['/edit-profile']); ?>" class="link link--nav">Настройки</a>
@@ -94,8 +93,6 @@ AppAsset::register($this);
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
-        <p class="float-left">&copy; <?= date('Y') ?></p>
-        <p class="float-right"><?= Yii::powered(); ?></p>
     </div>
 </footer>
 

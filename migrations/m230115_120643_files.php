@@ -3,16 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Class m220929_150333_change
+ * Class m230115_120643_files
  */
-class m220929_150333_change extends Migration
+class m230115_120643_files extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->alterColumn("users", "dt_add", "integer");
+        $this->createTable('files', [
+            'id' => $this->primaryKey(),
+            'tasks_id' => $this->integer(),
+            'files_name' => $this->string('255')
+        ]);
     }
 
     /**
@@ -20,7 +24,7 @@ class m220929_150333_change extends Migration
      */
     public function safeDown()
     {
-        $this->alterColumn("users", "dt_add", "string");
+        $this->dropTable('files');
     }
 
     /*
@@ -32,7 +36,7 @@ class m220929_150333_change extends Migration
 
     public function down()
     {
-        echo "m220929_150333_change cannot be reverted.\n";
+        echo "m230115_120643_files cannot be reverted.\n";
 
         return false;
     }

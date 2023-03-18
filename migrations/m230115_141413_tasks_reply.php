@@ -3,25 +3,26 @@
 use yii\db\Migration;
 
 /**
- * Class m220719_204004_single_task_user
+ * Class m230115_141413_tasks_reply
  */
-class m220719_204004_single_task_user extends Migration
+class m230115_141413_tasks_reply extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('user_replies', [
+        $this->createTable('tasks_reply', [
             'id' => $this->primaryKey(),
-            'dt_add' => $this->integer(),
+            'dt_add' => $this->timestamp(),
             'rate' => $this->integer(),
-            'description' => $this->string(),
-            'photo' => $this->string(),
+            'description' => $this->string('255'),
+            'photo' => $this->string("255"),
             'task_id' => $this->integer(),
-            'price' => $this->integer(),
+            'price' => $this->integer('255'),
             'user_id' => $this->integer(),
-            'executor_id' => $this->integer(),
+            'status' => $this->string(255),
+
         ]);
     }
 
@@ -30,7 +31,7 @@ class m220719_204004_single_task_user extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('user_replies');
+        $this->dropTable('tasks_reply');
     }
 
     /*
@@ -42,7 +43,7 @@ class m220719_204004_single_task_user extends Migration
 
     public function down()
     {
-        echo "m220719_204004_single_task_user cannot be reverted.\n";
+        echo "m230115_141413_tasks_reply cannot be reverted.\n";
 
         return false;
     }

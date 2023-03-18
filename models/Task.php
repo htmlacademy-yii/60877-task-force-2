@@ -25,10 +25,19 @@ use Yii;
  */
 class Task extends \yii\db\ActiveRecord
 {
+
     /**
      * {@inheritdoc}
      */
-    public $describe_task;
+    const STATUS_NEW = "new";
+    const STATUS_INWORK = "in_progress";
+    const STATUS_DONE = "done";
+    const STATUS_FAILED = "failed";
+    const STATUS_CANCELLED = "canceled";
+    const STATUS_REJECTED = "rejected";
+
+    public $your_comment;
+    public $price;
 
     public static function tableName()
     {
@@ -42,7 +51,9 @@ class Task extends \yii\db\ActiveRecord
     {
         return [
             [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget'], 'required'],
-            [['create_at', 'category_id', 'description', 'expire', 'name', 'address', 'budget', 'latitude', 'longitude'], 'string', 'max' => 255],
+            [['create_at', 'description', 'expire', 'name', 'address', 'latitude', 'longitude'], 'string', 'max' => 255],
+            ['your_comment', 'string'],
+            ['price', 'integer']
         ];
 
     }
@@ -64,20 +75,17 @@ class Task extends \yii\db\ActiveRecord
             'latitude' => 'Latitude',
             'longitude' => 'Longitude',
             'without_author' => 'Без автора',
+            'your_comment' => 'Ваш комментарий',
+            'price' => 'Стоимость',
+            'your_comment_finish_task' => 'Ваш комментарий'
         ];
     }
 
     public function getWasOnSite()
     {
-
-        //$timePeriod = strtotime('now') - strtotime($this->create_at);
         return \Yii::$app->formatter->asRelativeTime($this->create_at);
-        //$days = $timePeriod / 60 / 60 / 24;
-        //$result = intval(\Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language));
-        //return $result;
     }
 
-//    $task->category;
 
     public function getCategory()
     {

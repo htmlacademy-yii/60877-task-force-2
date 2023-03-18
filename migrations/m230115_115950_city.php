@@ -3,19 +3,20 @@
 use yii\db\Migration;
 
 /**
- * Class m220719_204004_single_task_user
+ * Class m230115_115950_city
  */
-class m220719_204004_single_task_user extends Migration
+class m230115_115950_city extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('user_rating', [
+        $this->createTable('city', [
             'id' => $this->primaryKey(),
-            'rating' => $this->integer(),
-            'user_id' => $this->integer(),
+            'name' => $this->string(255),
+            'latitude' => $this->integer(),
+            'longitude' => $this->integer(),
         ]);
     }
 
@@ -24,7 +25,7 @@ class m220719_204004_single_task_user extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('user_rating');
+        $this->dropTable('city');
     }
 
     /*
@@ -36,7 +37,7 @@ class m220719_204004_single_task_user extends Migration
 
     public function down()
     {
-        echo "m220719_204004_single_task_user cannot be reverted.\n";
+        echo "m230115_115950_city cannot be reverted.\n";
 
         return false;
     }

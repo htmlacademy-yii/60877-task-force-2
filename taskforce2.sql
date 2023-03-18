@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 17 2022 г., 13:05
+-- Время создания: Янв 31 2023 г., 00:44
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -38,14 +38,16 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `icon`) VALUES
-(1, 'Переводы', 'translation'),
-(2, 'Уборка', 'clean'),
-(3, 'Переезды', 'cargo'),
-(4, 'Компьютерная помощь', 'neo'),
-(5, 'Ремонт квартирный', 'flat'),
-(6, 'Ремонт техники', 'repair'),
-(7, 'Красота', 'beauty'),
-(8, 'Фото', 'photo');
+(1, 'ex', 'officia'),
+(2, 'necessitatibus', 'consequuntur'),
+(3, 'quam', 'aliquam'),
+(4, 'sint', 'perspiciatis'),
+(5, 'blanditiis', 'debitis'),
+(6, 'pariatur', 'maxime'),
+(7, 'quia', 'modi'),
+(8, 'itaque', 'illum'),
+(9, 'ut', 'quas'),
+(10, 'sequi', 'velit');
 
 -- --------------------------------------------------------
 
@@ -65,41 +67,16 @@ CREATE TABLE `city` (
 --
 
 INSERT INTO `city` (`id`, `name`, `latitude`, `longitude`) VALUES
-(1, 'Абаза', '53.00000000', '90.00000000'),
-(2, 'Абакан', '54.00000000', '91.00000000'),
-(3, 'Абдулино', '54.00000000', '54.00000000'),
-(4, 'Абинск', '45.00000000', '38.00000000'),
-(5, 'Агидель', '56.00000000', '54.00000000'),
-(6, 'Агрыз', '57.00000000', '53.00000000'),
-(7, 'Адыгейск', '45.00000000', '39.00000000'),
-(8, 'Азнакаево', '55.00000000', '53.00000000'),
-(9, 'Азов', '47.00000000', '39.00000000'),
-(10, 'Ак-Довурак', '51.00000000', '91.00000000'),
-(11, 'Аксай', '47.00000000', '40.00000000'),
-(12, 'Алагир', '43.00000000', '44.00000000'),
-(13, 'Алапаевск', '58.00000000', '62.00000000'),
-(14, 'Алатырь', '55.00000000', '47.00000000'),
-(15, 'Алдан', '59.00000000', '125.00000000'),
-(16, 'Алейск', '52.00000000', '83.00000000'),
-(17, 'Александров', '56.00000000', '39.00000000'),
-(18, 'Александровск', '59.00000000', '58.00000000'),
-(19, 'Александровск-Сахалинский', '51.00000000', '142.00000000'),
-(20, 'Алексеевка', '51.00000000', '39.00000000'),
-(21, 'Алексин', '55.00000000', '37.00000000'),
-(22, 'Алзамай', '56.00000000', '99.00000000'),
-(23, 'Алушта', '45.00000000', '34.00000000'),
-(24, 'Альметьевск', '55.00000000', '52.00000000'),
-(25, 'Амурск', '50.00000000', '137.00000000'),
-(26, 'Анадырь', '65.00000000', '178.00000000'),
-(27, 'Анапа', '45.00000000', '37.00000000'),
-(28, 'Ангарск', '53.00000000', '104.00000000'),
-(29, 'Андреаполь', '57.00000000', '32.00000000'),
-(30, 'Анжеро-Судженск', '56.00000000', '86.00000000'),
-(31, 'Анива', '47.00000000', '143.00000000'),
-(32, 'Апатиты', '68.00000000', '33.00000000'),
-(33, 'Апрелевка', '56.00000000', '37.00000000'),
-(34, 'Апшеронск', '44.00000000', '40.00000000'),
-(35, 'Арамиль', '57.00000000', '61.00000000');
+(1, 'optio', '3.28767209', '1165.71887468'),
+(2, 'tempore', '908735763.23576000', '221381249.51997000'),
+(3, 'qui', '35390259.33362200', '2.36468823'),
+(4, 'quia', '540416058.96570000', '6.23656315'),
+(5, 'alias', '74645.16266043', '611.61727880'),
+(6, 'praesentium', '1.88527722', '20.28613725'),
+(7, 'atque', '437.75704022', '1.84760375'),
+(8, 'accusantium', '1916920.27996540', '341997926.39186000'),
+(9, 'quas', '32.16777309', '136.47433467'),
+(10, 'quae', '137380.52579331', '0.00000000');
 
 -- --------------------------------------------------------
 
@@ -118,8 +95,16 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`id`, `tasks_id`, `files_name`) VALUES
-(1, 5, 'tyu.jpg'),
-(2, 7, 'tyu2.jpg');
+(1, 2, 'culpa.png'),
+(2, 4, 'ad'),
+(3, 3, 'commodi'),
+(4, 9, 'est'),
+(5, 6, 'tempore'),
+(6, 2, 'ut'),
+(7, 9, 'ipsa'),
+(8, 3, 'quibusdam'),
+(9, 0, 'quaerat'),
+(10, 7, 'esse');
 
 -- --------------------------------------------------------
 
@@ -139,16 +124,16 @@ CREATE TABLE `opinion` (
 --
 
 INSERT INTO `opinion` (`id`, `dt_add`, `rate`, `description`) VALUES
-(1, '2019-08-18 21:00:00', 3, 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.\n\nPhasellus in f'),
-(2, '2019-02-21 21:00:00', 2, 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam '),
-(3, '2019-07-10 21:00:00', 2, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.'),
-(4, '2018-10-06 21:00:00', 2, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ph'),
-(5, '2018-11-30 21:00:00', 1, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.'),
-(6, '2018-11-08 21:00:00', 3, 'In congue. Etiam justo. Etiam pretium iaculis justo.'),
-(7, '2018-12-09 21:00:00', 5, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsa'),
-(8, '2018-10-19 21:00:00', 2, 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.'),
-(9, '2018-10-26 21:00:00', 2, 'Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.'),
-(10, '2019-06-13 21:00:00', 4, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.');
+(1, '2003-03-26 03:34:08', 4, 'Est voluptatem ullam repellat.'),
+(2, '2003-10-23 18:14:40', 0, 'Repellendus est blanditiis sunt rerum.'),
+(3, '1976-09-08 08:54:49', 8, 'Sequi ullam repellat odio hic.'),
+(4, '1999-10-10 04:00:42', 7, 'Temporibus modi cumque perspiciatis.'),
+(5, '1991-09-26 22:25:02', 7, 'Odit molestiae iusto ipsam sint maiores dolor velit aut.'),
+(6, '1996-04-16 09:23:41', 1, 'Nesciunt quis dolorem quo labore dolores.'),
+(7, '1991-06-09 07:41:38', 0, 'Odit cum quae unde similique alias et officia in.'),
+(8, '2015-06-06 08:36:25', 4, 'Dolorum repellat et quas in rerum magnam.'),
+(9, '1991-07-17 06:08:57', 1, 'Nulla voluptatem qui laborum reiciendis sunt odio.'),
+(10, '1996-05-20 12:50:26', 7, 'Qui qui ut odit et sequi ea.');
 
 -- --------------------------------------------------------
 
@@ -171,26 +156,16 @@ CREATE TABLE `profile` (
 --
 
 INSERT INTO `profile` (`id`, `address`, `bd`, `about`, `phone`, `skype`, `city_id`) VALUES
-(1, '38737 Moose Avenue', '1989-11-10 21:00:00', 'In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.', '64574473047', 'high-level', 10),
-(2, '738 Hagan Lane', '1989-03-04 21:00:00', 'Pellentesque ultrices mattis odio.', '75531015353', 'mobile', 14),
-(3, '758 Old Shore Parkway', '1989-12-29 21:00:00', 'Morbi a ipsum. Integer a nibh. In quis sjusto.', '16371407508', 'Re-engineered', 16),
-(4, '11 Dovetail Junction', '1989-12-29 21:00:00', 'Suspendisse potenti.', '21468788926', 'Grass-roots', 21),
-(5, '050 Bowman Alley', '1989-04-07 21:00:00', 'Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', '62931646367', 'fault-tolerant', 22),
-(6, '5 Iowa Avenue', '1989-04-17 21:00:00', 'Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.', '63271348718', 'Team-oriented', 37),
-(7, '87119 Northland Hill', '1989-03-19 21:00:00', 'Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.', '41056175169', 'portal', 54),
-(8, '6823 Lillian Point', '1989-12-12 21:00:00', 'Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.', '72882384431', 'intermediate', 120),
-(9, '43 Marquette Plaza', '1989-01-13 21:00:00', 'Morbi ut odio.', '69043821394', 'local area network', 137),
-(10, '5303 Village Green Hill', '1989-02-02 21:00:00', 'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.', '28396220507', 'upward-trending', 5),
-(11, '67399 Reindahl Place', '1989-05-22 21:00:00', 'Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', '83344513307', 'grid-enabled', 11),
-(12, '45 Twin Pines Hill', '1989-07-05 21:00:00', 'Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc.', '64890419671', 'background', 33),
-(13, '46 Sheridan Place', '1989-07-05 21:00:00', 'Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', '23005580487', 'challenge', 47),
-(14, '73 Kedzie Terrace', '1989-11-06 21:00:00', 'Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.', '27052074771', 'coherent', 555),
-(15, '85509 Ludington Drive', '1989-02-12 21:00:00', 'Cras pellentesque volutpat dui.', '14800371520', 'neutral', 777),
-(16, '67 Northwestern Center', '1989-07-06 21:00:00', 'Aliquam erat volutpat. In congue.', '75569924500', 'Programmable', 365),
-(17, '725 Eagle Crest Hill', '1989-09-28 21:00:00', 'Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc.', '37349256497', 'encompassing', 450),
-(18, '507 Graceland Junction', '1989-03-18 21:00:00', 'Suspendisse potenti.', '12403580562', 'knowledge base', 1000),
-(19, '92 Gina Park', '1989-09-28 21:00:00', 'Phasellus sit amet erat.', '40139478003', 'dynamic', 999),
-(20, '8 Ridgeview Trail', '1989-12-20 21:00:00', 'Cras pellentesque volutpat dui.', '76657531985', 'solution', 155);
+(1, 'Tempore consequuntur quisquam qui dolorum non.', '2014-08-25 00:30:08', 'Non voluptas iste ducimus sunt iure qui velit totam.', '33765275', 'voluptatem', 1),
+(2, 'Adipisci in dolorum occaecati non perspiciatis.', '2001-07-29 09:33:06', 'Dolore sit recusandae deserunt ratione.', '80868506', 'voluptatem', 2),
+(3, 'Consequuntur a fugit voluptates vel dignissimos ut.', '1997-06-16 02:11:16', 'Quidem officia nulla quis qui.', '41112132', 'et', 3),
+(4, 'Sequi qui aperiam autem laudantium.', '2002-07-07 09:52:02', 'Ea voluptates voluptatem voluptatem odio et alias et.', '64332243', 'ex', 8),
+(5, 'Esse in est quidem quo ut velit.', '2003-04-10 03:48:43', 'Sit est blanditiis debitis animi doloremque.', '91148926', 'odit', 4),
+(6, 'Quo facilis autem qui magnam.', '2003-04-08 23:44:10', 'Odit doloribus similique rerum necessitatibus nisi dolores.', '35845203', 'commodi', 8),
+(7, 'Vitae et quia dolorem occaecati dicta.', '1998-09-28 07:17:13', 'Rerum optio ipsam quisquam.', '36819582', 'repudiandae', 1),
+(8, 'Ut non unde dolorum.', '1971-12-19 19:12:05', 'Vitae itaque sequi sunt nulla et cupiditate vero.', '36810563', 'et', 9),
+(9, 'Unde veniam cum adipisci numquam in nemo quidem.', '1990-03-02 01:15:40', 'Et quisquam animi eos.', '68275913', 'hic', 3),
+(10, 'Qui qui debitis voluptate eum repellat.', '2016-12-05 01:41:31', 'Placeat iste porro enim vel reiciendis.', '44962274', 'vero', 3);
 
 -- --------------------------------------------------------
 
@@ -210,10 +185,16 @@ CREATE TABLE `replies_link` (
 --
 
 INSERT INTO `replies_link` (`id`, `user_id`, `replies_id`, `task_id`) VALUES
-(1, 1, 3, 1),
-(2, 2, 2, 2),
-(3, 1, 1, 1),
-(4, 2, 2, 2);
+(1, 5, 2, 1),
+(2, 9, 5, 5),
+(3, 2, 4, 3),
+(4, 9, 6, 0),
+(5, 7, 1, 6),
+(6, 5, 9, 1),
+(7, 6, 4, 5),
+(8, 8, 7, 2),
+(9, 4, 9, 3),
+(10, 4, 7, 7);
 
 -- --------------------------------------------------------
 
@@ -222,7 +203,7 @@ INSERT INTO `replies_link` (`id`, `user_id`, `replies_id`, `task_id`) VALUES
 --
 
 CREATE TABLE `tags_attribute` (
-  `id` int NOT NULL,
+  `id` int UNSIGNED NOT NULL,
   `attributes` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -231,11 +212,16 @@ CREATE TABLE `tags_attribute` (
 --
 
 INSERT INTO `tags_attribute` (`id`, `attributes`) VALUES
-(1, 'Ремонт'),
-(2, 'Оператор ПК'),
-(3, 'Программист'),
-(5, 'Алкоголик'),
-(6, 'Дизайн домов');
+(1, 'est'),
+(2, 'nisi'),
+(3, 'omnis'),
+(4, 'non'),
+(5, 'dolore'),
+(6, 'qui'),
+(7, 'laboriosam'),
+(8, 'omnis'),
+(9, 'tempora'),
+(10, 'eos');
 
 -- --------------------------------------------------------
 
@@ -254,11 +240,16 @@ CREATE TABLE `tags_attribution` (
 --
 
 INSERT INTO `tags_attribution` (`user_id`, `attributes_id`, `id`) VALUES
-(1, 2, 2),
-(1, 3, 3),
-(2, 4, 4),
-(3, 5, 5),
-(3, 6, 6);
+(5, 9, 1),
+(7, 3, 2),
+(7, 8, 3),
+(9, 2, 4),
+(3, 9, 5),
+(2, 3, 6),
+(9, 9, 7),
+(7, 7, 8),
+(7, 2, 9),
+(1, 7, 10);
 
 -- --------------------------------------------------------
 
@@ -271,32 +262,32 @@ CREATE TABLE `task` (
   `create_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `category_id` int NOT NULL,
   `description` varchar(255) NOT NULL,
-  `expire` date NOT NULL,
+  `expire` date DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `budget` int NOT NULL,
-  `latitude` decimal(65,12) NOT NULL,
-  `longitude` decimal(65,12) NOT NULL,
-  `status` int NOT NULL,
+  `address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `budget` int DEFAULT NULL,
+  `latitude` decimal(65,12) DEFAULT NULL,
+  `longitude` decimal(65,12) DEFAULT NULL,
+  `status` varchar(255) NOT NULL,
   `user_id` int DEFAULT NULL,
-  `files` varchar(255) NOT NULL
+  `executor_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `task`
 --
 
-INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`, `files`) VALUES
-(1, '2022-10-12 21:00:00', 2, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.', '2019-11-15', 'Ukraine', '1 Eagan Crossing', 6587, '6.964166700000', '158.208333300000', 1, 2, ''),
-(2, '2018-10-01 21:00:00', 3, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.\n\nCurabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit', '2022-12-07', 'exploit revolutionary portals', '24043 Paget Alley', 2904, '5.623505000000', '10.254404400000', 1, 2, ''),
-(3, '2018-10-01 21:00:00', 2, 'Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.\n\nQuisque porta volutpat erat. Quisque erat eros,', '2019-11-23', 'matrix next-generation e-commerce', '2867 Dryden Pass', 1170, '63.593219000000', '53.906853200000', 1, 3, ''),
-(4, '2018-10-01 21:00:00', 1, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', '2019-11-10', 'benchmark plug-and-play infomediaries', '80 Cambridge Street', 838, '20.580035800000', '-75.243530700000', 1, 5, ''),
-(5, '2018-10-01 21:00:00', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', '2019-12-15', 'integrate cross-platform e-business', '1 Stone Corner Junction', 7484, '14.932657400000', '-91.694184500000', 1, 4, ''),
-(6, '2018-10-01 21:00:00', 7, 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.', '2019-11-24', 'enable dot-com niches', '12 Stephen Terrace', 5725, '40.163127000000', '116.638868000000', 1, 5, ''),
-(7, '2018-10-01 21:00:00', 5, 'Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.', '2019-11-19', 'transform web-enabled relationships', '6213 Lake View Drive', 4414, '44.379487100000', '20.263894100000', 1, 6, ''),
-(8, '2018-10-01 21:00:00', 8, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse', '2019-11-14', 'strategize frictionless solutions', '994 Corry Park', 3454, '-7.325148500000', '108.360746400000', 1, 7, ''),
-(9, '2018-10-01 21:00:00', 4, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', '2019-12-12', 'innovate seamless metrics', '2 Bluestem Park', 3101, '43.000000000000', '-87.970000000000', 0, 8, ''),
-(10, '2018-10-01 21:00:00', 4, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis', '2019-12-19', 'integrate wireless infomediaries', '1 Dexter Hill', 6562, '41.341016800000', '-8.316930300000', 1, 9, '');
+INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `name`, `address`, `budget`, `latitude`, `longitude`, `status`, `user_id`, `executor_id`) VALUES
+(1, '1982-12-15 08:33:22', 3, 'Nobis doloribus numquam tempore rerum impedit aut.', '1988-03-28', 'omnis', 'Et nemo mollitia est unde.', 44997, '583.222903820000', '1936.796443260000', 'new', 2, 0),
+(2, '2014-09-08 02:11:51', 2, 'Alias tempora nobis et nam cumque occaecati provident aperiam.', '2008-08-11', 'amet', 'Minus illum sint sed fuga quaerat magnam perferendis.', 18896, '30.869115730000', '137048016.960550000000', 'new', 6, 9),
+(3, '1988-05-12 04:18:39', 1, 'Debitis ipsum est adipisci laboriosam.', '2007-07-07', 'voluptatum', 'Quo alias temporibus atque illo.', 55306, '0.237428910000', '24575.365921260000', 'new', 5, 8),
+(4, '1990-09-25 17:39:03', 2, 'Nam sint unde aut ullam et mollitia dolorem vitae.', '2004-04-11', 'aut', 'Non quisquam laborum corporis ut ut sapiente voluptatem eum.', 70159, '58902.877412210000', '17.083807660000', 'new', 4, 3),
+(5, '1986-07-12 07:29:21', 6, 'Repellat asperiores qui facere consequatur illo saepe.', '1997-04-12', 'aut', 'Officiis vitae non rerum rerum et eum vel.', 50663, '4303801.041109300000', '17308175.226466000000', 'new', 9, 1),
+(6, '2011-11-05 19:39:24', 4, 'Mollitia reprehenderit aperiam odio et blanditiis in accusamus.', '2015-11-25', 'sed', 'Quod sint aut minus voluptatem exercitationem.', 66550, '46184241.870132000000', '106.340598520000', 'new', 9, 7),
+(7, '2016-08-20 02:11:17', 8, 'Ipsum consequuntur necessitatibus delectus et eum.', '1988-05-12', 'omnis', 'Ut qui totam rerum impedit.', 21456, '53374.928861100000', '5.134234330000', 'new', 6, 2),
+(8, '1979-07-31 13:51:24', 6, 'Consectetur et autem officiis vitae ut.', '2006-01-10', 'quaerat', 'Id sunt cum minima veniam harum voluptatem rerum.', 94626, '1.783484240000', '2.909982890000', 'new', 2, 0),
+(9, '2020-03-27 04:47:38', 2, 'Ea consectetur et enim quia.', '2022-09-27', 'repudiandae', 'Voluptate dolores et ipsum non.', 79259, '5566743.491280400000', '11.453754060000', 'new', 5, 8),
+(10, '1974-10-10 04:02:28', 6, 'Non aperiam et est pariatur corporis voluptates consequatur.', '2015-03-19', 'fuga', 'Maxime hic et qui vitae omnis.', 78789, '136.648322850000', '55010406.822735000000', 'new', 1, 6);
 
 -- --------------------------------------------------------
 
@@ -307,39 +298,69 @@ INSERT INTO `task` (`id`, `create_at`, `category_id`, `description`, `expire`, `
 CREATE TABLE `tasks_reply` (
   `id` int UNSIGNED NOT NULL,
   `dt_add` timestamp NOT NULL,
-  `rate` int NOT NULL,
+  `rate` int DEFAULT NULL,
   `description` varchar(255) NOT NULL,
-  `photo` varchar(255) NOT NULL,
+  `photo` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `task_id` int NOT NULL,
   `price` int NOT NULL,
-  `user_id` int NOT NULL
+  `user_id` int NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `tasks_reply`
 --
 
-INSERT INTO `tasks_reply` (`id`, `dt_add`, `rate`, `description`, `photo`, `task_id`, `price`, `user_id`) VALUES
-(1, '2022-10-04 09:38:50', 1, 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 'man-hat.png', 1, 10000, 1),
-(2, '2022-10-04 09:38:50', 4, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 45000, 2),
-(3, '2022-10-04 09:38:50', 5, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 89523, 3),
-(4, '2022-10-04 09:38:50', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', 'man-hat.png', 2, 4896, 2),
-(5, '2022-10-04 09:38:50', 3, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'man-hat.png', 3, 456, 2),
-(6, '2022-10-04 09:38:50', 4, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pe', 'man-hat.png', 3, 4899, 2),
-(7, '2022-10-04 09:38:50', 5, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'man-hat.png', 3, 789, 3),
-(8, '2022-10-04 09:38:50', 4, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mau', 'man-hat.png', 3, 4589, 4),
-(9, '2022-10-04 09:38:50', 3, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Do', 'man-hat.png', 5, 4500, 5),
-(10, '2022-10-04 09:38:50', 5, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'man-hat.png', 3, 789, 4),
-(11, '2022-10-04 09:38:50', 4, 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'man-hat.png', 8, 0, 4),
-(12, '2022-10-04 09:38:50', 5, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ph', 'man-hat.png', 9, 1258, 4),
-(13, '2022-10-04 09:38:50', 1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. ', 'man-hat.png', 11, 4589, 5),
-(14, '2022-10-04 09:38:50', 3, 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 'man-hat.png', 34, 45000, 5),
-(15, '2022-10-04 09:38:50', 3, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrice', 'man-hat.png', 12, 4589, 4),
-(16, '2022-10-04 09:38:50', 3, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', 'man-hat.png', 12, 0, 4),
-(17, '2022-10-04 09:38:50', 4, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'man-hat.png', 12, 4589, 4),
-(18, '2022-10-04 09:38:50', 2, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', 'man-hat.png', 12, 4589, 2),
-(19, '2022-10-04 09:38:50', 3, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'man-hat.png', 21, 458, 2),
-(20, '2022-10-04 09:38:50', 4, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 'man-hat.png', 12, 458, 2);
+INSERT INTO `tasks_reply` (`id`, `dt_add`, `rate`, `description`, `photo`, `task_id`, `price`, `user_id`, `status`) VALUES
+(1, '2022-10-04 09:38:50', 1, 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.', 'man-hat.png', 1, 10000, 1, ''),
+(2, '2022-10-04 09:38:50', 4, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 45000, 2, ''),
+(3, '2022-10-04 09:38:50', 5, 'Fusce consequat. Nulla nisl. Nunc nisl.\n\nDuis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, veli', 'man-hat.png', 2, 89523, 3, ''),
+(4, '2022-10-04 09:38:50', 3, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla n', 'man-hat.png', 2, 4896, 2, ''),
+(5, '2022-10-04 09:38:50', 3, 'In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.', 'man-hat.png', 3, 456, 2, ''),
+(6, '2022-10-04 09:38:50', 4, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.\n\nIn quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet.\n\nMaecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pe', 'man-hat.png', 3, 4899, 2, ''),
+(7, '2022-10-04 09:38:50', 5, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.', 'man-hat.png', 3, 789, 3, ''),
+(8, '2022-10-04 09:38:50', 4, 'Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.\n\nCras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mau', 'man-hat.png', 3, 4589, 4, ''),
+(9, '2022-10-04 09:38:50', 3, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Do', 'man-hat.png', 5, 4500, 5, ''),
+(10, '2022-10-04 09:38:50', 5, 'Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.', 'man-hat.png', 3, 789, 4, ''),
+(11, '2022-10-04 09:38:50', 4, 'In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.', 'man-hat.png', 8, 0, 4, ''),
+(12, '2022-10-04 09:38:50', 5, 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.\n\nDonec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec ph', 'man-hat.png', 9, 1258, 4, ''),
+(13, '2022-10-04 09:38:50', 1, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\n\nProin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. ', 'man-hat.png', 11, 4589, 5, ''),
+(14, '2022-10-04 09:38:50', 3, 'Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.', 'man-hat.png', 34, 45000, 5, ''),
+(15, '2022-10-04 09:38:50', 3, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrice', 'man-hat.png', 12, 4589, 4, ''),
+(16, '2022-10-04 09:38:50', 3, 'Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.\n\nPhasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.', 'man-hat.png', 12, 0, 4, ''),
+(17, '2022-10-04 09:38:50', 4, 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.', 'man-hat.png', 12, 4589, 4, ''),
+(18, '2022-10-04 09:38:50', 2, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.', 'man-hat.png', 12, 4589, 2, ''),
+(19, '2022-10-04 09:38:50', 3, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.\n\nIn sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.', 'man-hat.png', 21, 458, 2, ''),
+(20, '2022-10-04 09:38:50', 4, 'Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.', 'man-hat.png', 12, 458, 2, '');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `task_statuses`
+--
+
+CREATE TABLE `task_statuses` (
+  `id` int NOT NULL,
+  `task_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `task_statuses`
+--
+
+INSERT INTO `task_statuses` (`id`, `task_id`, `user_id`, `status`) VALUES
+(1, 8, 0, 'quis'),
+(2, 3, 2, 'eos'),
+(3, 8, 4, 'numquam'),
+(4, 8, 8, 'eum'),
+(5, 9, 0, 'veniam'),
+(6, 4, 3, 'occaecati'),
+(7, 2, 7, 'voluptas'),
+(8, 6, 6, 'saepe'),
+(9, 4, 4, 'soluta'),
+(10, 2, 4, 'dignissimos');
 
 -- --------------------------------------------------------
 
@@ -372,50 +393,26 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `dt_add`, `email`, `name`, `password_hash`, `user_img`, `quote`, `country`, `city_id`, `age`, `phone`, `telegram`, `status`, `user_status`, `answer_orders`, `category_id`, `date_of_birth`) VALUES
-(1, '2022-10-01 12:26:31', 'kbuttress0@1und1.de', 'Karrie Buttress', '$2y$13$fwbTk66e8eNNnrCfSsMft.0f4SwmvWvTnWPtLmIvNwS344B5o0m.u\r\n\r\n\r\n\r\n\r\n\r\n', 'man-blond.jpg', 'это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.', 'Украина', 1, '40', '+7 (906) 256-06-08', 'sexmachine', 1, 'executor', 1, 0, NULL),
-(2, '2022-10-01 12:26:31', 'baymer1@hp.com', 'Bob Aymer', '$2y$10$EzpN28ZFy6M/rgkrRhAJ..oXyG94gJCiFMkB3VrisXfHcT7Std8Be', 'man-blond.jpg', 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).', 'Украина', 1, '45', '+7 (906) 256-06-08', 'sexmachine', 1, 'customer', 0, 0, NULL),
-(3, '2022-10-01 12:26:31', 'zboulding2@macromedia.com', 'Zilvia Boulding', '$2y$10$kpNm.VdMl4abTntgcPiQ9OVtGhO42jMvGvdF/MrqwMNJNeLZbo3z2', 'man-sweater.png', 'Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32', 'Украина', 1, '69', '+7 (906) 256-06-08', '', 1, 'executor', 1, 0, NULL),
-(4, '2022-10-01 12:26:31', 'emollon3@bloglovin.com', 'Emalee Mollon', '$2y$10$65EuyBIpaH3ESFchlzRhdu8XunIJ3tF1fHNaYC6sQnICKWI.LFtzq', 'man-blond.jpg', 'Есть много вариантов Lorem Ipsum, но большинство из них имеет не всегда приемлемые модификации, например, юмористические вставки или слова, которые даже отдалённо не напоминают латынь. Если вам нужен Lorem Ipsum для серьёзного проекта, вы наверняка не хотите какой-нибудь шутки, скрытой в середине абзаца. Также все другие известные генераторы Lorem Ipsum используют один и тот же текст, который они просто повторяют, пока не достигнут нужный объём. Это делает предлагаемый здесь генератор единственным настоящим Lorem Ipsum генератором. Он использует словарь из более чем 200 латинских слов, а также набор моделей предложений. В результате сгенерированный Lorem Ipsum выглядит правдоподобно, не имеет повторяющихся абзацей или \"невозможных\" слов.', 'Украина', 2, '89', '380990841805', 'sexmachine', 1, 'executor', 1, 0, NULL),
-(5, '2022-10-01 12:26:31', 'mmulberry4@cmu.edu', 'Maria Mulberry', '902b0549bc7cf7dbc190849a4e9ef8944a4097db', 'man-blond.jpg', 'Классический текст Lorem Ipsum, используемый с XVI века, приведён ниже. Также даны разделы 1.10.32 и 1.10.33 \"de Finibus Bonorum et Malorum\" Цицерона и их английский перевод, сделанный H. Rackham, 1914 год.', 'Украина', 3, '12', '380990841805', '', 0, 'executor', 1, 0, NULL),
-(6, '2022-10-01 12:26:31', 'lby5@mozilla.com', 'Levey By', '$2y$10$2PrP5cgs6lnYHrZWXa8sMulWZr5nhwURWIy5hJLV4e0r3prkNFkvm', 'man-blond.jpg', 'Пожертвования: Если вы регулярно пользуетесь этим сайтом и хотите быть уверенным в его дальнейшем постоянном функционировании, подумайте о небольшом пожертвовании, которое помогло бы оплатить его хостинг и трафик. Нет никаких минимальных сумм - любое пожертвование принимается с благодарностью. Вы можете щёлкнуть здесь чтобы перевести деньги через PayPal. Спасибо за вашу поддержку.', 'Украина', 5, '58', '380990841805', '', 0, 'executor', 1, 0, NULL),
-(7, '2022-10-01 12:26:31', 'beates6@last.fm', 'Baron Eates', '$2y$10$KbLs7qKsrKsZGzCGUaKBI.iuWz2PXtTHl28bt2r7aMYbj4T4C1Sem', 'man-blond.jpg', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"', 'Украина', 5, '0', '380990841805', 'sexmachine', 0, 'customer', 0, 0, NULL),
-(8, '2022-10-01 12:26:31', 'tvink7@fotki.com', 'Trip Vink', '$2y$10$Lj7X0wRld73hXwjcwN4FAeIN7VlRRUBZPwv5mC5hPTRD.iIobWNFS', 'man-blond.jpg', '\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"', '', 1, '0', '380990841805', 'sexmachine', 0, 'customer', 0, 0, '2012-11-08'),
-(9, '2022-10-01 12:26:31', 'bterbeck8@about.me', 'Boonie Terbeck', 'unCjJTF7sjs', 'man-blond.jpg', '\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"', '', 1, '0', '380990841805', '', 0, 'customer', 0, 0, NULL),
-(10, '2022-10-01 12:26:31', 'atraviss9@auda.org.au', 'Alonzo Traviss', 'dLuVMAg', 'man-blond.jpg', '\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(11, '2022-10-01 12:26:31', 'nwitteringa@google.com.br', 'Natassia Wittering', 'tQlUG4n', 'man-blond.jpg', '\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"', '', 1, '0', '0', '', 1, 'customer', 0, 0, NULL),
-(12, '2022-10-01 12:26:31', 'fbrookeb@nba.com', 'Felice Brooke', 's9y9Mcfgy1g', 'man-blond.jpg', '', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(13, '2022-10-01 12:26:31', 'cviccaryc@amazon.co.uk', 'Carlen Viccary', '9qd747vh', 'man-blond.jpg', '', '', 1, '0', '0', 'sexmachine', 0, 'customer', 0, 0, NULL),
-(14, '2022-10-01 12:26:31', 'hgethingsd@sogou.com', 'Hendrik Gethings', 'zzN5c4', 'man-blond.jpg', '', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(15, '2022-10-01 12:26:31', 'dgirodiase@stanford.edu', 'Dunc Girodias', 'j9QW6GQI', 'man-blond.jpg', '', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(16, '2022-10-01 12:26:31', 'btanmanf@smh.com.au', 'Bibbie Tanman', '1aukKNEIneq', 'man-blond.jpg', '', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(17, '2022-10-01 12:26:31', 'bbartolettig@simplemachines.org', 'Barnabas Bartoletti', '3chTNtqhoo', 'man-blond.jpg', '', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(18, '2022-10-01 12:26:31', 'nculliph@fc2.com', 'Nixie Cullip', '2UdKIR2f', 'man-blond.jpg', '', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(19, '2022-10-01 12:26:31', 'mpimblotti@xing.com', 'Matilde Pimblott', 'nGZ8disdg', 'man-blond.jpg', '', '', 1, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(20, '2022-10-01 12:26:31', 'askurrayj@un.org', 'Al Skurray', 'bL9tAf', 'man-blond.jpg', '', '', 2, '0', '0', '', 0, 'customer', 0, 0, NULL),
-(21, '2022-10-01 12:26:31', 'name@ukr.net', 'name', '159357', NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(22, '2022-10-01 12:26:31', 'names@ukr.net', 'name', '159357', NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(23, '2022-10-01 12:26:31', 'namess@ukr.net', 'name', '159357', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(24, '2022-10-01 12:26:31', 'kontekstexeo@gmail.com', 'name', '3434', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(25, '2022-10-01 12:26:31', 'admin@ukr.net', 'admin', '$2y$13$zMXFrsHMwwr5rKmaECt30.uK1EPPlHiVKQsKVv8tQRQRpLE1/eoz2', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(26, '2022-10-01 12:26:31', 'max@ukr.net', 'Максим', '$2y$13$jC40rsl7hR6zm7jqQsR0E.Oh0Q05dT9OO69UAYb89iew7gmPpJQ7q', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(27, '2022-10-01 12:26:31', 'hal@ukr.net', 'Максим', '$2y$13$5gntWb6LLbmUJxUNV7yK8OG2ubb4HMkKbK.yFwfJgMdrWxlE9A7h.', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(28, '2022-10-01 12:26:31', 'hal2@ukr.net', 'Максим', '$2y$13$twyC5Ncrq/lVDuJEJ33uIuJ0gD6SUgwLVgDu8wRKIcjtWCXTgICoa', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(29, '2022-10-01 12:26:31', 'konte3kstexeo@gmail.com', 'admin', '$2y$13$wJ9eMxpE.nWMB9RX1/6GQOtZrL1Md9r/rAJaV1xnOH0gZrAWHy3uy', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(30, '2022-10-01 12:26:31', 'admin3@ukr.net', 'admin', '$2y$13$DLMVPpwnXFKkb78ZFAPlV.oeCc625As.BlNEsrs0c76GJZJ9VtKL2', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(31, '2022-10-01 12:26:31', 'admin123@ukr.net', 'admin123', '$2y$13$xaZo5eLS6fTwSGNnT4Xouu2yxgTrDDw0Tu9sLu8AXGHEDIMKpqq/a', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(32, '2022-10-01 12:26:31', 'admin1223@ukr.net', 'admin123', '$2y$13$t0olhGKt.DAM.TMhqNr.7OzK5IT2FYlHUZyVVj4Wm9IQK18pNOGhy', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(33, '2022-10-01 12:26:31', 'admin122223@ukr.net', 'admin123', '$2y$13$RFrX2Rb1QdokxKeHAkG7nu0RYtzUIdw49KXdYmoAhn/U8mQWE.gFi', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(34, '2022-10-01 12:26:31', 'adm44in1223@ukr.net', 'admin123', '$2y$13$OM88nzGTEbj7OnHbr7mnfOFmho4zTubqv8XD/kOEuUdfIVA9v7Z0y', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(35, '2022-10-01 12:26:31', 'ad3m44in1223@ukr.net', 'admin123', '$2y$13$HDHq1sxtVBKVvFFHlVLozOJfRDm5pLXP4bjOB8QhwY08M85vbvJgS', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(36, '2022-10-01 12:26:31', 'na678me@ukr.net', 'name', '$2y$13$ep035D28J4HLWeoB.DTCc.zaJ3Ckwhox3eeSpr8CBnUghKuTimvWq', NULL, NULL, NULL, 2, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(37, '2022-10-01 12:26:31', 'max@gmail.com', 'MyNameIsMax', '$2y$13$Vm.Hj0XmDLceZ1EVg4kD/OYqoJPgeDdzbzmc6vQgYF4Ik8Nu6mLsS', NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(38, '2022-10-01 12:26:31', 'mom@ukr.net', 'NinaMom', '$2y$13$Wxaj0fHgijWMi4wnd8uhs.l/RBALZ2QKePfiU6ZLdCEOmwYDuIUkm', NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(39, '2022-10-01 12:26:31', 'itexpeditionameric222a@gmail.com', 'admin33', '$2y$13$Lfu5GmhwpqcXgGs6m/A7WO7GXH6nq4Ztsg7cGxv3DQHnZ7pFLOi9G', NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(40, '2022-10-01 12:26:31', 'itexpeditio44nameric222a@gmail.com', 'admin33', '$2y$13$wtJnB0ZkuamdB./zFyKS2eEUJeFD5g6JH1GN.tZ.6HqCAXS2pFxNe', NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, NULL, NULL, 0, NULL),
-(41, '2022-10-01 12:26:31', 'kontekstex8963eo@gmail.com', 'admin', '$2y$13$BQW1O3BCXDNBq1svsCtmiuj7E8Tnc/rqHIKJWmkfPd8C7SmSUQ3V6', NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL),
-(42, '2022-10-01 12:26:31', 'ma44x@ukr.net', 'max@ukr.net', '$2y$13$dfhf33.p3e10gLBwlfXAruM0b1RLJztrWjNuHPAOb20SqiGqw85.W', NULL, NULL, NULL, 32, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL),
-(43, '2022-10-14 09:33:36', 'ko333ntekstexeo@gmail.com', 'admin', '$2y$13$AfQXfkPzQBT3coEG9YLawuIIFiJW2fXfh9SXw6nbfXt2uKN9BrOSS', NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL),
-(44, '2022-10-14 13:40:20', 'name3334Y@ukr.net', 'name', '$2y$13$qs7OdcvTCl9R/urSKfFhre0fsQZImkPuxqpEQk0tBXS.ck.4NUKjy', NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, NULL, 1, 0, NULL);
+(1, '1987-02-01 14:33:32', 'sbartell@gmail.com', 'Violette Corkery MD', '$2y$13$Ze2TnLQFZ19.o2/VkAPcdubf2FKI8/3TCgBnxn5CS.nPhTFxRrWH2', 'man-hat.png', 'Nobis reiciendis deserunt dicta accusantium omnis.', 'non', 8, '94695', '37755', 'ipsa', 1, 'executor', 1, 7, '2017-08-29'),
+(2, '2013-03-05 03:16:03', 'alverta.ullrich@bauch.com', 'Bryon Bernhard MD', '$2y$13$7vAx8TAKimJcrLJjtYnbaOAt3I/xZPYiDK10TYy4NQAUywbnyxnHW', 'man-hat.png', 'Doloribus inventore tenetur debitis dolor.', 'beatae', 3, '71736', '21058', 'quisquam', 1, 'executor', 1, 2, '2013-02-26'),
+(3, '2003-04-25 10:02:18', 'kbeahan@conroy.com', 'Mrs. Hanna Bogan', '$2y$13$QKF/0KAUZd991PYfKiICAei1sYm7xP81KjsQ/oJDSJ4q25kmiAa5G', 'man-hat.png', 'Aliquam adipisci reprehenderit modi vero blanditiis reiciendis.', 'velit', 7, '91494', '46776', 'sapiente', 0, 'executor', 1, 0, '1972-09-30'),
+(4, '1992-01-12 10:23:13', 'gerhold.hudson@johnson.biz', 'Prof. Lonie Bashirian', '$2y$13$S5jDj/J9DnFWC0qD4KNFReQ25Ldp1hOVxyNglXIQ1CcH7N.c0GhRC', 'man-hat.png', 'Fugit non sapiente magnam repellat ut.', 'ullam', 0, '67769', '92671', 'nemo', 1, 'executor', 1, 3, '1997-02-25'),
+(5, '2019-11-12 04:31:22', 'taya.stiedemann@hotmail.com', 'Dr. Delmer Hermann II', '$2y$13$Cpa8JvnJERfHPb.XXVztGuYPMSb24pyBJRp5Qfrw6RsmYGs/Vft02', 'man-hat.png', 'Rerum nemo explicabo modi veritatis.', 'dolore', 3, '20310', '25595', 'fugit', 0, 'executor', 0, 0, '2015-07-15'),
+(6, '2011-01-31 16:21:25', 'heaven48@cronin.com', 'Cleveland Bartell', '$2y$13$tTqi0bkWodFBEmiOsG6Buu2YT5fDbXOba.JcJYX96Ywz3O8awZ2Qu', 'man-hat.png', 'Vel porro occaecati rem molestias sequi cumque.', 'voluptas', 5, '76395', '60097', 'repellendus', 0, 'executor', 1, 6, '2014-11-12'),
+(7, '2007-05-07 03:08:27', 'novella55@yahoo.com', 'Ms. Dorothy Purdy Jr.', '$2y$13$VMlbSm.7QN9jiXyd7/uzlOeZD0T9T2Fo7oBODXmHSKJ1q3FmBUc72', 'man-hat.png', 'Qui neque rerum mollitia consequatur.', 'blanditiis', 8, '37490', '18690', 'in', 1, 'executor', 1, 8, '1980-05-10'),
+(8, '1985-12-26 16:31:11', 'estel.beahan@lindgren.com', 'Elenor Zieme', '$2y$13$JiJr6loDS/LB8F66NcjReuewvIOIafvh3eFa6FuZkAn9HFnKJVOUq', 'man-hat.png', 'Voluptatem non non deleniti soluta aut dolorem.', 'porro', 6, '10759', '66997', 'mollitia', 0, 'executor', 1, 4, '2015-10-26'),
+(9, '2020-04-16 08:51:28', 'irma49@gmail.com', 'Deborah Roberts', '$2y$13$VGCDfKXDtGgySqnyYGBoEOavHuPKfvPdbP1Iwkwmi4foI4DtVyIaS', 'man-hat.png', 'Praesentium odio similique vel veniam libero magni maxime.', 'nihil', 2, '97051', '51247', 'rerum', 1, 'id', 1, 0, '2009-12-29'),
+(10, '2021-05-05 07:02:41', 'braun.dulce@klein.net', 'Giovanny Robel', '$2y$13$YmY9T87jstooCIFvputtF.sOk9qjHespzZcP//B5hWJcaEutXIJje', 'man-hat.png', 'Rerum ad voluptatibus quos hic eaque qui quia.', 'culpa', 8, '85247', '42594', 'beatae', 1, 'deserunt', 1, 9, '1984-09-04'),
+(11, '2021-09-17 10:54:16', 'treichel@hotmail.com', 'Cory Runolfsson DVM', '$2y$13$1XGW2BvdwV1W.gZOqqLvpeL15gA3e5Gu4f1rWbXgnrICaivro9sVm', 'man-hat.png', 'Voluptatibus enim consequatur quia inventore.', 'doloremque', 1, '79377', '62993', 'autem', 1, 'hic', 0, 2, '2010-07-10'),
+(12, '1983-09-20 19:57:22', 'isac.christiansen@gibson.info', 'Carol Moen', '$2y$13$zQtORST3VIaT6H0/u0SZY.94/Obau5ltoYA34fxzkmurx.qdHyQQ.', 'man-hat.png', 'Est et aut magni voluptas.', 'deleniti', 5, '20062', '45845', 'sit', 0, 'harum', 1, 7, '2002-10-10'),
+(13, '2015-11-11 15:05:10', 'akiehn@hotmail.com', 'Dillon Beahan', '$2y$13$l0eB44TbTC47YYjB54.KiuBTp5U34GxrkByTWTht/i9IfNrRRhaq2', 'man-hat.png', 'Ullam corrupti quaerat illo maiores nobis molestias distinctio mollitia.', 'velit', 9, '92963', '18585', 'molestiae', 0, 'occaecati', 0, 9, '1987-04-06'),
+(14, '2006-03-19 09:06:57', 'scarlett55@kunde.com', 'Mr. Jillian Rippin DVM', '$2y$13$Zv4i1GRyanO/r7I/aQNtL.VSgwvr6oDOqW/ccJ/CahYOeRD8HBE36', 'man-hat.png', 'Voluptatem accusantium qui quidem similique.', 'aut', 2, '48632', '62128', 'nam', 0, 'non', 1, 4, '2006-10-18'),
+(15, '2008-08-07 23:03:19', 'stacy59@kling.org', 'Romaine Hansen', '$2y$13$7wkhV9Qwdvizoe23ZC311.Jic7T5CCsVPdSPcDLIVo2F3YBmEyx62', 'man-hat.png', 'Quia consequatur reiciendis corporis et officia.', 'odio', 6, '69534', '88252', 'cum', 1, 'qui', 0, 2, '2004-11-08'),
+(16, '1994-05-26 00:58:14', 'asteuber@mckenzie.org', 'Berta Towne', '$2y$13$YmMEAkHRrYEKii1IMsW7OeNPRnU2Fn95s3eH5fINMgEvaVDhXeAKC', 'man-hat.png', 'Et tempore eum ut nam ut.', 'natus', 4, '35417', '79401', 'similique', 0, 'error', 0, 8, '2000-03-21'),
+(17, '1999-09-08 12:36:35', 'kgulgowski@corwin.info', 'Deontae Lueilwitz', '$2y$13$as84taQRB8HSuLLKjV8kS.mmjbuaRK19kGDiWHUCPIAdiWiDska42', 'man-hat.png', 'Id culpa hic eveniet non ab atque.', 'ducimus', 0, '55571', '24426', 'qui', 0, 'et', 1, 1, '1980-09-10'),
+(18, '2009-08-17 04:42:08', 'huel.garett@gmail.com', 'Prof. Dewitt Conn', '$2y$13$oFTqmhKpUGEJ2BvGAxBTSOrH/6A2VaZImB.nagC67Tpq2Rz71hfIi', 'man-hat.png', 'Ut corporis occaecati aperiam excepturi a et.', 'omnis', 9, '96771', '54544', 'ut', 0, 'magni', 0, 2, '2011-04-03'),
+(19, '1975-10-09 23:39:21', 'enoch30@rohan.com', 'Krystina Stracke', '$2y$13$NiVVgmWM3Sw62mQz2eO7Ne1b1WB002BN/I/X8Q9dKSvm1kV6p5eby', 'man-hat.png', 'Repellat dolores dignissimos eligendi et sint deleniti aut.', 'laboriosam', 5, '15688', '45422', 'id', 0, 'aut', 0, 2, '1975-08-11'),
+(20, '1974-03-17 03:26:56', 'easton76@beier.com', 'Elenor Harber IV', '$2y$13$hvnvfP/064nTDDm3BfacPOgJDegur2CNAuyiMVhdWEoL6jdM11ZPq', 'man-hat.png', 'Maxime ut non ut repellendus.', 'hic', 0, '85030', '46912', 'dicta', 1, 'quas', 1, 2, '2013-03-04');
 
 -- --------------------------------------------------------
 
@@ -434,10 +431,16 @@ CREATE TABLE `user_rating` (
 --
 
 INSERT INTO `user_rating` (`id`, `rating`, `user_id`) VALUES
-(1, 4, 3),
-(2, 2, 3),
-(3, 4, 3),
-(4, 1, 2);
+(1, 1, 2),
+(2, 1, 4),
+(3, 3, 6),
+(4, 6, 1),
+(5, 5, 6),
+(6, 9, 3),
+(7, 5, 6),
+(8, 1, 5),
+(9, 7, 8),
+(10, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -460,8 +463,16 @@ CREATE TABLE `user_reply` (
 --
 
 INSERT INTO `user_reply` (`id`, `create_at`, `rate`, `description`, `task_id`, `user_id`, `executor_id`) VALUES
-(1, '2022-10-11 09:40:10', 5, 'Sippunen LOso', 1, 3, 4),
-(2, '2022-10-11 09:40:10', 3, 'И поют сиренады', 2, 2, 5);
+(1, '1976-02-08 01:59:29', 0, 'Non et doloremque dolore dolorem.', 9, 2, 5),
+(2, '1976-01-18 07:07:50', 3, 'Quae facilis qui qui.', 7, 1, 9),
+(3, '2010-07-01 15:29:15', 5, 'Aliquam quaerat exercitationem amet harum.', 3, 2, 0),
+(4, '1986-02-05 07:53:49', 3, 'Et in quod est saepe autem.', 8, 4, 2),
+(5, '1974-04-21 15:26:13', 2, 'Eveniet et minus nam non nihil.', 8, 0, 5),
+(6, '1971-07-10 18:30:32', 3, 'Et possimus aut explicabo officiis.', 6, 8, 7),
+(7, '1980-02-24 22:31:37', 9, 'Sunt eum totam et est tempore dolorum.', 6, 5, 7),
+(8, '2013-02-18 09:18:39', 3, 'Incidunt eligendi debitis blanditiis molestiae nesciunt mollitia.', 0, 8, 7),
+(9, '2014-11-16 02:56:22', 0, 'Ut nulla dolores temporibus quasi consequatur debitis reiciendis.', 9, 4, 9),
+(10, '2015-10-02 17:51:52', 8, 'Sed quod aut harum illo.', 5, 1, 3);
 
 --
 -- Индексы сохранённых таблиц
@@ -505,6 +516,12 @@ ALTER TABLE `replies_link`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `tags_attribute`
+--
+ALTER TABLE `tags_attribute`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `tags_attribution`
 --
 ALTER TABLE `tags_attribution`
@@ -520,6 +537,12 @@ ALTER TABLE `task`
 -- Индексы таблицы `tasks_reply`
 --
 ALTER TABLE `tasks_reply`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `task_statuses`
+--
+ALTER TABLE `task_statuses`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -549,19 +572,19 @@ ALTER TABLE `user_reply`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `opinion`
@@ -573,19 +596,25 @@ ALTER TABLE `opinion`
 -- AUTO_INCREMENT для таблицы `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `replies_link`
 --
 ALTER TABLE `replies_link`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT для таблицы `tags_attribute`
+--
+ALTER TABLE `tags_attribute`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `tags_attribution`
 --
 ALTER TABLE `tags_attribution`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `task`
@@ -600,22 +629,28 @@ ALTER TABLE `tasks_reply`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+-- AUTO_INCREMENT для таблицы `task_statuses`
+--
+ALTER TABLE `task_statuses`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT для таблицы `user_rating`
 --
 ALTER TABLE `user_rating`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `user_reply`
 --
 ALTER TABLE `user_reply`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

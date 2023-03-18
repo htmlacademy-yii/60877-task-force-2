@@ -1,27 +1,32 @@
 <?php
 
 use yii\db\Migration;
+use yii\db\Schema;
 
 /**
- * Class m220805_162152_added_user_status
+ * Class m230114_215533_category
  */
-class m220805_162152_added_user_status extends Migration
+class m230114_215533_category extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->addColumn('users', 'user_status', $this->text());
-
+        $this->createTable('category', [
+            'id' => $this->primaryKey(),
+            'name' => $this->string(255),
+            'icon' => $this->string(255),
+        ]);
     }
+
 
     /**
      * {@inheritdoc}
      */
     public function safeDown()
     {
-        $this->dropColumn('users', 'user_status');
+        $this->dropTable('category');
     }
 
     /*
@@ -33,7 +38,7 @@ class m220805_162152_added_user_status extends Migration
 
     public function down()
     {
-        echo "m220805_162152_added_user_status cannot be reverted.\n";
+        echo "m230114_215533_category cannot be reverted.\n";
 
         return false;
     }

@@ -15,14 +15,14 @@ use Yii;
  * @property string $skype
  * @property string $city_id
  */
-class Profiles extends \yii\db\ActiveRecord
+class Profile extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'profiles';
+        return 'profile';
     }
 
     /**

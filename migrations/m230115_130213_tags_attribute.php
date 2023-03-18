@@ -3,16 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Class m220619_115545_change_user_id_type
+ * Class m230115_130213_tags_attribute
  */
-class m220619_115545_change_user_id_type extends Migration
+class m230115_130213_tags_attribute extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->alterColumn('tasks', 'user_id', $this->null());
+        $this->createTable('tags_attribute', [
+            'id' => $this->primaryKey(),
+            'attributes' => $this->string('255'),
+        ]);
     }
 
     /**
@@ -20,7 +23,7 @@ class m220619_115545_change_user_id_type extends Migration
      */
     public function safeDown()
     {
-      $this->alterColumn('tasks', 'user_id', $this->integer());
+        $this->dropTable('tags_attribute');
     }
 
     /*
@@ -32,7 +35,7 @@ class m220619_115545_change_user_id_type extends Migration
 
     public function down()
     {
-        echo "m220619_115545_change_user_id_type cannot be reverted.\n";
+        echo "m230115_130213_tags_attribute cannot be reverted.\n";
 
         return false;
     }
