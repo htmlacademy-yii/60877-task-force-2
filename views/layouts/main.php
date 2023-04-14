@@ -38,10 +38,10 @@ MainAsset::register($this);
             <div class="nav-wrapper">
                 <ul class="nav-list">
                     <li class="list-item list-item--active">
-                        <a class="link link--nav">Новое</a>
+                        <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Новое</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Мои задания</a>
+                        <a href="<?php echo Url::to(['/my-tasks?status=new']); ?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
                         <a href="<?php echo Url::to(['tasks/add']); ?>" class="link link--nav">Создать задание</a>

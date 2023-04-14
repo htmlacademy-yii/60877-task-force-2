@@ -8,41 +8,42 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use app\models\Task;
 
+$identity = Yii::$app->user->identity;
 ?>
 
 <main class="main-content container">
 
     <div class="left-column">
         <div class="head-wrapper">
-            <h3 class="head-main"><?php echo $task->name; ?></h3>
-            <p class="price price--big"><?php echo $task->budget; ?> UAH</p>
+            <h3 class="head-main"><?= $task->name; ?></h3>
+            <p class="price price--big"><?= $task->budget; ?> UAH</p>
         </div>
         <p class="task-description">
-            <?php echo $task->description; ?>
+            <?= $task->description; ?>
         </p>
 
-        <?php if ($taskOwnerStatus === 'executor'): ?>
+        <?php if ($identity->user_status === 'executor'&&!$taskReply): ?>
             <a class="button button--blue action-btn" data-action="act_response">Откликнуться на задание</a>
         <?php endif; ?>
 
-        <?php if ($task->executor_id === \Yii::$app->user->identity->id): ?>
+        <?php if ($task->executor_id === $identity->id): ?>
             <a class="button button--orange action-btn" data-action="refusal">Отказаться от задания</a>
         <?php endif; ?>
 
         <?php
 
-        if ($task->user_id === \Yii::$app->user->identity->id && $task->status === 'new' && $taskOwnerStatus === 'customer'): ?>
+        if ($task->user_id === $identity->id && $task->status === 'new'): ?>
             <a class="button button--pink action-btn" data-action="completion">Завершить задание</a>
         <?php endif; ?>
 
-        <div class="task-map">
-            <?php echo Html::img('img/map.png'); ?>
+        <div class="map">
+            <div id="map" style="width: 600px; height: 400px"></div>
+
             <p class="map-address town">Москва</p>
             <p class="map-address">Новый арбат, 23, к. 1</p>
         </div>
         <?php
 
-        echo Yii::getAlias('@web');
         if (count($task->replies) > 0): ?>
             <h4 class="head-regular">Отклики на задание</h4>
         <?php endif; ?>
@@ -50,7 +51,11 @@ use app\models\Task;
 
         <?php foreach ($task->replies as $reply): ?>
 
-            <?php if (\Yii::$app->user->identity->id === $task->user_id||\Yii::$app->user->identity->id===$reply->user_id): ?>
+            <?php if (
+                    $identity->id === $task->user_id ||
+                    $identity === $reply->user_id
+            ):
+                ?>
                 <div class="response-card">
                     <?php
 
@@ -85,11 +90,14 @@ use app\models\Task;
                     </div>
 
 
-
                     <div class="button-popup">
                         <?php
 
-                        if (\Yii::$app->user->identity->id === $task->user_id && $taskOwnerStatus === 'customer'&&$task->status!=='in_progress'&&$reply_status!=='rejected'):?>
+                        if (
+                            \Yii::$app->user->identity->id === $task->user_id &&
+                            $taskOwnerStatus === 'customer' &&
+                            $task->status !== 'in_progress' &&
+                            $reply_status !== 'rejected'):?>
                             <a href="<?php echo Url::to(['tasks/accept-task-reply/', 'id' => $task->id, 'user_id' => $reply->user->id]); ?>"
                                class="button button--blue button--small">Принять</a>
                             <a href="<?php echo Url::to(['tasks/reject-task-reply/', 'task_id' => $task->id, 'user_id' => $reply->user->id]); ?>"
@@ -154,7 +162,7 @@ use app\models\Task;
             Вы собираетесь отказаться от выполнения этого задания.<br>
             Это действие плохо скажется на вашем рейтинге и увеличит счетчик проваленных заданий.
         </p>
-        <a href="<?php echo Url::to(['tasks/rejected-task/'.$task->id]); ?>"
+        <a href="<?php echo Url::to(['tasks/rejected-task/' . $task->id]); ?>"
            class="button button--pop-up button--orange">Отказаться</a>
         <div class="button-container">
             <button class="button--close" type="button">Закрыть окно</button>
@@ -216,5 +224,4 @@ use app\models\Task;
             <?php echo Html::submitButton('Завершить', ['class' => 'button button--pop-up button--blue']) ?>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="button-container">
-          
+        <div class="button-conta

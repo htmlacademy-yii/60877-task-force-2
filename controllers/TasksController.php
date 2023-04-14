@@ -22,6 +22,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use Yii;
 use app\models\User;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+
 
 class TasksController extends SecuredController
 {
@@ -66,7 +69,23 @@ class TasksController extends SecuredController
 
     }
 
-    public function actionView($id)
+    public function actionMyTasks()
+    {
+        $my_tasks = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->all();
+
+        $request = Yii::$app->request;
+
+        $status = $request->get('status');
+
+
+        $my_tasks_new = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'new'])->all();
+        $my_tasks_in_process = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'in_progress'])->all();
+        $my_tasks_done = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'done'])->all();
+        return $this->render('my-tasks', ['my_tasks' => $my_tasks, 'my_tasks_new' => $my_tasks_new, 'my_tasks_in_process' => $my_tasks_in_process, 'my_tasks_done' => $my_tasks_done, 'status' => $status]);
+
+    }
+
+    public function actionView(int $id)
     {
 
         $task = Task::find()->where(['id' => $id])->one();
@@ -78,18 +97,31 @@ class TasksController extends SecuredController
         $userModel = User::find()->where(['id' => $task->user_id])->one();
         $taskOwnerStatus = $userModel->user_status;
 
-        $reply_stat = TasksReply::find()->where(['task_id' => $id])->one();
+        $taskReply = TasksReply::find()->where([
+            'user_id'=>Yii::$app->user->identity->id,
+            'task_id' => $id
+        ])->one();
 
-        $reply_status = $reply_stat->status;
+        /* $reply_status = $reply_stat->status;
 
-        if ($reply_status==='null') {
-            $reply_status = 'new';
-        }
+         if ($reply_status === 'null') {
+             $reply_status = 'new';
+         }*/
 
         $files = Files::find()->where(['tasks_id' => Yii::$app->request->get('id')])->all();
 
 
-        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'reply_status' => $reply_status, 'taskOwnerStatus' => $taskOwnerStatus, 'files' => $files, 'id' => $id]);
+        return $this->render(
+            'single-task',
+            [
+                'task' => $task,
+                'userModel' => $userModel,
+                'taskReply'=>$taskReply,
+                /*'reply_status' => $reply_status,*/
+                'taskOwnerStatus' => $taskOwnerStatus,
+                'files' => $files,
+                'id' => $id
+            ]);
     }
 
 
@@ -98,12 +130,39 @@ class TasksController extends SecuredController
     {
         $categories = Category::find()->all();
         $model = new AddTask();
-
-
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
 
+            /*код запроса на геокодер*/
+            $email = Yii::$app->request->post('email', 'maxim-berezinets@yandex.ru');
+            $api_key = 'e666f398-c983-4bde-8f14-e3fec900592a';
+            $client = new Client([
+                'base_uri' => 'https://geocode-maps.yandex.ru/1.x/'
+            ]);
+            try {
+                $response = $client->request('GET', '', [
+                    'query' => [
+                        'apikey' => $api_key, 'geocode' => $email
+                    ]
+                ]);
 
+                $content = $response->getBody()->getContents(); // что тут происходит?
+
+                $response_data = json_decode($content, true);
+
+                $result = false;
+
+                if (is_array($response_data)) {
+                    $result = !empty($response_data['mx_found']) && !empty($response_data['smtp_check']); // зачем это??7
+                    var_dump($result);
+                    die();
+                }
+            } catch (RequestException $e) {
+                $result = true;
+            }
+            var_dump("Результат проверки 'Max', 'Not Max'");
+            /*код запроса на геокодер*/
             $task = $model->createNewTask();
+
             \Yii::$app->response->redirect(['/tasks/view/', 'id' => $task->id]);
         }
 
@@ -205,9 +264,7 @@ class TasksController extends SecuredController
         $changeReplyStatus = TasksReply::find()->where(['task_id' => $task_id])->one();
 
         $changeReplyStatus->status = $reply_status;
-        var_dump($changeReplyStatus->save());
-        var_dump($changeReplyStatus->getErrors());
-        exit();
+
         if ($changeReplyStatus->save()) {
 
             return $this->redirect('/tasks/view/' . $task_id);

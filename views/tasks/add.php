@@ -3,6 +3,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 use app\models\User;
 
 $this->title = 'Страница добавления задания';
@@ -11,7 +12,7 @@ $this->title = 'Страница добавления задания';
     <div class="add-task-form regular-form">
 
         <?php
-        $form = ActiveForm::begin(['options' => ['method' => 'post', 'enctype' => 'multipart/form-data', 'enableAjaxValidation' => true]]); ?>
+        $form = ActiveForm::begin(['options' => ['method' => 'post', 'enctype' => 'multipart/form-data', 'enableAjaxValidation' => true, 'name'=>'add']]); ?>
         <h3 class="head-main head-main">Публикация нового задания</h3>
         <?= $form->field($model, 'about_job', ['template' => '{label}{input}{error}{hint}',
             'options' => ['class' => 'form-group']])
@@ -22,9 +23,13 @@ $this->title = 'Страница добавления задания';
         <?php echo $form->field($model, 'categories')->dropdownList(
             ArrayHelper::map($categories, 'id', 'name')
         ); ?>
-        <?= $form->field($model, 'location', ['errorOptions' => ['class' => 'help-block'],
+        <?=
+
+        $form->field($model, 'location', ['errorOptions' => ['class' => 'help-block'],
             'options' => ['id' => 'location']])
-            ->textInput(['class' => 'location-icon'])->label('Локация', ['class' => 'control-label']); ?>
+            ->textInput(['id' => 'autoComplete'])->label('Локация', ['class' => 'control-label']);
+
+        ?>
         <div class="half-wrapper">
             <?= $form->field($model, 'budget', ['errorOptions' => ['class' => 'help-block3'],
                 'options' => []])
