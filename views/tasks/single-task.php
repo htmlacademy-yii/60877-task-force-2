@@ -37,8 +37,64 @@ $identity = Yii::$app->user->identity;
         <?php endif; ?>
 
         <div class="map">
-            <div id="map" style="width: 600px; height: 400px"></div>
 
+            <script>
+                ymaps.ready(init);
+                function init(){
+                    var myMap = new ymaps.Map("map", {
+                        center: [<?= $task->latitude ?>, <?= $task->longitude ?>],
+                        zoom: 15
+                    });
+
+                    // Создаём макет содержимого.
+                    MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+                        '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+                    ),
+
+                        myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+                            hintContent: 'Собственный значок метки',
+                            balloonContent: 'Это красивая метка'
+                        }, {
+                            // Опции.
+                            // Необходимо указать данный тип макета.
+                            iconLayout: 'default#image',
+                            // Своё изображение иконки метки.
+                          //  iconImageHref: '/../img/cross-big.png',
+                            // Размеры метки.
+                            iconImageSize: [30, 42],
+                            // Смещение левого верхнего угла иконки относительно
+                            // её "ножки" (точки привязки).
+                            iconImageOffset: [-5, -38]
+                        }),
+
+                        myPlacemarkWithContent = new ymaps.Placemark([<?= $task->latitude ?>, <?= $task->longitude ?>], {
+                            hintContent: 'Собственный значок метки с контентом',
+                            balloonContent: 'А эта — новогодняя',
+                            iconContent: '12'
+                        }, {
+                            // Опции.
+                            // Необходимо указать данный тип макета.
+                            iconLayout: 'default#imageWithContent',
+                            // Своё изображение иконки метки.
+                          //  iconImageHref: '/../img/cross-big.png',
+                            // Размеры метки.
+                            iconImageSize: [48, 48],
+                            // Смещение левого верхнего угла иконки относительно
+                            // её "ножки" (точки привязки).
+                            iconImageOffset: [-24, -24],
+                            // Смещение слоя с содержимым относительно слоя с картинкой.
+                            iconContentOffset: [15, 150],
+                            // Макет содержимого.
+                            iconContentLayout: MyIconContentLayout
+                        });
+
+                    myMap.geoObjects
+                        //  .add(myPlacemark)
+                       .add(myPlacemarkWithContent);
+                }
+            </script>
+          <div id="map" style="width: 600px; height: 400px"></div>
+<?php var_dump($task);?>
             <p class="map-address town">Москва</p>
             <p class="map-address">Новый арбат, 23, к. 1</p>
         </div>
