@@ -23,6 +23,8 @@ MainAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e666f398-c983-4bde-8f14-e3fec900592a&lang=ru_RU" type="text/javascript"></script>
+
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
@@ -38,10 +40,10 @@ MainAsset::register($this);
             <div class="nav-wrapper">
                 <ul class="nav-list">
                     <li class="list-item list-item--active">
-                        <a class="link link--nav">Новое</a>
+                        <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Новое</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Мои задания</a>
+                        <a href="<?php echo Url::to(['/my-tasks?status=new']); ?>" class="link link--nav">Мои задания</a>
                     </li>
                     <li class="list-item">
                         <a href="<?php echo Url::to(['tasks/add']); ?>" class="link link--nav">Создать задание</a>

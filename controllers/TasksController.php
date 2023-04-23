@@ -22,6 +22,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 use Yii;
 use app\models\User;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+
 
 class TasksController extends SecuredController
 {
@@ -66,9 +69,23 @@ class TasksController extends SecuredController
 
     }
 
-    public function actionView($id)
+    public function actionMyTasks()
     {
+        $my_tasks = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->all();
 
+        $request = Yii::$app->request;
+
+        $status = $request->get('status');
+
+
+        $my_tasks_new = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'new'])->all();
+        $my_tasks_in_process = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'in_progress'])->all();
+        $my_tasks_done = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'done'])->all();
+        return $this->render('my-tasks', ['my_tasks' => $my_tasks, 'my_tasks_new' => $my_tasks_new, 'my_tasks_in_process' => $my_tasks_in_process, 'my_tasks_done' => $my_tasks_done, 'status' => $status]);
+    }
+
+    public function actionView(int $id)
+    {
         $task = Task::find()->where(['id' => $id])->one();
 
         if ($task === null) {
@@ -78,36 +95,39 @@ class TasksController extends SecuredController
         $userModel = User::find()->where(['id' => $task->user_id])->one();
         $taskOwnerStatus = $userModel->user_status;
 
-        $reply_stat = TasksReply::find()->where(['task_id' => $id])->one();
-
-        $reply_status = $reply_stat->status;
-
-        if ($reply_status==='null') {
-            $reply_status = 'new';
-        }
+        $taskReply = TasksReply::find()->where([
+            'user_id' => Yii::$app->user->identity->id,
+            'task_id' => $id
+        ])->one();
 
         $files = Files::find()->where(['tasks_id' => Yii::$app->request->get('id')])->all();
 
-
-        return $this->render('single-task', ['task' => $task, 'userModel' => $userModel, 'reply_status' => $reply_status, 'taskOwnerStatus' => $taskOwnerStatus, 'files' => $files, 'id' => $id]);
+        return $this->render(
+            'single-task',
+            [
+                'task' => $task,
+                'userModel' => $userModel,
+                'taskReply' => $taskReply,
+                /*'reply_status' => $reply_status,*/
+                'taskOwnerStatus' => $taskOwnerStatus,
+                'files' => $files,
+                'id' => $id
+            ]);
     }
 
-
     public function actionAdd()
-
     {
         $categories = Category::find()->all();
         $model = new AddTask();
-
-
-        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
-
-
-            $task = $model->createNewTask();
+        $formData = \Yii::$app->request->post();
+        if ($model->load($formData) && $model->validate()) {
+            try {
+                $task = $model->createNewTask();
+            } catch (RequestException $e) {
+                throw new Exception('Can`t add new task');
+            }
             \Yii::$app->response->redirect(['/tasks/view/', 'id' => $task->id]);
         }
-
-
         return $this->render('add', ['model' => $model, 'categories' => $categories]);
     }
 
@@ -205,9 +225,7 @@ class TasksController extends SecuredController
         $changeReplyStatus = TasksReply::find()->where(['task_id' => $task_id])->one();
 
         $changeReplyStatus->status = $reply_status;
-        var_dump($changeReplyStatus->save());
-        var_dump($changeReplyStatus->getErrors());
-        exit();
+
         if ($changeReplyStatus->save()) {
 
             return $this->redirect('/tasks/view/' . $task_id);

@@ -2,6 +2,7 @@
 
 namespace app\assets;
 use yii\web\AssetBundle;
+use yii\web\View;
 
 class MainAsset extends AssetBundle
 {
@@ -9,9 +10,13 @@ class MainAsset extends AssetBundle
 
     public $css = [
         'css/style.css',
+        'css/autocomplete.min.css'
     ];
 
     public $js = [
         'js/main.js',
+    ];
+    public $jsOptions = [
+      //'position'=>View::POS_HEAD
     ];
 }

@@ -12,6 +12,8 @@ use yii\web\NotFoundHttpException;
 use yii\web\ServerErrorHttpException;
 use yii\web\UploadedFile;
 use app\models\Files;
+use GuzzleHttp\Client;
+
 
 /**
  * This is the model class for table "users".
@@ -60,17 +62,48 @@ class AddTask extends Model
 
     public function createNewTask()
     {
+
+        //добавление геокодера
+        $api_key = 'e666f398-c983-4bde-8f14-e3fec900592a';
+        $client = new Client();
+        $response = $client->request(
+            'GET',
+            'https://geocode-maps.yandex.ru/1.x',
+            [
+                'query' => [
+                    'apikey' => $api_key,
+                    'geocode' => $this->location,
+                    'format' => 'json'
+                ]
+            ]
+        );
+
+        $content = $response->getBody()->getContents(); // что тут происходит?
+        $response_data = json_decode($content, true);
+
+        if (is_array($response_data)) {
+            $coordinates = $response_data['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'];
+            $coordinates = explode(' ', $coordinates);
+        }
+
+
         $newTask = new Task();
         $newTask->name = $this->about_job;
         $newTask->description = $this->describe_task;
         $newTask->category_id = $this->categories;
-        $newTask->address = $this->location; // в $model->location null
+        //  $newTask->address = $this->location; // в $model->location null
+        //добавление геокодера
+        $newTask->address = $this->location;
+        $newTask->longitude = $coordinates[0];
+        $newTask->latitude = $coordinates[1];
+
         $newTask->budget = $this->budget;
         $newTask->expire = $this->expire_date;
         $newTask->create_at = date('Y-m-d h-m-s');
         $newTask->status = 1;
         $newTask->user_id = \Yii::$app->user->identity->id;
         $transaction = \Yii::$app->db->beginTransaction();
+
         try {
             if (!$newTask->save()) {
                 throw new Exception("Can not save new task");
