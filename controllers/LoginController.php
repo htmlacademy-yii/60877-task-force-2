@@ -7,6 +7,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 use yii\filters\AccessControl;
+use yii\authclient\AuthAction;
 
 class LoginController extends Controller
 {
@@ -27,6 +28,8 @@ class LoginController extends Controller
             ]
         ];
     }
+
+
 
     public function actionIndex()
     {

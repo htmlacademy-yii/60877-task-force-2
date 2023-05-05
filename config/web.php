@@ -39,6 +39,25 @@ $config = [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+               // 'google' => [
+                //     'class' => 'yii\authclient\clients\GoogleOpenId'
+                //  ],
+                //'facebook' => [
+                //    'class' => 'yii\authclient\clients\Facebook',
+                //    'clientId' => 'facebook_client_id',
+                //    'clientSecret' => 'секретный_ключ_facebook_client',
+                //  ],
+                'vkontakte' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => 51625219,
+                    'clientSecret' => 'hYqoXJUXvrFmjycK2xED',
+                ],
+                // и т.д.
+            ],
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

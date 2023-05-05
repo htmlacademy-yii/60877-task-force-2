@@ -33,7 +33,7 @@ MainAsset::register($this);
         <nav class="main-nav">
 
 
-            <a href='<?php echo Url::to(['/']); ?>' class="header-logo">
+            <a href='<?php echo Url::to(['/tasks']); ?>' class="header-logo">
                 <?php echo Html::img(Yii::$app->urlManager->createUrl('img/logotype.png')); ?>
             </a>
 
@@ -53,6 +53,41 @@ MainAsset::register($this);
                     </li>
                 </ul>
             </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const listItems = document.querySelectorAll('.nav-list .list-item');
+
+                    function setActiveItem(index) {
+                        const activeItem = document.querySelector('.nav-list .list-item--active');
+                        if (activeItem) {
+                            activeItem.classList.remove('list-item--active');
+                        }
+
+                        listItems[index].classList.add('list-item--active');
+                        localStorage.setItem('activeListItemIndex', index);
+                    }
+
+                    const activeListItemIndex = localStorage.getItem('activeListItemIndex');
+
+                    if (activeListItemIndex !== null) {
+                        setActiveItem(activeListItemIndex);
+                    }
+
+                    listItems.forEach((listItem, index) => {
+                        listItem.addEventListener('click', (e) => {
+                           // e.preventDefault(); // Отмена перехода по ссылке
+                            setActiveItem(index);
+                        });
+                    });
+
+                    // Добавление обработчика события клика для логотипа
+                    const logo = document.querySelector('.header-logo');
+                    logo.addEventListener('click', (e) => {
+                       // e.preventDefault(); // Отмена перехода по ссылке
+                        setActiveItem(0); // Установка активного класса для первого элемента списка
+                    });
+                });
+            </script>
         </nav>
         <div class="user-block">
             <?php

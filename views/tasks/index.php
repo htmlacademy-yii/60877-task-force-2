@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
-
+use yii\widgets\LinkPager;
 $this->title = 'My Yii Application';
 ?>
 
@@ -24,9 +24,45 @@ $this->title = 'My Yii Application';
             <?php echo \yii\widgets\ListView::widget([
                 'dataProvider' => $dataProvider,
                 'itemView' => '__taskitem',
-                'layout' => "{items}\n{pager}"
+                'layout' => "{items}\n{pager}",
+                'class' => 'list-view',
+                'pager' => [
+                    'options' => [
+                        'class' => 'pagination-list', // Добавьте свой CSS класс здесь
+                    ],
+                    'linkContainerOptions' => [
+                        'class' => 'pagination-item', // Добавьте свой CSS класс для тегов <li> здесь
+                    ],
+                    'linkOptions' => [
+                        'class' => 'link link--page', // Добавьте свой CSS класс для тегов <a> здесь
+                    ],
+                    'maxButtonCount' => 3, // Устанавливаем максимальное количество отображаемых страниц на 3
+                   // 'prevPageLabel' => '<<', // Устанавливаем явную метку для кнопки перехода на предыдущую страницу с текстом "<<"
+                    //'firstPageLabel' => '1', // Устанавливаем явную метку для первой страницы
+                    'lastPageLabel' => false, // Отключаем метку для последней страницы
+                    //'nextPageLabel' => '>>',
+                    'activePageCssClass' => 'pagination-item--active',
+                ],
             ]); ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var paginationList = document.getElementById('pagination-list');
+                var listItems = paginationList.getElementsByClassName('list-item');
 
+                for (var i = 0; i < listItems.length; i++) {
+                    listItems[i].addEventListener('click', function (event) {
+                        // Удаляем класс list-item--active с текущего активного элемента
+                        var activeItem = paginationList.querySelector('.list-item--active');
+                        if (activeItem) {
+                            activeItem.classList.remove('list-item--active');
+                        }
+
+                        // Добавляем класс list-item--active на новый элемент
+                        event.target.classList.add('list-item--active');
+                    });
+                }
+            });
+        </script>
     </div>
     <div class="right-column">
         <div class="right-card black">
