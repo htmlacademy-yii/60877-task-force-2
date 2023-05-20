@@ -49,4 +49,9 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Task::class, ['id'=>'category_id']);
     }
+    public function getUsers()
+    {
+        return $this->hasMany(User::class, ['id' => 'user_id'])
+            ->viaTable('user_qualifications', ['category_id' => 'id']);
+    }
 }

@@ -44,7 +44,7 @@ use yii\widgets\ActiveForm;
                     ->textInput(['value' => $user->email])->label('Email'); ?>
             </div>
             <div class="form-group">
-                <?= $form->field($model, 'date_birth', ['errorOptions' => ['id' => 'help-block'],
+                <?= $form->field($model, 'date_of_birth', ['errorOptions' => ['id' => 'help-block'],
                     'options' => ['id' => 'profile-name']])
                     ->textInput(['value' => $user->date_of_birth])->label('День Рождения'); ?>
             </div>
@@ -62,7 +62,7 @@ use yii\widgets\ActiveForm;
             </div>
         </div>
         <div class="form-group">
-            <?= $form->field($model, 'informationaboutperson', ['errorOptions' => ['id' => 'help-block'],
+            <?= $form->field($model, 'quote', ['errorOptions' => ['id' => 'help-block'],
                 'options' => ['id' => 'profile-name']])
                 ->textarea(['value' => $user->email])->label('Информация о себе'); ?>
         </div>
