@@ -197,7 +197,7 @@ app\assets\LandingAsset::register($this);
                             <a href="<?php echo Url::to(['/register']);?>">Регистрация</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Создать задание</a>
+                            <a href="<?php echo Url::to(['/tasks/add']);?>">Создать задание</a>
                         </li>
                         <li class="links__item">
                             <a href="#">Справка</a>

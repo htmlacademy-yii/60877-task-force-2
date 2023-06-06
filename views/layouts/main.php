@@ -103,7 +103,7 @@ MainAsset::register($this);
                     <div class="popup-head">
                         <ul class="popup-menu">
                             <li class="menu-item">
-                                <a href="#" class="link">Настройки</a>
+                                <a href="<?php echo Url::to(['edit-profile/index']); ?>" class="link">Настройки</a>
                             </li>
                             <li class="menu-item">
                                 <a href="#" class="link">Связаться с нами</a>

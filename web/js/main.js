@@ -46,3 +46,10 @@ if (buttonInput) {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    var inputFile = document.querySelector('input[type="file"]');
+    inputFile.addEventListener('change', function() {
+        this.setAttribute('data-filename', this.value);
+    });
+});

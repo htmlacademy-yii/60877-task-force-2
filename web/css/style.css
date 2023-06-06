@@ -1928,4 +1928,12 @@ form .has-error textarea:hover {
     display: block;
 }
 
+.cat-links {
+    text-decoration: none;
+    color: #fff;
+}
+
+input[type="file"]:after {
+    content: attr(data-filename);
+}
 /*# sourceMappingURL=style.css.map */

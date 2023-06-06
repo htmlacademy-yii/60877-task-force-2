@@ -94,25 +94,22 @@ $identity = Yii::$app->user->identity;
                         .add(myPlacemarkWithContent);
                 }
             </script>
-            <div id="map" style="width: 600px; height: 400px"></div>
-            <?php
+        <div id="map" style="width: 600px; height: 400px"></div>
+        <?php
+        $newaddr = explode(",", $task->address);
 
-            $newaddr = explode(",", $task->address);
+        if (isset($newaddr[0])) {
+            echo "<p class='map-address town'>$newaddr[0]</p>";
+        }
 
-            ?>
-            <?php
-            if (!array_key_exists($newaddr[0], $newaddr) || !array_key_exists($newaddr[1], $newaddr)): ?>
-                <p class="map-address town"></p>
-                <p class="map-address"></p>
-            <?php else: ?>
+        if (isset($newaddr[1]) && isset($newaddr[2])) {
+            echo "<p class='map-address'>$newaddr[1] $newaddr[2]</p>";
+        } elseif (isset($newaddr[1])) {
+            echo "<p class='map-address'>$newaddr[1]</p>";
+        }
+        ?>
+    </div>
 
-                <p class="map-address town"><?php echo $newaddr[0]; ?></p>
-                <p class="map-address"><?php echo "$newaddr[1] $newaddr[2]"; ?></p>
-
-            <?php endif; ?>
-
-
-        </div>
         <?php
 
         if (count($task->replies) > 0): ?>
@@ -190,7 +187,7 @@ $identity = Yii::$app->user->identity;
             <h4 class="head-card">Информация о задании</h4>
             <dl class="black-list">
                 <dt>Категория</dt>
-                <dd><?php echo $task->category->name; ?></dd>
+                <dd><?php echo Html::a($task->category->name, ['/tasks', 'category_id' => $task->category->id]); ?></dd>
                 <dt>Дата публикации</dt>
                 <dd><?php
 

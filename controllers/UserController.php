@@ -18,9 +18,11 @@ class UserController extends SecuredController
     public function actionView($id)
     {
         $singleUser = User::find()->where(['id' => $id])->one();
+
         if ($singleUser === null) {
             throw new NotFoundHttpException("Нету такого юзера!");
         }
+
 
         if ($singleUser->user_status !== 'executor') {
             throw new NotFoundHttpException("Юзер не является исполнителем!");
@@ -28,12 +30,14 @@ class UserController extends SecuredController
 
         $numberReplies = UserReply::find()->where(['executor_id' => $id])->count();
 
+
         return $this->render('index',
             [
                 'singleUser' => $singleUser,
-                'numberReplies' => $numberReplies
+               'numberReplies' => $numberReplies
             ]
         );
+
 
     }
 

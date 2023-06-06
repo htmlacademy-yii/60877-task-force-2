@@ -86,6 +86,32 @@ class Task extends \yii\db\ActiveRecord
         return \Yii::$app->formatter->asRelativeTime($this->create_at);
     }
 
+    public function getElapsedTime()
+    {
+        $creationDate = new \DateTime($this->create_at);
+        $now = new \DateTime();
+
+        $interval = $now->diff($creationDate);
+
+        $elapsedDays = $interval->d;
+        $elapsedHours = $interval->h;
+        $elapsedMinutes = $interval->i;
+
+        $result = "";
+
+        if ($elapsedDays > 0) {
+            $result .= "$elapsedDays дней ";
+        }
+        if ($elapsedHours > 0) {
+            $result .= "$elapsedHours часов ";
+        }
+        if ($elapsedMinutes > 0) {
+            $result .= "$elapsedMinutes минут ";
+        }
+
+        return $result . "назад";
+    }
+
 
     public function getCategory()
     {

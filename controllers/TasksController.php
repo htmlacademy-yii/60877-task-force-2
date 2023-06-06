@@ -43,6 +43,9 @@ class TasksController extends SecuredController
                         'allow' => false,
                         'actions' => ['add'],
                         'matchCallback' => function ($rule, $action) {
+                            if (\Yii::$app->user->isGuest) {
+                                return false;
+                            }
                             return \Yii::$app->user->identity->user_status === User::EXECUTOR;
                         }
                     ]
@@ -51,7 +54,7 @@ class TasksController extends SecuredController
         ];
     }
 
-    public function actionIndex()
+  /*  public function actionIndex()
     {
 
         $categories = Category::find()->all();
@@ -67,20 +70,42 @@ class TasksController extends SecuredController
             'categories' => $categories,
         ]);
 
+    }*/
+    public function actionIndex()
+    {
+        $categories = Category::find()->all();
+        $modelSearch = new SearchTasks();
+
+        // Проверка на наличие параметра category_id в запросе
+        if ($this->request->get('category_id')) {
+            // Преобразование строки к integer для безопасности
+            $categoryId = (int) $this->request->get('category_id');
+
+            // Запись categoryId в модель SearchTasks
+            $modelSearch->categories = [$categoryId];
+        }
+
+        $dataProvider = $modelSearch->search($this->request->post());
+
+        return $this->render('index', [
+            'modelSearch' => $modelSearch,
+            'dataProvider' => $dataProvider,
+            'categories' => $categories,
+        ]);
     }
 
     public function actionMyTasks()
     {
-        $my_tasks = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->all();
+        $my_tasks = Task::find()->where(['executor_id' => \Yii::$app->user->identity->id])->all();
 
         $request = Yii::$app->request;
 
         $status = $request->get('status');
 
 
-        $my_tasks_new = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'new'])->all();
-        $my_tasks_in_process = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'in_progress'])->all();
-        $my_tasks_done = Task::find()->where(['user_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'done'])->all();
+        $my_tasks_new = Task::find()->where(['executor_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'new'])->all();
+        $my_tasks_in_process = Task::find()->where(['executor_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'in_progress'])->all();
+        $my_tasks_done = Task::find()->where(['executor_id' => \Yii::$app->user->identity->id])->andWhere(['status' => 'done'])->all();
         return $this->render('my-tasks', ['my_tasks' => $my_tasks, 'my_tasks_new' => $my_tasks_new, 'my_tasks_in_process' => $my_tasks_in_process, 'my_tasks_done' => $my_tasks_done, 'status' => $status]);
     }
 
@@ -128,7 +153,13 @@ class TasksController extends SecuredController
             }
             \Yii::$app->response->redirect(['/tasks/view/', 'id' => $task->id]);
         }
-        return $this->render('add', ['model' => $model, 'categories' => $categories]);
+        $user = Yii::$app->user->identity;
+        if ($user->user_status==='customer') {
+            return $this->render('add', ['model' => $model, 'categories' => $categories, 'user'=>$user]);
+        }
+       else {
+           return $this->redirect(['tasks/index']);
+       }
     }
 
 

@@ -79,8 +79,10 @@ class UserReply extends \yii\db\ActiveRecord
 
     public function getWasOnSite()
     {
-        $timePeriod = strtotime('now') - $this->create_at;
-        $days = number_format($timePeriod / 60 / 60 / 24);
+        $create_at_unix = strtotime($this->create_at);
+        $timePeriod = strtotime('now') - $create_at_unix;
+
+        $days = floor($timePeriod / 60 / 60 / 24);
         return \Yii::t('yii', '{delta, plural, =1{1 day} other{# days}}', ['delta' => $days], Yii::$app->language);
     }
 

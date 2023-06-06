@@ -9,7 +9,7 @@ use yii\helpers\Url;
            class="link link--block link--big"><?php echo $model->name; ?></a>
         <p class="price price--task"><?php echo $model->budget; ?> ₽</p>
     </div>
-    <p class="info-text"><span class="current-time"><?php echo $model->getWasOnSite(); ?> </span>
+    <p class="info-text"><span class="current-time"><?php echo $model->getElapsedTime(); ?> </span>
     </p>
     <p class="task-text"><?php echo $model->description; ?>
     </p>

@@ -9,7 +9,13 @@ use app\models\TagsAttribute;
 
 ?>
 
+
 <main class="main-content container">
+    <?php if (Yii::$app->session->hasFlash('error')): ?>
+        <div class="alert alert-danger">
+            <?= Yii::$app->session->getFlash('error'); ?>
+        </div>
+    <?php endif; ?>
     <div class="left-column">
         <h3 class="head-main"><?php echo $singleUser->name; ?></h3>
         <div class="user-card">
@@ -53,7 +59,13 @@ use app\models\TagsAttribute;
                 <p class="head-info"> Био</p>
                 <p class="bio-info">
                     <span class="country-info"><?php echo $singleUser->country; ?></span>,
-                    <span class="town-info"><?php echo $singleUser->city->name; ?></span>,
+                    <span class="town-info"><?php
+                        if ($singleUser->city) {
+                            echo $singleUser->city->name;
+                        } else {
+                            echo 'Город не указан';
+                        }
+                        ?></span>,
                     <span class="age-info"><?php echo $singleUser->age; ?></span> лет
                 </p>
             </div>
@@ -137,5 +149,5 @@ use app\models\TagsAttribute;
             </ul>
         </div>
     </div>
-    s
+
 </main>

@@ -76,12 +76,29 @@ $this->title = 'My Yii Application';
 
                 <h4 class="head-card">Категории</h4>
                 <div class="form-group">
-                    <?php foreach ($categories as $attr => $category): ?>
+                    <?php /*foreach ($categories as $attr => $category): ?>
                         <?php
                         $checked = in_array($category->id, $modelSearch->categories);
                         echo $form
                             ->field($modelSearch, "categories[$attr]")
                             ->checkbox(['id' => $attr, 'value' => $category->id, 'label' => $category->name, 'checked' => $checked])
+                        ?>
+                    <?php endforeach;*/ ?>
+                    <?php foreach ($categories as $attr => $category): ?>
+                        <?php
+                        $checked = in_array($category->id, $modelSearch->categories);
+                        /*echo $form
+                            ->field($modelSearch, "categories[$attr]")
+                            ->checkbox(['id' => $attr, 'value' => $category->id, 'label' => Html::a($category->name, ['tasks/index', 'category_id' => $category->id]), 'checked' => $checked])*/
+                        echo $form
+                            ->field($modelSearch, "categories[$attr]")
+                            ->checkbox([
+                                'id' => $attr,
+                                'class' => '', // добавление класса
+                                'value' => $category->id,
+                                'label' => Html::a($category->name, ['tasks/index', 'category_id' => $category->id], ['class' => 'cat-links']),
+                                'checked' => $checked
+                            ])
                         ?>
                     <?php endforeach; ?>
                 </div>

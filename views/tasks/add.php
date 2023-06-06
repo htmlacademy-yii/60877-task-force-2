@@ -5,9 +5,10 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\JsExpression;
 use app\models\User;
-
+use kartik\date\DatePicker;
 $this->title = 'Страница добавления задания';
 ?>
+
 <main class="main-content main-content--center container">
     <div class="add-task-form regular-form">
 
@@ -34,9 +35,11 @@ $this->title = 'Страница добавления задания';
             <?= $form->field($model, 'budget', ['errorOptions' => ['class' => 'help-block3'],
                 'options' => []])
                 ->textInput(['class' => 'budget-icon'])->label('Бюджет', ['class' => 'control-label']); ?>
-            <?= $form->field($model, 'expire_date', ['errorOptions' => ['class' => 'help-block'],
+
+           <?= $form->field($model, 'expire_date', ['errorOptions' => ['class' => 'help-block'],
                 'options' => []])
                 ->input('date')->label('Срок исполнения', ['class' => 'control-label']); ?>
+
         </div>
         <p class="form-label">Файлы</p>
 

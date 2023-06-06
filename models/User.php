@@ -177,9 +177,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
-
     }
-
 
     public function getAllRepliesForUsers()
     {
