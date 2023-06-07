@@ -22,21 +22,9 @@ use yii\helpers\Html;
     <div class="my-profile-form">
 
         <?php
-        $form = ActiveForm::begin(['options' => ['method' => 'post', 'enableAjaxValidation' => true]]); ?>
+        $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data', 'method' => 'post', 'enableAjaxValidation' => true]]); ?>
         <h3 class="head-main head-regular">Мой профиль</h3>
         <div class="photo-editing">
-          <!--  <div>
-                <p class="form-label">Аватар</p>
-
-
-            <img class="avatar-preview" src="img/man-glasses.png" width="83" height="83">
-            </div>
-            <input hidden value="Сменить аватар" type="file" id="button-input">
-            <label for="button-input" class="button button--black"> Сменить аватар</label>
-
-
-        </div>-->
-
             <?php
             $user = Yii::$app->user->identity;
 
@@ -46,9 +34,12 @@ use yii\helpers\Html;
                 echo Html::img("img/man-glasses.png", ["class" => "avatar-preview", "width" => "83", "height" => "83"]);
             }
             ?>
-            <?= $form->field($model, 'user_img', ['options' => ['class' => ''], 'template' => "{input}\n{error}"])
-                ->fileInput(['class' => '', 'id' => 'button-input'])
-                ->label('Сменить аватар', ['for' => 'button-input', 'class' => 'button button--black']) ?>
+
+            <?= $form->field($model, 'user_img')->fileInput(['id' => 'button-input', 'style' => 'display:none;']) ?>
+
+            <?= Html::label('Сменить аватар', 'button-input', ['class' => 'button button--black']) ?>
+
+
 
 
         </div>

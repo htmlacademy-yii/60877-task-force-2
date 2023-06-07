@@ -94,7 +94,8 @@ MainAsset::register($this);
             $isGuest = Yii::$app->user->isGuest;
             if (!$isGuest):?>
                 <a href="#">
-                    <?php echo Html::img('../img/' . \Yii::$app->user->identity->user_img); ?>
+                    <?php echo Html::img('/uploads/' . \Yii::$app->user->identity->user_img, ['width' => '60', 'height' => '60']); ?>
+
                 </a>
 
                 <div class="user-menu">

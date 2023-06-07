@@ -8,7 +8,7 @@ use yii\db\ActiveRecord;
 
 class EditProfile extends ActiveRecord
 {
-    public $user_img;
+    //public $user_img;
 
     public static function tableName()
     {

@@ -1932,8 +1932,7 @@ form .has-error textarea:hover {
     text-decoration: none;
     color: #fff;
 }
-
-input[type="file"]:after {
-    content: attr(data-filename);
+div.form-group.field-button-input label:first-child {
+    display: none;
 }
 /*# sourceMappingURL=style.css.map */
