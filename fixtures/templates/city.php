@@ -3,8 +3,9 @@
  * @var $faker \Faker\Generator
  * @var $index integer
  */
+$city = $faker->city();
 return [
-    'name' => $faker->word(),
-    'latitude' => $faker->randomFloat(10),
-    'longitude' => $faker->randomFloat(10),
+    'name' => $city,
+    'latitude' => $city->latitude(),
+    'longitude' => $city->longitude(),
 ];

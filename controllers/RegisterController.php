@@ -16,11 +16,13 @@ class RegisterController extends Controller
     {
 
         $register = new Register();
+
         $cities = City::find()->all();
         if ($register->load(\Yii::$app->request->post()) && $register->validate()) { // если данные проходят валидацию то делаем дальше
             $users = new User();
-            $users->name = $register->name;
-            $users->email = $register->email;
+            $users->name = htmlspecialchars($register->name, ENT_QUOTES);
+            $users->email = htmlspecialchars($register->email, ENT_QUOTES);
+            $users->dt_add = date('Y-m-d H:i:s', time());
             $users->city_id = $register->city;
             $users->answer_orders = $register->answer_orders;
             $users->password_hash = Yii::$app->getSecurity()->generatePasswordHash($register->password); // а в поле пароля хэшированное значение

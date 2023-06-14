@@ -188,10 +188,10 @@ app\assets\LandingAsset::register($this);
                             <a href="<?php echo Url::to(['/tasks']);?>">Задания</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Мой профиль</a>
+                            <a href="<?php echo Url::to(['/users/view']);?>">Мой профиль</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Исполнители</a>
+                            <a href="<?php echo Url::to(['/users']);?>">Исполнители</a>
                         </li>
                         <li class="links__item">
                             <a href="<?php echo Url::to(['/register']);?>">Регистрация</a>
@@ -200,7 +200,7 @@ app\assets\LandingAsset::register($this);
                             <a href="<?php echo Url::to(['/tasks/add']);?>">Создать задание</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Справка</a>
+                            <a href="<?php echo Url::to(['/reference']);?>">Справка</a>
                         </li>
                     </ul>
                 </div>

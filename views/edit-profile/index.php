@@ -2,6 +2,7 @@
 
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 ?>
 
 <main class="main-content main-content--left container">
@@ -13,9 +14,6 @@ use yii\helpers\Html;
             </li>
             <li class="side-menu-item">
                 <a href="#" class="link link--nav">Безопасность</a>
-            </li>
-            <li class="side-menu-item">
-                <a href="#" class="link link--nav">Уведомления</a>
             </li>
         </ul>
     </div>
@@ -29,7 +27,7 @@ use yii\helpers\Html;
             $user = Yii::$app->user->identity;
 
             if ($user->user_img) {
-                echo Html::img("@web/uploads/" . $user->user_img, ["class" => "avatar-preview", "width" => "83", "height" => "83"]);
+                echo Html::img("@web/uploads/" . Html::encode($user->user_img), ["class" => "avatar-preview", "width" => "83", "height" => "83"]);
             } else {
                 echo Html::img("img/man-glasses.png", ["class" => "avatar-preview", "width" => "83", "height" => "83"]);
             }
@@ -40,52 +38,54 @@ use yii\helpers\Html;
             <?= Html::label('Сменить аватар', 'button-input', ['class' => 'button button--black']) ?>
 
 
-
-
         </div>
         <div class="form-group">
             <?= $form->field($model, 'name', ['errorOptions' => ['id' => 'help-block'],
                 'options' => ['id' => 'profile-name1']])
-                ->textInput(['value' => $user->name])->label('Ваше имя'); ?>
+                ->textInput(['value' => Html::encode($user->name)])->label('Ваше имя'); ?>
         </div>
         <div class="half-wrapper">
             <div class="form-group">
                 <?= $form->field($model, 'email', ['errorOptions' => ['id' => 'help-block'],
                     'options' => ['id' => 'profile-name2']])
-                    ->textInput(['value' => $user->email])->label('Email'); ?>
+                    ->textInput(['value' => Html::encode($user->email)])->label('Email'); ?>
             </div>
             <div class="form-group">
-                <?= $form->field($model, 'date_of_birth', ['errorOptions' => ['id' => 'help-block'],
-                    'options' => ['id' => 'profile-name']])
-                    ->textInput(['value' => $user->date_of_birth])->label('День Рождения'); ?>
+                <?= $form->field($model, 'date_of_birth')->widget(\kartik\date\DatePicker::class, [
+                    'options' => ['placeholder' => 'Выберите дату рождения ...'],
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'format' => 'dd.mm.yyyy'
+                    ]
+                ]); ?>
             </div>
         </div>
         <div class="half-wrapper">
             <div class="form-group">
                 <?= $form->field($model, 'phone', ['errorOptions' => ['id' => 'help-block'],
                     'options' => ['id' => 'profile-name3']])
-                    ->textInput(['value' => $user->phone])->label('Телефон'); ?>
+                    ->textInput(['value' => Html::encode($user->phone)])->label('Телефон'); ?>
             </div>
             <div class="form-group">
                 <?= $form->field($model, 'telegram', ['errorOptions' => ['id' => 'help-block'],
                     'options' => ['id' => 'profile-name4']])
-                    ->textInput(['value' => $user->telegram])->label('Телеграм'); ?>
+                    ->textInput(['value' => Html::encode($user->telegram)])->label('Телеграм'); ?>
             </div>
         </div>
         <div class="form-group">
             <?= $form->field($model, 'quote', ['errorOptions' => ['id' => 'help-block'],
                 'options' => ['id' => 'profile-name5']])
-                ->textarea(['value' => $user->quote])->label('Информация о себе'); ?>
+                ->textarea(['value' => Html::encode($user->quote)])->label('Информация о себе'); ?>
         </div>
         <div class="form-group">
             <p class="form-label">Выбор специализаций</p>
             <div class="checkbox-profile">
 
-
-                <?php foreach ($categories as $catName): ?>
-                    <label class="control-label" for="сourier-services">
-                        <input type="checkbox" id="сourier-services" checked>
-                        <?php echo $catName->name; ?></label>
+                <?php foreach ($categories as $category): ?>
+                    <label class="control-label" for="category-<?= Html::encode($category->id) ?>">
+                        <input type="checkbox" id="category-<?= Html::encode($category->id) ?>" name="EditProfile[categories][]" value="<?= Html::encode($category->id) ?>" <?= in_array($category->id, $model->categories) ? 'checked' : '' ?>>
+                        <?= Html::encode($category->name); ?>
+                    </label>
                 <?php endforeach; ?>
 
             </div>

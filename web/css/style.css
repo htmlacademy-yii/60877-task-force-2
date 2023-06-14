@@ -1047,7 +1047,7 @@ template {
 .right-card {
     width: 240px;
     padding: 25px 30px;
-    padding-top: 20px;
+    padding-top: 1px;
     border-radius: 15px;
     margin-top: 40px;
 }
@@ -1445,7 +1445,7 @@ select {
 
 .search-form .head-card:not(.head-card:first-child) {
     margin-top: 33px;
-    margin-bottom: 0;
+    margin-bottom: 18px;
 }
 
 .search-form .head-card:first-child {
@@ -1933,6 +1933,37 @@ form .has-error textarea:hover {
     color: #fff;
 }
 div.form-group.field-button-input label:first-child {
+    display: none;
+}
+#password-user {
+    width: 295px;
+}
+#password-repeat-user {
+    width: 295px;
+}
+input[type=submit] {
+    border: none;
+    padding: 15px 43px;
+    margin-top: 24px;
+    font-size: 19px;
+    width: 221px;
+    display: inline-block;
+    float: right;
+}
+.control-label input[type=checkbox] {
+    margin-top: 20px;
+}
+#searchtasks-categories {
+    display: flex;
+    flex-direction: column;
+}
+.mark a::after,
+.mark a::before {
+    display: none;
+}
+
+/* Скрыть неактивные элементы */
+.pagination-item.disabled {
     display: none;
 }
 /*# sourceMappingURL=style.css.map */

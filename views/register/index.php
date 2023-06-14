@@ -1,20 +1,14 @@
 <?php
-
 /** @var yii\web\View $this */
-
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
-
 $this->title = 'Register page';
 ?>
-
 <main class="container container--registration">
     <div class="center-block">
         <div class="registration-form regular-form">
             <?php
-
-
             $form = ActiveForm::begin([
                 'method' => 'post',
             ]) ?>
@@ -29,7 +23,7 @@ $this->title = 'Register page';
                 <div class="form-group">
                     <?php echo $form->field($register, 'city')->dropdownList(
                         ArrayHelper::map($cities, 'id', 'name')
-                    ); ?>
+                    )->label('Город'); ?>
                 </div>
             </div>
             <div class="form-group">
@@ -41,15 +35,12 @@ $this->title = 'Register page';
             </div>
             <div class="form-group">
                 <?php
-
                 $template = '{input}{label}{error}{hint}';
                 echo $form->field($register, 'answer_orders', ['template' => $template])
                     ->checkbox(['id' => 'response-user', 'checked' => true, 'class' => 'control-label']);
                 ?>
-
-
             </div>
-            <?= Html::submitButton('Создать аккаунт', ['class' => 'button button--blue']) ?>
+            <?= Html::input('submit', null, 'Создать аккаунт', ['class' => 'button button--blue']) ?>
             <?php ActiveForm::end() ?>
 
         </div>

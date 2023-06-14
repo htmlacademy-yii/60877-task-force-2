@@ -9,8 +9,10 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use yii\authclient\ClientInterface;
 use app\models\ContactForm;
 use app\components\AuthHandler;
+
 class SiteController extends Controller
 {
     /**
@@ -78,12 +80,12 @@ class SiteController extends Controller
 
         ];
     }
+
     public function onAuthSuccess(ClientInterface $client)
     {
         // Получение данных пользователя
         //$attributes = $client->getUserAttributes();
         (new AuthHandler($client))->handle();
-
         // Здесь вы можете реализовать свою логику обработки данных пользователя и авторизации в вашем приложении.
     }
 
@@ -109,6 +111,7 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
     public function actionError()
     {
         $exception = Yii::$app->errorHandler->exception;

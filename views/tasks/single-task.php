@@ -297,4 +297,8 @@ $identity = Yii::$app->user->identity;
             <?php echo Html::submitButton('Завершить', ['class' => 'button button--pop-up button--blue']) ?>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="button-conta
+        <div class="button-container">
+            <button class="button--close" type="button">Закрыть окно</button>
+        </div>
+    </div>
+</section>

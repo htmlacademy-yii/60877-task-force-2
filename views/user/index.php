@@ -6,7 +6,7 @@ use app\models\TagsAttribute;
  * @var app\models\User $singleUser ;
  */
 
-
+use yii\helpers\Html;
 ?>
 
 
@@ -58,7 +58,7 @@ use app\models\TagsAttribute;
             <div class="bio">
                 <p class="head-info"> Био</p>
                 <p class="bio-info">
-                    <span class="country-info"><?php echo $singleUser->country; ?></span>,
+                    <span class="country-info"><?php echo Html::encode($singleUser->country); ?></span>,
                     <span class="town-info"><?php
                         if ($singleUser->city) {
                             echo $singleUser->city->name;

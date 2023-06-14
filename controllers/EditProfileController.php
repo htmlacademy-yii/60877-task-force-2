@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Categories;
+use app\models\UserQualifications;
 use app\models\Category;
 use app\models\EditProfile;
 use app\models\User;
@@ -19,9 +20,13 @@ class EditProfileController extends SecuredController
         $id = \Yii::$app->user->id;
         $user = User::find()->where(['id' => $id])->one();
 
-        $categories = Category::find()->all();
         $request = Yii::$app->request;
         $post = $request->post();
+        $categories = Category::find()->all();
+
+        $model->categories = array_map(function ($category) {
+            return $category->id;
+        }, $user->qualifications);
 
         if ($model->load($post) && $model->validate()) {
 
@@ -46,16 +51,25 @@ class EditProfileController extends SecuredController
 
 
             if ($user->save()) {
+                UserQualifications::deleteAll(['user_id' => $user->id]);
+
+                // Save selected categories to user qualifications
+                foreach ($model->categories as $categoryId) {
+                    $qualification = new UserQualifications();
+                    $qualification->user_id = $user->id;
+                    $qualification->category_id = $categoryId;
+                    $qualification->save();
+                }
                 return $this->redirect('tasks');
             }
 
         }
         // Получаем связанные категории для текущего пользователя
-        $categories = $user->categories;
-        $categoryNames = array_map(function ($category) {
+        //$categories = $user->categories;
+      /*  $categoryNames = array_map(function ($category) {
             return $category->name;
-        }, $categories);
+        }, $categories);*/
 
-        return $this->render('index', ['model' => $model, 'user' => $user, 'categories' => $categories, 'categoryNames' => $categoryNames]);
+        return $this->render('index', ['model' => $model, 'user' => $user, 'categories' => $categories]);
     }
 }

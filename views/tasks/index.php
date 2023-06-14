@@ -13,6 +13,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
 use yii\widgets\LinkPager;
+use yii\helpers\ArrayHelper;
 $this->title = 'My Yii Application';
 ?>
 
@@ -21,29 +22,32 @@ $this->title = 'My Yii Application';
 
         <h3 class="head-main head-task">Новые задания</h3>
 
-            <?php echo \yii\widgets\ListView::widget([
-                'dataProvider' => $dataProvider,
-                'itemView' => '__taskitem',
-                'layout' => "{items}\n{pager}",
-                'class' => 'list-view',
-                'pager' => [
-                    'options' => [
-                        'class' => 'pagination-list', // Добавьте свой CSS класс здесь
-                    ],
-                    'linkContainerOptions' => [
-                        'class' => 'pagination-item', // Добавьте свой CSS класс для тегов <li> здесь
-                    ],
-                    'linkOptions' => [
-                        'class' => 'link link--page', // Добавьте свой CSS класс для тегов <a> здесь
-                    ],
-                    'maxButtonCount' => 3, // Устанавливаем максимальное количество отображаемых страниц на 3
-                   // 'prevPageLabel' => '<<', // Устанавливаем явную метку для кнопки перехода на предыдущую страницу с текстом "<<"
-                    //'firstPageLabel' => '1', // Устанавливаем явную метку для первой страницы
-                    'lastPageLabel' => false, // Отключаем метку для последней страницы
-                    //'nextPageLabel' => '>>',
-                    'activePageCssClass' => 'pagination-item--active',
+        <?php echo \yii\widgets\ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '__taskitem',
+            'layout' => "{items}\n{pager}",
+            'pager' => [
+                'options' => [
+                    'tag' => 'ul',
+                    'class' => 'pagination-list',
                 ],
-            ]); ?>
+                'linkContainerOptions' => [
+                    'tag' => 'li',
+                    'class' => 'pagination-item',
+                ],
+                'linkOptions' => [
+                    'class' => 'link link--page',
+                ],
+                'nextPageCssClass' => 'mark',
+                'prevPageCssClass' => 'mark',
+                'nextPageLabel' => '', // Удаляем символ стрелки для следующей страницы
+                'prevPageLabel' => '', //
+                'activePageCssClass' => 'pagination-item--active',
+                'maxButtonCount' => 3,
+                'lastPageLabel' => false,
+                'firstPageLabel' => false,
+            ],
+        ]); ?>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var paginationList = document.getElementById('pagination-list');
@@ -76,31 +80,18 @@ $this->title = 'My Yii Application';
 
                 <h4 class="head-card">Категории</h4>
                 <div class="form-group">
-                    <?php /*foreach ($categories as $attr => $category): ?>
-                        <?php
-                        $checked = in_array($category->id, $modelSearch->categories);
-                        echo $form
-                            ->field($modelSearch, "categories[$attr]")
-                            ->checkbox(['id' => $attr, 'value' => $category->id, 'label' => $category->name, 'checked' => $checked])
-                        ?>
-                    <?php endforeach;*/ ?>
-                    <?php foreach ($categories as $attr => $category): ?>
-                        <?php
-                        $checked = in_array($category->id, $modelSearch->categories);
-                        /*echo $form
-                            ->field($modelSearch, "categories[$attr]")
-                            ->checkbox(['id' => $attr, 'value' => $category->id, 'label' => Html::a($category->name, ['tasks/index', 'category_id' => $category->id]), 'checked' => $checked])*/
-                        echo $form
-                            ->field($modelSearch, "categories[$attr]")
-                            ->checkbox([
-                                'id' => $attr,
-                                'class' => '', // добавление класса
-                                'value' => $category->id,
-                                'label' => Html::a($category->name, ['tasks/index', 'category_id' => $category->id], ['class' => 'cat-links']),
-                                'checked' => $checked
-                            ])
-                        ?>
-                    <?php endforeach; ?>
+                    <div class="checkbox-wrapper">
+                        <?= $form->field($modelSearch, 'categories')
+                            ->checkboxList(
+                                ArrayHelper::map($categories, 'id', 'name'),
+                                [
+                                    'item' => function ($index, $label, $name, $checked, $value) {
+                                        $checked = $checked ? 'checked' : '';
+                                        return "<label class='control-label'><input type='checkbox' {$checked} name='{$name}' value='{$value}'>" . Html::encode($label) . "</label>";
+                                    }
+                                ]
+                            )->label(false) ?>
+                    </div>
                 </div>
                 <h4 class="head-card">Дополнительно</h4>
                 <div class="form-group">
@@ -117,7 +108,7 @@ $this->title = 'My Yii Application';
                         ['text' => 'Please select', 'options' => ['id' => 'period-value', 'label' => '']])->label('');
                     ?>
                 </div>
-                <?= Html::submitButton('Искать', ['class' => 'button button--blue', 'value' => "Искать"]) ?>
+                <?= Html::input('submit', null, 'Искать', ['class' => 'button button--blue']) ?>
                 <?php ActiveForm::end() ?>
 
             </div>

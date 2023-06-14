@@ -224,6 +224,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $rating;
 
     }
+    public function getQualifications()
+    {
+        return $this->hasMany(Category::class, ['id' => 'category_id'])
+            ->viaTable('user_qualifications', ['user_id' => 'id']);
+    }
     public function getCategories()
     {
         return $this->hasMany(Category::class, ['id' => 'category_id'])

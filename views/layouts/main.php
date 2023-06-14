@@ -23,7 +23,8 @@ MainAsset::register($this);
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=e666f398-c983-4bde-8f14-e3fec900592a&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e666f398-c983-4bde-8f14-e3fec900592a&lang=ru_RU"
+            type="text/javascript"></script>
 
 </head>
 <body class="d-flex flex-column h-100">
@@ -43,10 +44,11 @@ MainAsset::register($this);
                         <a href="<?php echo Url::to(['/tasks']); ?>" class="link link--nav">Новое</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['/my-tasks?status=new']); ?>" class="link link--nav">Мои задания</a>
+                        <a href="<?php echo Url::to(['/my-tasks?status=new']); ?>" class="link link--nav">Мои
+                            задания</a>
                     </li>
                     <li class="list-item">
-                        <a href="<?php echo Url::to(['tasks/add']); ?>" class="link link--nav">Создать задание</a>
+                        <a href="<?php echo Url::to(['/tasks/add']); ?>" class="link link--nav">Создать задание</a>
                     </li>
                     <li class="list-item">
                         <a href="<?php echo Url::to(['/edit-profile']); ?>" class="link link--nav">Настройки</a>
@@ -75,7 +77,7 @@ MainAsset::register($this);
 
                     listItems.forEach((listItem, index) => {
                         listItem.addEventListener('click', (e) => {
-                           // e.preventDefault(); // Отмена перехода по ссылке
+                            // e.preventDefault(); // Отмена перехода по ссылке
                             setActiveItem(index);
                         });
                     });
@@ -83,7 +85,7 @@ MainAsset::register($this);
                     // Добавление обработчика события клика для логотипа
                     const logo = document.querySelector('.header-logo');
                     logo.addEventListener('click', (e) => {
-                       // e.preventDefault(); // Отмена перехода по ссылке
+                        // e.preventDefault(); // Отмена перехода по ссылке
                         setActiveItem(0); // Установка активного класса для первого элемента списка
                     });
                 });
@@ -94,13 +96,26 @@ MainAsset::register($this);
             $isGuest = Yii::$app->user->isGuest;
             if (!$isGuest):?>
                 <a href="#">
-                    <?php echo Html::img('/uploads/' . \Yii::$app->user->identity->user_img, ['width' => '60', 'height' => '60']); ?>
+
+                    <?php
+
+                    $user_img = \Yii::$app->user->identity->user_img;
+
+                    if ($user_img !== null) {
+                        if (!str_contains($user_img, 'http')) {
+                            echo Html::img('/uploads/' . Html::encode($user_img), ['width' => '60', 'height' => '60']);
+                        } else {
+                            echo Html::img($user_img, ['width' => '60', 'height' => '60']);
+                        }
+                    }
+
+                    ?>
 
                 </a>
 
                 <div class="user-menu">
 
-                    <p class="user-name"><?php echo Yii::$app->user->identity->name; ?></p>
+                    <p class="user-name"><?php echo Html::encode(Yii::$app->user->identity->name); ?></p>
                     <div class="popup-head">
                         <ul class="popup-menu">
                             <li class="menu-item">
@@ -122,12 +137,12 @@ MainAsset::register($this);
 
     </header>
 <?php endif; ?>
-<main role="main" class="flex-shrink-0">
-    <div class="container">
+
+
 
         <?= $content ?>
-    </div>
-</main>
+
+
 
 <footer class="footer mt-auto py-3 text-muted">
     <div class="container">
