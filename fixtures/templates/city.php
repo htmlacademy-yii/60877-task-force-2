@@ -3,9 +3,12 @@
  * @var $faker \Faker\Generator
  * @var $index integer
  */
-$city = $faker->city();
+$city = $faker->city;
+$latitude = $faker->latitude;
+$longitude = $faker->longitude;
+
 return [
     'name' => $city,
-    'latitude' => $city->latitude(),
-    'longitude' => $city->longitude(),
+    'latitude' => $latitude,
+    'longitude' => $longitude,
 ];
