@@ -2,19 +2,19 @@
 
 return [
     'user_reply0' => [
-        'create_at' => '1993-03-19 15:27:59',
-        'rate' => 10,
-        'description' => 'Quod a voluptas optio iste in.',
-        'task_id' => 2,
-        'user_id' => 7,
-        'executor_id' => 5,
+        'create_at' => '1985-12-19 12:23:54',
+        'rate' => 7,
+        'description' => 'Tempora architecto nobis vero molestiae assumenda.',
+        'task_id' => 10,
+        'user_id' => 8,
+        'executor_id' => 10,
     ],
     'user_reply1' => [
-        'create_at' => '2015-01-27 21:08:15',
+        'create_at' => '1973-02-18 12:54:41',
         'rate' => 5,
-        'description' => 'Repellendus accusamus libero sint odit fugit.',
-        'task_id' => 2,
-        'user_id' => 3,
-        'executor_id' => 8,
+        'description' => 'Illo ut accusamus nulla voluptatem dolorem veritatis.',
+        'task_id' => 3,
+        'user_id' => 1,
+        'executor_id' => 1,
     ],
 ];

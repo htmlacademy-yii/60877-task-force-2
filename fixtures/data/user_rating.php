@@ -2,11 +2,11 @@
 
 return [
     'user_rating0' => [
-        'rating' => 9,
-        'user_id' => 10,
+        'rating' => 8,
+        'user_id' => 8,
     ],
     'user_rating1' => [
-        'rating' => 0,
-        'user_id' => 9,
+        'rating' => 5,
+        'user_id' => 10,
     ],
 ];

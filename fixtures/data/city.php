@@ -2,13 +2,13 @@
 
 return [
     'city0' => [
-        'name' => 'New Ashleeborough',
-        'latitude' => -7.42625,
-        'longitude' => 5.102277,
+        'name' => 'Абаза',
+        'latitude' => '52.6517296',
+        'longitude' => '90.0885929',
     ],
     'city1' => [
-        'name' => 'South Hayleetown',
-        'latitude' => -86.395612,
-        'longitude' => 80.080828,
+        'name' => 'Абакан',
+        'latitude' => '53.7223661',
+        'longitude' => '91.4437792',
     ],
 ];

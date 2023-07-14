@@ -2,11 +2,11 @@
 
 return [
     'category0' => [
-        'name' => 'quo',
-        'icon' => 'consequuntur',
+        'name' => 'natus',
+        'icon' => 'voluptas',
     ],
     'category1' => [
-        'name' => 'maiores',
-        'icon' => 'voluptas',
+        'name' => 'quisquam',
+        'icon' => 'maxime',
     ],
 ];

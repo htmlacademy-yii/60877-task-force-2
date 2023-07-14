@@ -2,13 +2,13 @@
 
 return [
     'task_statuses0' => [
-        'task_id' => 3,
-        'user_id' => 9,
-        'status' => 'laboriosam',
+        'task_id' => 6,
+        'user_id' => 7,
+        'status' => 'sunt',
     ],
     'task_statuses1' => [
-        'task_id' => 3,
-        'user_id' => 5,
-        'status' => 'veniam',
+        'task_id' => 5,
+        'user_id' => 8,
+        'status' => 'aut',
     ],
 ];

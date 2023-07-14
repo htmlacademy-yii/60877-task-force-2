@@ -2,19 +2,19 @@
 
 return [
     'profile0' => [
-        'address' => 'At omnis dolor officia aut rem aperiam autem.',
-        'bd' => '1970-10-02 20:41:15',
-        'about' => 'Non accusantium esse neque culpa illum.',
-        'phone' => 13713012,
-        'skype' => 'numquam',
-        'city_id' => 6,
+        'address' => 'Provident quasi asperiores laudantium qui.',
+        'bd' => '2006-02-21 11:09:24',
+        'about' => 'Recusandae eius ipsa similique consequatur et atque.',
+        'phone' => 57554552,
+        'skype' => 'tempore',
+        'city_id' => 1,
     ],
     'profile1' => [
-        'address' => 'Ut natus iusto quas repudiandae eaque.',
-        'bd' => '1999-01-14 16:08:32',
-        'about' => 'Dolores placeat aliquam illum est.',
-        'phone' => 50215539,
-        'skype' => 'quam',
+        'address' => 'Commodi quis perferendis deleniti suscipit libero.',
+        'bd' => '2005-09-09 11:29:24',
+        'about' => 'Illum provident perferendis nesciunt ut quam necessitatibus.',
+        'phone' => 65806656,
+        'skype' => 'nam',
         'city_id' => 7,
     ],
 ];
