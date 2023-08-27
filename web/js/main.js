@@ -46,3 +46,7 @@ if (buttonInput) {
         }
     });
 }
+
+document.querySelector(".button").addEventListener('click', function() {
+    document.getElementById('button-input').click();
+});

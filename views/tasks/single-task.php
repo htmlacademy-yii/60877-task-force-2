@@ -22,7 +22,7 @@ $identity = Yii::$app->user->identity;
             <?= $task->description; ?>
         </p>
 
-        <?php if ($identity->user_status === 'executor'&&!$taskReply): ?>
+        <?php if ($identity->user_status === 'executor' && !$taskReply): ?>
             <a class="button button--blue action-btn" data-action="act_response">Откликнуться на задание</a>
         <?php endif; ?>
 
@@ -40,7 +40,8 @@ $identity = Yii::$app->user->identity;
 
             <script>
                 ymaps.ready(init);
-                function init(){
+
+                function init() {
                     var myMap = new ymaps.Map("map", {
                         center: [<?= $task->latitude ?>, <?= $task->longitude ?>],
                         zoom: 15
@@ -59,7 +60,7 @@ $identity = Yii::$app->user->identity;
                             // Необходимо указать данный тип макета.
                             iconLayout: 'default#image',
                             // Своё изображение иконки метки.
-                          //  iconImageHref: '/../img/cross-big.png',
+                            //  iconImageHref: '/../img/cross-big.png',
                             // Размеры метки.
                             iconImageSize: [30, 42],
                             // Смещение левого верхнего угла иконки относительно
@@ -76,7 +77,7 @@ $identity = Yii::$app->user->identity;
                             // Необходимо указать данный тип макета.
                             iconLayout: 'default#imageWithContent',
                             // Своё изображение иконки метки.
-                          //  iconImageHref: '/../img/cross-big.png',
+                            //  iconImageHref: '/../img/cross-big.png',
                             // Размеры метки.
                             iconImageSize: [48, 48],
                             // Смещение левого верхнего угла иконки относительно
@@ -90,14 +91,25 @@ $identity = Yii::$app->user->identity;
 
                     myMap.geoObjects
                         //  .add(myPlacemark)
-                       .add(myPlacemarkWithContent);
+                        .add(myPlacemarkWithContent);
                 }
             </script>
-          <div id="map" style="width: 600px; height: 400px"></div>
-<?php var_dump($task);?>
-            <p class="map-address town">Москва</p>
-            <p class="map-address">Новый арбат, 23, к. 1</p>
-        </div>
+        <div id="map" style="width: 600px; height: 400px"></div>
+        <?php
+        $newaddr = explode(",", $task->address);
+
+        if (isset($newaddr[0])) {
+            echo "<p class='map-address town'>$newaddr[0]</p>";
+        }
+
+        if (isset($newaddr[1]) && isset($newaddr[2])) {
+            echo "<p class='map-address'>$newaddr[1] $newaddr[2]</p>";
+        } elseif (isset($newaddr[1])) {
+            echo "<p class='map-address'>$newaddr[1]</p>";
+        }
+        ?>
+    </div>
+
         <?php
 
         if (count($task->replies) > 0): ?>
@@ -108,69 +120,74 @@ $identity = Yii::$app->user->identity;
         <?php foreach ($task->replies as $reply): ?>
 
             <?php if (
-                    $identity->id === $task->user_id ||
-                    $identity === $reply->user_id
+                $identity->id === $task->user_id ||
+                $identity === $reply->user_id
             ):
                 ?>
                 <div class="response-card">
-                    <?php
+                <?php
 
-                    if (file_exists("img/" . $reply->user->user_img)) {
-                        echo \yii\helpers\Html::img("@web/img/{$reply->user->user_img}", ['alt' => 'Фотка ', 'id' => '', 'width' => 100, 'height' => 100]);
-                    }
+                if (file_exists("img/" . $reply->user->user_img)) {
+                    echo \yii\helpers\Html::img("/img/{$reply->user->user_img}", ['alt' => 'Фотка ', 'id' => '', 'width' => 100, 'height' => 100]);
+                }
 
-                    ?>
-                    <div class="feedback-wrapper">
+                ?>
+                <div class="feedback-wrapper">
 
-                        <a href="#" class="link link--block link--big"><?php echo $reply->user->name; ?></a>
-                        <div class="response-wrapper">
-                            <div class="stars-rating small">
-                                <?php for ($i = 0; $i < $reply->user->getAvgRating(); $i++): ?>
-                                    <span class="fill-star"></span>
-                                <?php endfor; ?>
-                            </div>
-                            <?php if (count($reply->user->replies) > 0): ?>
-                                <p class="reviews"><?= count($reply->user->replies) ?> отзыва</p>
-                            <?php endif; ?>
+                    <a href="#" class="link link--block link--big"><?php echo $reply->user->name; ?></a>
+                    <div class="response-wrapper">
+                        <div class="stars-rating small">
+                            <?php for ($i = 0; $i < $reply->user->getAvgRating(); $i++): ?>
+                                <span class="fill-star"></span>
+                            <?php endfor; ?>
                         </div>
-                        <p class="response-message">
-                            <?php echo $reply->description; ?>
-                        </p>
-                    </div>
-
-                    <div class="feedback-wrapper">
-                        <p class="info-text"><span class="current-time"> <?php echo $reply->getWasOnSite(); ?></span>
-                            назад
-                        </p>
-                        <p class="price price--small"><?php echo $reply->price; ?> uah</p>
-                    </div>
-
-
-                    <div class="button-popup">
-                        <?php
-
-                        if (
-                            \Yii::$app->user->identity->id === $task->user_id &&
-                            $taskOwnerStatus === 'customer' &&
-                            $task->status !== 'in_progress' &&
-                            $reply_status !== 'rejected'):?>
-                            <a href="<?php echo Url::to(['tasks/accept-task-reply/', 'id' => $task->id, 'user_id' => $reply->user->id]); ?>"
-                               class="button button--blue button--small">Принять</a>
-                            <a href="<?php echo Url::to(['tasks/reject-task-reply/', 'task_id' => $task->id, 'user_id' => $reply->user->id]); ?>"
-                               class="button button--orange button--small">Отказать</a>
+                        <?php if (count($reply->user->replies) > 0): ?>
+                            <p class="reviews"><?= count($reply->user->replies) ?> отзыва</p>
                         <?php endif; ?>
                     </div>
+                    <p class="response-message">
+                        <?php echo $reply->description; ?>
+                    </p>
+                </div>
+
+                <div class="feedback-wrapper">
+                    <p class="info-text"><span class="current-time"> <?php echo $reply->getWasOnSite(); ?></span>
+                        назад
+                    </p>
+                    <p class="price price--small"><?php echo $reply->price; ?> uah</p>
+                </div>
+
+
+                <div class="button-popup">
+                <?php if (isset($reply_status)): ?>
+
+                <?php
+
+                if (
+                    \Yii::$app->user->identity->id === $task->user_id &&
+                    $taskOwnerStatus === 'customer' &&
+                    $task->status !== 'in_progress' &&
+                    $reply_status !== 'rejected'):?>
+                    <a href="<?php echo Url::to(['tasks/accept-task-reply/', 'id' => $task->id, 'user_id' => $reply->user->id]); ?>"
+                       class="button button--blue button--small">Принять</a>
+                    <a href="<?php echo Url::to(['tasks/reject-task-reply/', 'task_id' => $task->id, 'user_id' => $reply->user->id]); ?>"
+                       class="button button--orange button--small">Отказать</a>
+                <?php endif; ?>
+                </div>
                 </div>
             <?php endif; ?>
+            <?php endif; ?>
+
         <?php endforeach; ?>
 
     </div>
+
     <div class="right-column">
         <div class="right-card black info-card">
             <h4 class="head-card">Информация о задании</h4>
             <dl class="black-list">
                 <dt>Категория</dt>
-                <dd><?php echo $task->category->name; ?></dd>
+                <dd><?php echo Html::a($task->category->name, ['/tasks', 'category_id' => $task->category->id]); ?></dd>
                 <dt>Дата публикации</dt>
                 <dd><?php
 
@@ -280,4 +297,8 @@ $identity = Yii::$app->user->identity;
             <?php echo Html::submitButton('Завершить', ['class' => 'button button--pop-up button--blue']) ?>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="button-conta
+        <div class="button-container">
+            <button class="button--close" type="button">Закрыть окно</button>
+        </div>
+    </div>
+</section>

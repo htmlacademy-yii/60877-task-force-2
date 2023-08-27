@@ -68,6 +68,7 @@ app\assets\LandingAsset::register($this);
                     <p>Работа там, где ты!</p>
                 </div>
                 <div class="header__account--index">
+
                     <a href="#" class="header__account-enter open-modal" data-for="enter-form">
                         <span>Вход</span></a>
                     или
@@ -187,26 +188,26 @@ app\assets\LandingAsset::register($this);
                             <a href="<?php echo Url::to(['/tasks']);?>">Задания</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Мой профиль</a>
+                            <a href="<?php echo Url::to(['/users/view']);?>">Мой профиль</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Исполнители</a>
+                            <a href="<?php echo Url::to(['/users']);?>">Исполнители</a>
                         </li>
                         <li class="links__item">
                             <a href="<?php echo Url::to(['/register']);?>">Регистрация</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Создать задание</a>
+                            <a href="<?php echo Url::to(['/tasks/add']);?>">Создать задание</a>
                         </li>
                         <li class="links__item">
-                            <a href="#">Справка</a>
+                            <a href="<?php echo Url::to(['/reference']);?>">Справка</a>
                         </li>
                     </ul>
                 </div>
                 <div class="page-footer__copyright">
                     <a href="https://htmlacademy.ru">
                         <img class="copyright-logo"
-                             src="./img/academy-logo.png"
+                             src="/img/academy-logo.png"
                              width="185" height="63"
                              alt="Логотип HTML Academy">
                     </a>

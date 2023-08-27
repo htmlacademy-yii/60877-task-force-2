@@ -27,10 +27,6 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-
     const EXECUTOR = 'executor';
     const CUSTOMER = 'customer';
 
@@ -45,9 +41,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['email', 'name', 'password_hash', 'city_id'], 'required'],
-            [['dt_add', 'status', 'answer_orders'], 'integer'],
-            [['email', 'name', 'password_hash', 'user_img', 'country', 'city_id', 'age', 'phone', 'telegram', 'user_status'], 'string', 'max' => 255],
+            [['email', 'name', 'password_hash'], 'required'],
+            [['status', 'answer_orders'], 'integer'],
+            [['email', 'name', 'password_hash', 'user_img', 'country', 'age', 'phone', 'telegram', 'user_status'], 'string', 'max' => 255],
             [['quote'], 'string', 'max' => 1000],
         ];
     }
@@ -177,9 +173,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getCity()
     {
         return $this->hasOne(City::class, ['id' => 'city_id']);
-
     }
-
 
     public function getAllRepliesForUsers()
     {
@@ -225,5 +219,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
         return $rating;
 
+    }
+    public function getQualifications()
+    {
+        return $this->hasMany(Category::class, ['id' => 'category_id'])
+            ->viaTable('user_qualifications', ['user_id' => 'id']);
+    }
+    public function getCategories()
+    {
+        return $this->hasMany(Category::class, ['id' => 'category_id'])
+            ->viaTable('user_qualifications', ['user_id' => 'id']);
     }
 }

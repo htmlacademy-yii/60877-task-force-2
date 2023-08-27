@@ -3,12 +3,15 @@
 namespace app\controllers;
 
 use Yii;
+use yii\authclient\AuthAction;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use yii\authclient\ClientInterface;
 use app\models\ContactForm;
+use app\components\AuthHandler;
 
 class SiteController extends Controller
 {
@@ -44,12 +47,9 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess'],
             ],
         ];
     }
@@ -69,6 +69,26 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
+    public function actionAuth()
+    {
+        return [
+
+            'auth' => [
+                'class' => AuthAction::class,
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
+
+        ];
+    }
+
+    public function onAuthSuccess(ClientInterface $client)
+    {
+        // Получение данных пользователя
+        //$attributes = $client->getUserAttributes();
+        (new AuthHandler($client))->handle();
+        // Здесь вы можете реализовать свою логику обработки данных пользователя и авторизации в вашем приложении.
+    }
+
     public function actionContact()
     {
         $model = new ContactForm();
@@ -91,4 +111,14 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception !== null) {
+            return $this->render('error', ['exception' => $exception]);
+        }
+    }
+
+
 }

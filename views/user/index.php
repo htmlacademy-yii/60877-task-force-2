@@ -6,15 +6,22 @@ use app\models\TagsAttribute;
  * @var app\models\User $singleUser ;
  */
 
+use yii\helpers\Html;
 
 ?>
 
+
 <main class="main-content container">
+    <?php if (Yii::$app->session->hasFlash('error')): ?>
+        <div class="alert alert-danger">
+            <?= Yii::$app->session->getFlash('error'); ?>
+        </div>
+    <?php endif; ?>
     <div class="left-column">
         <h3 class="head-main"><?php echo $singleUser->name; ?></h3>
         <div class="user-card">
             <div class="photo-rate">
-                <?php echo \yii\helpers\Html::img("@web/img/{$singleUser->user_img}", ['alt' => '', 'id' => '', 'width' => 191, 'height' => 190]); ?>
+                <?php echo \yii\helpers\Html::img("/img/{$singleUser->user_img}", ['alt' => '', 'id' => '', 'width' => 191, 'height' => 190]); ?>
                 <?php if ($numberReplies > 0): ?>
                     <div class="card-rate">
 
@@ -52,8 +59,14 @@ use app\models\TagsAttribute;
             <div class="bio">
                 <p class="head-info"> Био</p>
                 <p class="bio-info">
-                    <span class="country-info"><?php echo $singleUser->country; ?></span>,
-                    <span class="town-info"><?php echo $singleUser->city->name; ?></span>,
+                    <span class="country-info"><?php echo Html::encode($singleUser->country); ?></span>,
+                    <span class="town-info"><?php
+                        if ($singleUser->city) {
+                            echo $singleUser->city->name;
+                        } else {
+                            echo 'Город не указан';
+                        }
+                        ?></span>,
                     <span class="age-info"><?php echo $singleUser->age; ?></span> лет
                 </p>
             </div>
@@ -63,7 +76,7 @@ use app\models\TagsAttribute;
         <?php foreach ($singleUser->executorReplies as $reply): ?>
 
             <div class="response-card">
-                <?php echo \yii\helpers\Html::img("@web/img/{$reply->userWriter->user_img}", ['alt' => '', 'id' => '', 'width' => 120, 'height' => 127]); ?>
+                <?php echo \yii\helpers\Html::img("/img/{$reply->userWriter->user_img}", ['alt' => '', 'id' => '', 'width' => 120, 'height' => 127]); ?>
                 <div class="feedback-wrapper">
                     <p class="feedback">
                         <?php echo $reply->description; ?>
@@ -137,5 +150,5 @@ use app\models\TagsAttribute;
             </ul>
         </div>
     </div>
-    s
+
 </main>

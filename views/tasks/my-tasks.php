@@ -19,6 +19,7 @@ $this->title = 'My tasks';
 <main class="main-content container">
     <div class="left-menu">
         <h3 class="head-main head-task">Мои задания</h3>
+
         <ul class="side-menu-list">
             <li class="side-menu-item side-menu-item--active">
                 <a href="<?php echo Url::to(['tasks/my-tasks/', 'status' => 'new']); ?>"
@@ -32,6 +33,37 @@ $this->title = 'My tasks';
                 <a href="<?php echo Url::to(['tasks/my-tasks/', 'status' => 'closed']); ?>" class="link link--nav">Закрытые</a>
             </li>
         </ul>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const sideMenuItems = document.querySelectorAll('.side-menu-list .side-menu-item');
+
+                // Получаем значение активного элемента из локального хранилища
+                const activeSideMenuIndex = localStorage.getItem('activeSideMenuIndex');
+
+                // Устанавливаем активный элемент на основе сохраненного значения
+                if (activeSideMenuIndex !== null) {
+                    sideMenuItems.forEach((item) => item.classList.remove('side-menu-item--active'));
+                    sideMenuItems[activeSideMenuIndex].classList.add('side-menu-item--active');
+                }
+
+                sideMenuItems.forEach((sideMenuItem, index) => {
+                    sideMenuItem.addEventListener('click', (e) => {
+                        const activeItem = document.querySelector('.side-menu-list .side-menu-item--active');
+                        if (activeItem) {
+                            activeItem.classList.remove('side-menu-item--active');
+                        }
+                        sideMenuItem.classList.add('side-menu-item--active');
+
+                        // Сохраняем индекс выбранного элемента в локальном хранилище
+                        localStorage.setItem('activeSideMenuIndex', index);
+
+                        // Остановите выполнение перехода по ссылке, чтобы увидеть эффект изменения класса
+                        // В реальном применении уберите эту строку, чтобы ссылки продолжили работать
+
+                    });
+                });
+            });
+        </script>
     </div>
     <div class="left-column left-column--task">
         <?php
@@ -57,7 +89,7 @@ $this->title = 'My tasks';
             <div class="task-card">
 
                 <div class="header-task">
-                    <a href="#" class="link link--block link--big"><?php echo $my_task->name; ?></a>
+                    <a href="<?php echo Url::to(['tasks/view/'.$my_task->id]); ?>" class="link link--block link--big"><?php echo $my_task->name; ?></a>
                     <p class="price price--task"><?php echo $my_task->budget; ?> ₽</p>
                 </div>
 
